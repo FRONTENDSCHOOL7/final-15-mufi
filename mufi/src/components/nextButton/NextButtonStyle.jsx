@@ -13,6 +13,10 @@ const NextBtnStyle = styled.button`
     background-color: #1F2241;
     color: #606367;
   }
+
+  &:hover{
+    background-color: #495BFF;
+  }
 `
 
 export default NextBtnStyle;

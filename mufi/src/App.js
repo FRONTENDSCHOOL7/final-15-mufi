@@ -7,6 +7,7 @@ const GlobalStyle = createGlobalStyle`
 ${reset}
 
 body {
+  background-color: #e0e0e0;
   font-family: 'Pretendard'
 }
 

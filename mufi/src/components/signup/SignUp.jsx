@@ -1,12 +1,29 @@
-import React from 'react';
+import React, { useState } from 'react';
 import * as SU from './SignUp.styled';
 import GoBackHeader from '../GoBackHeader';
 
-const pwValidation = (e) => {
-  const pwValue = e.target.value;
-};
-
 export default function SignUp() {
+  const [password, setPassword] = useState('');
+  const [passwordWarning, setPasswordWarning] = useState('');
+
+  // 비밀번호 유효성 검사
+  const validatePassword = (password) => {
+    if (password.length < 8 || password.length > 16) {
+      return '8~16자리의 비밀번호를 입력해주세요.';
+    }
+
+    if (!/^[A-Za-z0-9~!@#$%^&*]{8,16}$/.test(password)) {
+      return '비밀번호는 영어 대소문자, 숫자, 특수문자(~!@#$%^&*)만 사용해주세요.';
+    }
+
+    return '';
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+    setPasswordWarning(validatePassword(e.target.value));
+  };
+
   return (
     <SU.SignUpLayout>
       <GoBackHeader />
@@ -29,13 +46,14 @@ export default function SignUp() {
           <SU.Input
             type="password"
             placeholder="비밀번호를 설정해 주세요."
-            onChange={{}}
             required
+            value={password}
+            onChange={handlePasswordChange}
           />
         </SU.TextInput>
-        <SU.PasswordWarning>
-          *비밀번호는 6자 이상이어야 합니다.
-        </SU.PasswordWarning>
+        {passwordWarning && (
+          <SU.PasswordWarning>{passwordWarning}</SU.PasswordWarning>
+        )}
       </SU.WrapInput>
       <SU.NextButton>다음</SU.NextButton>
     </SU.SignUpLayout>

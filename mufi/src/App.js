@@ -22,6 +22,7 @@ body {
 button {
   font: inherit;
   font-weight: bold;
+  cursor: pointer;
 }
 `
 

@@ -1,19 +1,22 @@
 import styled from 'styled-components';
 
-export const SignUpLayout = styled.form`
+export const JoinLayout = styled.form`
   display: flex;
   flex-direction: column;
-  justify-content: center;
 
+  position: relative;
+  width: 390px;
+  height: 844px;
   background-color: #000;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 16px;
 `;
 
 export const Title = styled.h1`
-  font-family: Pretendard;
   font-size: 24px;
   font-weight: 500;
   text-align: center;
-  padding-top: 46px;
   padding-bottom: 40px;
   color: #fff;
 
@@ -31,7 +34,6 @@ export const TextInput = styled.div`
 `;
 
 export const Text = styled.p`
-  font-family: Pretendard;
   font-size: 12px;
   font-weight: 500;
   color: #767676;
@@ -43,7 +45,6 @@ export const Input = styled.input`
   width: 100%;
   height: 32px;
 
-  font-family: Pretendard;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -61,7 +62,6 @@ export const Input = styled.input`
 `;
 
 export const EmailWarning = styled.p`
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
@@ -71,26 +71,10 @@ export const EmailWarning = styled.p`
 `;
 
 export const PasswordWarning = styled.p`
-  font-family: Pretendard;
   font-size: 12px;
   font-style: normal;
   font-weight: 500;
   line-height: 14px;
   color: #eb5757;
   margin: 6px 0px 0px 0px;
-`;
-
-export const NextButton = styled.button`
-  width: 322px;
-  height: 44px;
-  margin: auto;
-  display: block;
-  border-radius: 8px;
-  color: #ffffff;
-  border: none;
-  outline: none;
-  background: #2033e7;
-  margin-top: 14px;
-
-  cursor: pointer;
 `;

@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
-import HomeHeader from '../../components/headers/HomeHeader'
-import HomeEmpty from './HomeEmpty'
+import React from 'react'
 import * as H from "./HomeStyle"
 import SearchHeader from "../../components/headers/SearchHeader"
-
+import SearchFilter from './serachFilter/SearchFilter'
 
 export default function HomeSearch() {
 
@@ -11,7 +9,10 @@ export default function HomeSearch() {
 
     <>
       <H.HLayout>
-        <SearchHeader></SearchHeader>
+        <div style={{"width": "100%"}}>
+          <SearchHeader></SearchHeader>
+          <SearchFilter></SearchFilter>
+        </div>
         <H.TempHeader></H.TempHeader>
       </H.HLayout>
     </>

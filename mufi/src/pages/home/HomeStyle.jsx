@@ -1,11 +1,10 @@
-import styled, {keyframes} from "styled-components";
+import styled, { keyframes } from "styled-components";
 import NextBtnStyle from "../../components/nextButton/NextButtonStyle";
 import { Layout } from '../../components/Layout/LayoutStyle'
 
 
 export const HLayout = styled(Layout)`
   position: relative;
-  text-align: center;
   width: 390px;
   height: 844px;
   background-color: #fff;

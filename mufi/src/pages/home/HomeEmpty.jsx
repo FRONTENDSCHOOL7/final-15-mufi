@@ -6,7 +6,7 @@ import { useNavigate } from 'react-router-dom';
 export default function HomeEmpty() {
   const navigate = useNavigate();
   const onSearchBtn = () => {
-    navigate('/homeSearch');
+    navigate('/homesearch');
   }
   return (
     <>

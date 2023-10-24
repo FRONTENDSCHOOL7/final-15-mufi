@@ -5,9 +5,14 @@ export const Layout = styled.div`
   flex-direction: column;
   align-items: center;
 
-  max-width: 390px;
-  min-height: 884px;
-  background: #000;
+  position: relative;
+  text-align: center;
+  width: 390px;
+  height: 844px;
+  background-color: #000;
+  margin: auto;
+  overflow: hidden;
+  border-radius: 16px;
 `;
 
 export const H1 = styled.h1`

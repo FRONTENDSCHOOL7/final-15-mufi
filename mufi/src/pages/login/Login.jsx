@@ -61,9 +61,9 @@ const Login = () => {
           </InputGroup>
         )}
         <LoginButton type="submit">다음</LoginButton>
-        <InputGroup>
-          <EmailJoin>이메일로 회원가입</EmailJoin>
-        </InputGroup>
+        
+          <EmailJoin type>이메일로 회원가입</EmailJoin>
+        
       </form>
     </Layout>
   );

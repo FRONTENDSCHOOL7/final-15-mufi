@@ -7,16 +7,15 @@ import Login from '../pages/login/Login';
 import JoinProfile from '../pages/login/JoinProfile';
 import Home from '../pages/home/Home';
 
+
 export default function Router() {
   return (
     <Routes>
       <Route path="/splash" element={<Splash />} />
       <Route path="/" element={<Landing />} />
-        
       <Route path="/join" element={<Join />} />
       <Route path="/login" element={<Login />} />
       <Route path="/joinprofile" element={<JoinProfile />} />
-        
       <Route path='/home' element={<Home />} />
     </Routes>
   );

@@ -12,7 +12,7 @@ export default function SearchResult({isAccount, isTag, isFestival}) {
   const moveToDetails = () =>{
     navigate("/yourprofile")
   }
-  const data = [{
+  const dataUser = [{
     img,
     title: '위니브 애월읍',
     content: 'weniv_aewol',
@@ -39,7 +39,7 @@ export default function SearchResult({isAccount, isTag, isFestival}) {
   return (
     <>
       {isAccount && <SRContainer className="account-result">
-        <SearchResultItem data={data} moveTo={moveToDetails}/>
+        <SearchResultItem data={dataUser} moveTo={moveToDetails}/>
       </SRContainer>}
 
       {isTag && <SRContainer className="tag-result">

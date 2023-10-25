@@ -6,6 +6,7 @@ import Join from '../pages/login/Join';
 import Login from '../pages/login/Login';
 import JoinProfile from '../pages/login/JoinProfile';
 import Home from '../pages/home/Home';
+import HomeSearch from '../pages/home/HomeSearch';
 
 export default function Router() {
   return (
@@ -18,6 +19,7 @@ export default function Router() {
       <Route path="/joinprofile" element={<JoinProfile />} />
         
       <Route path='/home' element={<Home />} />
+      <Route path='/homesearch' element={<HomeSearch />} />
     </Routes>
   );
 }

@@ -5,7 +5,9 @@ import * as H from "./HomeStyle"
 
 
 export default function Home() {
+
   return (
+
     <>
       <H.HLayout>
         <HomeHeader/>

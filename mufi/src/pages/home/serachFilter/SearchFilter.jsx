@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as SF from "./SearchFilterStyle"
 
-export default function SearchFilter() {
+export default function SearchFilter({setIsAccount, setIsTag, setIsFestival}) {
+
   const handleFilterSelection = (e) => {
     const filterName = e.target.textContent;
     const btnList = document.querySelector(".btn-list");
@@ -13,10 +14,44 @@ export default function SearchFilter() {
       let btnEl = v.querySelector('button');
       // 클릭된 버튼 클래스를 selected로.....
       if(btnEl.textContent === filterName){
-        btnEl.classList.add("selected");
+        btnEl.classList.toggle("selected");
       }else{
         if(btnEl.classList.contains("selected")){
           btnEl.classList.remove("selected");
+        }
+      }
+    })
+
+    // 필터 이름과 같은 결과 아이템만 보이게 하는 상태
+    btnListItems.forEach(v=>{
+      let btnEl = v.querySelector('button');
+      if(btnEl.classList.contains("selected")){
+        switch (true) {
+          case btnEl.classList.contains("account"):
+            setIsAccount(true)
+            break;
+          case btnEl.classList.contains("tag"):
+            setIsTag(true)
+            break;
+          case btnEl.classList.contains("festival"):
+            setIsFestival(true)
+              break;
+          default:
+            break;
+        }
+      }else if(!btnEl.classList.contains("selected")){
+        switch (true) {
+          case btnEl.classList.contains("account"):
+            setIsAccount(false)
+            break;
+          case btnEl.classList.contains("tag"):
+            setIsTag(false)
+            break;
+          case btnEl.classList.contains("festival"):
+            setIsFestival(false)
+              break;
+          default:
+            break;
         }
       }
     })
@@ -26,13 +61,13 @@ export default function SearchFilter() {
     <SF.SearchFilter>
       <SF.BtnList className='btn-list'>
         <li>
-          <SF.TextBtn className='selected' onClick={handleFilterSelection}>계정</SF.TextBtn>
+          <SF.TextBtn className='account' onClick={handleFilterSelection}>계정</SF.TextBtn>
         </li>
         <li>
-          <SF.TextBtn onClick={handleFilterSelection}>태그</SF.TextBtn>
+          <SF.TextBtn className='tag' onClick={handleFilterSelection}>태그</SF.TextBtn>
         </li>
         <li>
-          <SF.TextBtn onClick={handleFilterSelection}>페스티벌</SF.TextBtn>
+          <SF.TextBtn className='festival' onClick={handleFilterSelection}>페스티벌</SF.TextBtn>
         </li>
       </SF.BtnList>
     </SF.SearchFilter>

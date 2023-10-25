@@ -4,9 +4,14 @@ import { SRContainer } from './SearchResultStyle'
 import img from '../../../assets/basic-profile-small.png'
 import iconTag from '../../../assets/hashtag.png'
 import iconFes from '../../../assets/guitar.png'
+import {useNavigate} from "react-router-dom"
 
-export default function SearchResult() {
-
+export default function SearchResult({isAccount, isTag, isFestival}) {
+  // 계정 검색
+  const navigate = useNavigate();
+  const moveToDetails = () =>{
+    navigate("/yourprofile")
+  }
   const data = [{
     img,
     title: '위니브 애월읍',
@@ -18,36 +23,32 @@ export default function SearchResult() {
     content: 'weniv_tangerin'
   }]
 
-  const dataTag = [{
-    img: iconTag,
-    title: "박재범",
-  },{
-    img: iconTag,
-    title: "박재범 타투"
+  // 태그랑 페스티벌
+  const moveToPostList = () => {
+    navigate("/postlist")
   }
+  const dataTag = [
+    "박재범",
+    "박재범 타투"
   ]
-
-  const dataFestival = [{
-    img: iconFes,
-    title: "감귤 축제"
-  },{
-    img: iconFes,
-    title: "감귤 많이 먹기 대회"
-  }]
+  const dataFestival = [
+    "감귤 축제",
+    "감귤 많이 먹기 대회"
+  ]
 
   return (
     <>
-      <SRContainer className="account-result">
-        <SearchResultItem data={data} />
-      </SRContainer>
+      {isAccount && <SRContainer className="account-result">
+        <SearchResultItem data={data} moveTo={moveToDetails}/>
+      </SRContainer>}
 
-      <SRContainer className="tag-result">
-        <SearchResultItem data={dataTag} className="tag" />
-      </SRContainer>    
+      {isTag && <SRContainer className="tag-result">
+        <SearchResultItem img={iconTag} data={dataTag} moveTo={moveToPostList}/>
+      </SRContainer>}    
 
-      <SRContainer className="festival-result">
-        <SearchResultItem data={dataFestival} className="festival"/>
-      </SRContainer>
+      {isFestival && <SRContainer className="festival-result">
+        <SearchResultItem img={iconFes} data={dataFestival} moveTo={moveToPostList} />
+      </SRContainer>}
     </>
   )
 }

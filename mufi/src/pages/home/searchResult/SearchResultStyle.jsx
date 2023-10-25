@@ -19,6 +19,7 @@ export const SRItem = styled.li`
     gap: 8px;
     padding: 8px;
     border-bottom: 1px solid #EFEFEF;
+    cursor: pointer;
 `
 export const ResultProfile = styled.div`
     width: 39px;

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Header from '../../components/GoBackHeader';
+import Header from '../../components/headers/GoBackHeader';
 import Input from '../../components/Input';
 import {
   Layout,
@@ -14,7 +14,7 @@ import {
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(false); 
+  const [showError, setShowError] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -30,7 +30,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <Header/>
+      <Header />
       <Title>로그인</Title>
       <form onSubmit={handleSubmit}>
         <InputGroup>

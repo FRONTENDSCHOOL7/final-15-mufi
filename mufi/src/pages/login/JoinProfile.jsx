@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import * as JP from './JoinProfileStyle';
 import Input from '../../components/Input';
-import Header from '../../components/GoBackHeader';
+import Header from '../../components/headers/GoBackHeader';
 import BasicImg from '../../assets/basic-profile-large.png';
 import UploadImg from '../../assets/icon-upload-img.png';
 

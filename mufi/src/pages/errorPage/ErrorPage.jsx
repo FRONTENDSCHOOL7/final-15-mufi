@@ -7,7 +7,7 @@ export default function ErrorPage() {
   return (
     <Layout>
       <StyledImg src={icon404Img} alt="404 Error Icon" />
-      <StyledDiv>페이지를 찾을 수 없습니다. :</StyledDiv>
+      <StyledDiv>페이지를 찾을 수 없습니다. :(</StyledDiv>
       <BeforeButton></BeforeButton>
     </Layout>
   )

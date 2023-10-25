@@ -28,25 +28,11 @@ position: absolute;
   top: 388px;
   left: 114px;
 margin-top: 10px;
+margin-bottom:20px;
 color: #767676;
 `
 
-export const beforeButton = styled.button`
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
-  background-color: #2033E7;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
 
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
 
 
 

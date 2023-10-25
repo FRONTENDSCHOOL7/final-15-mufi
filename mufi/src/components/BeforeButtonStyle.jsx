@@ -3,13 +3,13 @@ import styled from 'styled-components';
 export const BeforeButtonStyle = styled.button`
   width: 120px;
   line-height: 44px;
-//   padding: 13px 0px 14px 0px;
   background-color: #2033e7;
-  pont-size: 14px;
+  font-size: 14px;
   border-radius: 8px;
   color: white;
   border: none;
-  margin-top: 422px;
+  margin-top: 432px;
+  margin-left: 135px;
 
   &:disabled {
     background-color: #1f2241;

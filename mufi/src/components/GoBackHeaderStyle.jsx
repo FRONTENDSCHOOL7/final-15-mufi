@@ -18,7 +18,6 @@ export const HeaderBtn = styled.button`
 
   position: absolute;
   top: 50%;
-  left: 20px;
+  left: 12px;
   transform: translateY(-50%);
-  padding-left: 16px;
 `;

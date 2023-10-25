@@ -6,7 +6,8 @@ import Join from '../pages/login/Join';
 import Login from '../pages/login/Login';
 import JoinProfile from '../pages/login/JoinProfile';
 import Home from '../pages/home/Home';
-
+import YourProfile from '../pages/profile/YourProfile';
+import FollowerList from '../pages/followers/FollowerList';
 
 export default function Router() {
   return (
@@ -16,7 +17,9 @@ export default function Router() {
       <Route path="/join" element={<Join />} />
       <Route path="/login" element={<Login />} />
       <Route path="/joinprofile" element={<JoinProfile />} />
-      <Route path='/home' element={<Home />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/yourprofile" element={<YourProfile />} />
+      <Route path="/followerlist" element={<FollowerList />} />
     </Routes>
   );
 }

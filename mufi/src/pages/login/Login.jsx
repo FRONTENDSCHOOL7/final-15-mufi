@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import Header from '../../components/GoBackHeader';
 import Input from '../../components/Input';
+import NextButton from '../../components/nextButton/NextButton';
 import {
   Layout,
   Title,
   InputGroup,
   Label,
-  LoginButton,
   ErrorMessage,
   EmailJoin,
 } from './LoginStyle';
@@ -14,7 +14,7 @@ import {
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(false); 
+  const [showError, setShowError] = useState(true); 
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +60,7 @@ const Login = () => {
             </ErrorMessage>
           </InputGroup>
         )}
-        <LoginButton type="submit">다음</LoginButton>
+        <NextButton></NextButton>
         <InputGroup>
           <EmailJoin>이메일로 회원가입</EmailJoin>
         </InputGroup>

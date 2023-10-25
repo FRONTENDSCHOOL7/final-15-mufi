@@ -6,6 +6,8 @@ import Join from '../pages/login/Join';
 import Login from '../pages/login/Login';
 import JoinProfile from '../pages/login/JoinProfile';
 import Home from '../pages/home/Home';
+import ErrorPage from '../pages/errorPage/ErrorPage';
+
 
 export default function Router() {
   return (
@@ -18,6 +20,7 @@ export default function Router() {
       <Route path="/joinprofile" element={<JoinProfile />} />
         
       <Route path='/home' element={<Home />} />
+      <Route path='/errorpage' element={<ErrorPage />} />
     </Routes>
   );
 }

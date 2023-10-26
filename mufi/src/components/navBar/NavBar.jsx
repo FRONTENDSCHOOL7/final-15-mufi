@@ -6,7 +6,7 @@ export default function NavBar() {
   const location = useLocation();
   
   useEffect(()=>{
-    console.log('location',    location.pathname);
+    //  ('location',    location.pathname);
 
     switch (location.pathname) {
       case '/home':

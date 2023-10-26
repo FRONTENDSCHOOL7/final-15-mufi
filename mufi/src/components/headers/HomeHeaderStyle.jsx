@@ -6,7 +6,9 @@ export const HeaderWrapper = styled.header`
   height: 47.5px;
   background-color: #000;
   border-bottom: 0.5px solid #dbdbdb;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 
   padding: 13px 22px 13px 22px;
   box-sizing: border-box;

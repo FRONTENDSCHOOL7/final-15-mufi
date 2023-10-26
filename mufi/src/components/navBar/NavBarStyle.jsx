@@ -5,8 +5,8 @@ import chat from '../../assets/icon-message-gray.png'
 import chatfill from '../../assets/icon-message-fill.png'
 import user from '../../assets/icon-user.png'
 import userfill from '../../assets/icon-user-fill.png'
-import post from '../../assets/icon-add-post.png'
-import postfill from '../../assets/icon-edit-fill.png'
+import uplodad from '../../assets/icon-add-post.png'
+import uplodadfill from '../../assets/icon-edit-fill.png'
 
 export const Container = styled.div`
   width: 390px;
@@ -23,7 +23,7 @@ export const IconList = styled.ul`
   justify-content: space-around;
   gap: 14px;
 `
-export const IconItem = styled.li`
+export const IconItem = styled.button`
   width:  84px;
   height: 60px;
   display: flex;
@@ -31,38 +31,40 @@ export const IconItem = styled.li`
   align-items: center;
   background-repeat: no-repeat;
   background-position: 30px 12px;
+  border: none;
+  background-color: transparent;
 `
 export const Home = styled(IconItem)`
   background-image: url(${home});
-`
-export const HomeFill =styled(IconItem)`
-  background-image: url(${homeFill});
+  &.selected {
+    background-image: url(${homeFill});
+  }
 `
 export const Chat = styled(IconItem)`
   background-image: url(${chat});
+  &.selected {
+    background-image: url(${chatfill});
+  }
 `
-export const ChatFill = styled(IconItem)`
-  background-image: url(${chatfill});
+export const Upload = styled(IconItem)`
+  background-image: url(${uplodad});
+  &.selected {
+    background-image: url(${uplodadfill});
+  }
 `
-export const Post = styled(IconItem)`
-  background-image: url(${post});
-`
-export const PostFill = styled(IconItem)`
-  background-image: url(${postfill});
-`
-export const User = styled(IconItem)`
+export const Profile = styled(IconItem)`
   background-image: url(${user});
-`
-export const UserFill = styled(IconItem)`
-  background-image: url(${userfill});
+  &.selected {
+    background-image: url(${userfill});
+  }
 `
 
-export const SeletedLabel =styled.p`
-  color: white;
+export const Label =styled.p`
+  color: #DBDBDB;
   font-size: 10px;
   line-height: 14px;
   padding-top: 39.5px;
-`
-export const UnselectedLabel = styled(SeletedLabel)`
-  color: #DBDBDB;
+  &.selected {
+    color: white;
+  }
 `

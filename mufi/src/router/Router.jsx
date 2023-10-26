@@ -9,7 +9,7 @@ import Home from '../pages/home/Home';
 import HomeSearch from '../pages/home/HomeSearch';
 import YourProfile from '../pages/profile/YourProfile';
 import FollowerList from '../pages/followers/FollowerList';
-
+import Chat from '../pages/chat/Chat';
 
 export default function Router() {
   return (
@@ -25,6 +25,8 @@ export default function Router() {
 
       <Route path="/yourprofile" element={<YourProfile />} />
       <Route path="/followerlist" element={<FollowerList />} />
+
+      <Route path='/chat' element={<Chat/>}/>
     </Routes>
   );
 }

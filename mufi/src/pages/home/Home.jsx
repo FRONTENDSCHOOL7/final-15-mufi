@@ -5,6 +5,7 @@ import HomeFeed from './HomeFeed'
 import * as H from "./HomeStyle"
 import img from '../../assets/basic-profile-small.png'
 import postImgContent from '../../assets/example-img.jpeg'
+import NavBar from '../../components/navBar/NavBar'
 
 export default function Home() {
   const dataUser = [{
@@ -18,7 +19,7 @@ export default function Home() {
     content: 'weniv_tangerin'
   }]
 
-  const dataPost = [{
+  let dataPost = [{
     ...dataUser,
     postImgContent,
     postTextContent: '옷을 인생을 그러므로 없으면 것은 이상은 것은 우리의 위하여, 뿐이다. 이상의 청춘의 뼈 따뜻한 그들의 그와 약동하다. 대고, 못할 넣는 풍부하게 뛰노는 인생의 힘있다.',
@@ -37,6 +38,7 @@ export default function Home() {
       '후라이의꿈', '계란후라이', '재즈페스티벌짱', '재미쏭쏭', '악뮤', 'AKMU', '서울맛집', '워터밤'
     ]
   }]
+  // dataPost = [];
   
   return (
 
@@ -44,7 +46,7 @@ export default function Home() {
       <H.HLayout>
         <HomeHeader />
         { dataPost.length ? <HomeFeed dataPost={dataPost} /> : <HomeEmpty />}
-        <H.TempHeader />
+        <NavBar></NavBar>
       </H.HLayout>
     </>
   )

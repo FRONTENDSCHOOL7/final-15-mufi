@@ -43,7 +43,7 @@ export default function NavBar() {
       default:
         break;
     }
-  }, [])
+  }, [location])
   
 
   const navigate = useNavigate();

@@ -6,8 +6,9 @@ import GoBackMoreHeader from '../../components/GoBackMoreHeader'
 export default function Chat() {
   return (
     <Layout>
-        <GoBackMoreHeader></GoBackMoreHeader>
-        <NavBar></NavBar>
+        <GoBackMoreHeader/>
+        <div style={{height:"100%"}}>Chat</div>
+        <NavBar/>
     </Layout>
   )
 }

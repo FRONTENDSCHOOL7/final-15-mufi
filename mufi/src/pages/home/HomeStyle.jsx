@@ -1,20 +1,15 @@
-import styled, { keyframes } from "styled-components";
+import styled from "styled-components";
 import NextBtnStyle from "../../components/nextButton/NextButtonStyle";
 import { Layout } from '../../components/Layout/LayoutStyle'
 
 
-export const HLayout = styled(Layout)`
-  position: relative;
-  width: 390px;
-  height: 844px;
-  background-color: #fff;
-  margin: auto;
-  overflow: hidden;
-  border-radius: 16px;
 
+export const HLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+
+  overflow: scroll;
 `
 
 export const ContentEmptyWrapper = styled.div`
@@ -46,5 +41,9 @@ export const Text = styled.p`
 export const TempHeader = styled.div`
   width: 100%;
   height: 60px;
-  background-color: #000;
+  background-color: #fff;
+`
+
+export const HomeFeed = styled.div`
+  height: 100%;
 `

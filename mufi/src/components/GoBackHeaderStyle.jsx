@@ -15,9 +15,10 @@ export const HeaderBtn = styled.button`
   border: none;
   background-color: inherit;
   outline: none;
+  padding: 0;
 
   position: absolute;
   top: 50%;
-  left: 12px;
+  left: 16px;
   transform: translateY(-50%);
 `;

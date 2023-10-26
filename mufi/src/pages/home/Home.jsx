@@ -37,12 +37,13 @@ export default function Home() {
       '후라이의꿈', '계란후라이', '재즈페스티벌짱', '재미쏭쏭', '악뮤', 'AKMU', '서울맛집', '워터밤'
     ]
   }]
+  
   return (
 
     <>
       <H.HLayout>
         <HomeHeader />
-        { {dataPost} ? <HomeFeed dataPost={dataPost} /> : <HomeEmpty />}
+        { dataPost.length ? <HomeFeed dataPost={dataPost} /> : <HomeEmpty />}
         <H.TempHeader />
       </H.HLayout>
     </>

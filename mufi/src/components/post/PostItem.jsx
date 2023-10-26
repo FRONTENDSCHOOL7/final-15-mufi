@@ -1,37 +1,39 @@
 import React from 'react'
+import TagList from './TagList'
 import * as P from './PostStyle'
+import { Link } from 'react-router-dom'
+import BtnWrapper from './BtnWrapper'
 
 export default function PostItem({dataPost}) {
+  
   const postItems = dataPost.map(v=>{
-    
-    const tags = v.tags.map(vv=>{
-      return (
-        <P.TagItem>#{vv}</P.TagItem>
-        )
-    })
 
     return (
       <P.PostItem>
-        <P.UserProfile/>
+        <Link to='/yourprofile'>
+          <P.UserProfile/>
+        </Link>
+        
         <P.PostContent>
-          <P.UserInfo>
-            위니브{v.title}
-            <P.UserText>@weniv{v.content}</P.UserText>
-          </P.UserInfo>
-          <P.PostContentImg 
-            src={v.postImgContent} />
-          <P.PostContentText>
-            {v.postTextContent}
-          </P.PostContentText>
-          
-          <P.BtnWrapper>
-            <P.BtnLike>{v.like}</P.BtnLike>
-            <P.BtnComment>{v.commentNum}</P.BtnComment>
-          </P.BtnWrapper>
+          <Link to='/yourprofile'>
+            <P.UserInfo>
+              <P.UserName>{v.title}</P.UserName>
+              <P.UserId>@weniv{v.content}</P.UserId>
+            </P.UserInfo>
+          </Link>
 
-          <P.TagList>
-            {tags}
-          </P.TagList>
+          <Link>
+            {v.postImgContent && <P.PostContentImg src={v.postImgContent} />}
+            <P.PostContentText>
+              {v.postTextContent}
+            </P.PostContentText>
+          </Link>
+          
+          <BtnWrapper like={v.like} commentNum={v.commentNum}/>
+          
+          {v.tags && <TagList tags={v.tags} />}
+
+          <P.PostTime>{v.postTime}</P.PostTime>
 
         </P.PostContent>
       </P.PostItem>

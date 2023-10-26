@@ -12,7 +12,7 @@ export const Container = styled.div`
   width: 390px;
   height: 60px;
   background-color: #000;
-  position: absolute;
+  position: sticky;
   bottom: 0;
 `
 

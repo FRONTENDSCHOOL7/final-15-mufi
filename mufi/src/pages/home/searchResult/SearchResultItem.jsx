@@ -1,7 +1,7 @@
 import React from 'react';
 import * as SR from './SearchResultStyle';
 
-export default function SearchResultItem({ data, img, moveTo, setIs }) {
+export default function SearchResultItem({ data, img, moveTo}) {
   
   const SRItems = data.map(v=>{
     return (

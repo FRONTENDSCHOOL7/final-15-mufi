@@ -45,5 +45,4 @@ export const TempHeader = styled.div`
 `
 
 export const HomeFeed = styled.div`
-  height: 100%;
 `

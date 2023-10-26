@@ -24,6 +24,11 @@ button {
   font-weight: bold;
   cursor: pointer;
 }
+
+a {
+  text-decoration: none;
+  color:inherit;
+}
 `
 
 function App() {

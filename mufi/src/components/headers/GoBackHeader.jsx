@@ -1,7 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { HeaderWrapper, HeaderBtn } from './GoBackHeaderStyle';
-import BackIcon from '../assets/icon-arrow-left.png';
+import BackIcon from '../../assets/icon-arrow-left.png';
 
 // 뒤로가기만 있는 헤더
 export default function GoBackHeader() {

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as J from './JoinStyle';
-import GoBackHeader from '../../components/GoBackHeader';
+import GoBackHeader from '../../components/headers/GoBackHeader';
 import NextButton from '../../components/nextButton/NextButton';
 
 export default function Join() {

@@ -15,7 +15,6 @@ export default function Festival() {
   const fetchSearchResult = async () => {
     // 임시로 검색 결과를 만듬
     const result = ['애월읍 페스티벌', '애월읍 락락 페스티벌'];
-
     if (inputText === '한라산') {
       setSearchResult([`${inputText}에 대한 검색 결과가 없어요 ㅜ_ㅜ`]);
       setIsResultEmpty(true);
@@ -47,15 +46,18 @@ export default function Festival() {
       <F.SearchList>
         {searchResult.map((result, index) => (
           <F.SearchResult key={index}>
-            {result
-              .split(new RegExp(`(${searchText})`))
-              .map((part, index) =>
-                part.trim() === searchText.trim() ? (
-                  <F.HighlightedText key={index}>{part}</F.HighlightedText>
-                ) : (
-                  part
-                )
-              )}
+            {result.split(new RegExp(`(${searchText})`)).map((part, index) =>
+              part.trim() === searchText.trim() ? (
+                <F.HighlightedText
+                  key={index}
+                  style={{ whiteSpace: 'pre-wrap' }}
+                >
+                  {part}
+                </F.HighlightedText>
+              ) : (
+                <span style={{ whiteSpace: 'pre-wrap' }}>{part}</span>
+              )
+            )}
           </F.SearchResult>
         ))}
       </F.SearchList>

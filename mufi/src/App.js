@@ -1,7 +1,7 @@
-import { BrowserRouter } from "react-router-dom";
-import { createGlobalStyle } from "styled-components";
-import reset from 'styled-reset'
-import Router from "./router/Router";
+import { BrowserRouter } from 'react-router-dom';
+import { createGlobalStyle } from 'styled-components';
+import reset from 'styled-reset';
+import Router from './router/Router';
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -29,7 +29,7 @@ a {
   text-decoration: none;
   color:inherit;
 }
-`
+`;
 
 function App() {
   return (
@@ -39,8 +39,7 @@ function App() {
         <Router />
       </BrowserRouter>
     </>
-  )
-  ;
+  );
 }
 
 export default App;

@@ -4,6 +4,7 @@ import Input from '../../components/Input';
 import Header from '../../components/headers/GoBackHeader';
 import BasicImg from '../../assets/basic-profile-large.png';
 import UploadImg from '../../assets/icon-upload-img.png';
+import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
 
 export default function JoinProfile() {
   const [userName, setUserName] = useState('');
@@ -131,6 +132,7 @@ export default function JoinProfile() {
           placeholder="자신에 대해서 소개해 주세요!"
         />
         {/* 버튼 컴포넌트 - MUFI 시작하기 */}
+        <NextBtnStyle>MUFI 시작하기</NextBtnStyle>
       </JP.Layout>
     </>
   );

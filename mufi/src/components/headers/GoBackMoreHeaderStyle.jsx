@@ -5,7 +5,9 @@ export const HeaderWrapper = styled.div`
   min-height: 47.5px;
   background-color: #000;
 
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const BackButton = styled.button`

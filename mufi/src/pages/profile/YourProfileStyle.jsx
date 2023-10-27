@@ -4,7 +4,7 @@ export const Layout = styled.div`
   position: relative;
   text-align: center;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   /* background-color: #fff; */
   margin: auto;
   overflow: hidden;

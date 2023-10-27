@@ -4,9 +4,10 @@ export const UploadWrapper = styled.div`
   position: relative;
   width: 390px;
   height: 100vh;
-  background-color: #fff;
+  background-color: rgb(255, 255, 255);
   margin: auto;
   border-radius: 16px;
+  overflow: hidden;
 `;
 
 export const UploadContent = styled.form`

@@ -8,7 +8,9 @@ export const HeaderWrapper = styled.header`
 
   margin-bottom: 46px;
 
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const HeaderBtn = styled.button`

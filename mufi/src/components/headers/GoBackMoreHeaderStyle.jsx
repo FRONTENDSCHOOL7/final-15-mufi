@@ -19,6 +19,17 @@ export const BackButton = styled.button`
   left: 16px;
 `;
 
+export const Content = styled.p`
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  left: 52px;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+`;
+
 export const MoreButton = styled.button`
   border: none;
   background-color: inherit;

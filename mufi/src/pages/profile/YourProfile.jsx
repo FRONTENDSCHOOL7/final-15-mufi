@@ -1,17 +1,23 @@
 import React, { useState } from 'react';
-import GoBackMoreHeader from '../../components/GoBackMoreHeader';
+import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as YP from './YourProfileStyle';
 import BasicImg from '../../assets/basic-profile-large.png';
 import ProfileButton from '../../components/profileButton/ProfileButton';
 import ProfileMusicButton from '../../components/profileButton/ProfileMusicButton';
 import ChatBtn from '../../assets/icon-chat-btn.png';
 import ShareBtn from '../../assets/icon-share-btn.png';
+import Akmu from '../../assets/akmu.png';
+import PlayBtn from '../../assets/playBtn.png';
+import { Link } from 'react-router-dom';
+import ShowPost from '../../components/yourProfilePost/ShowPost';
 
 export default function YourProfile() {
   // your profile(false)인지 my profile(true) 인지 check
-  const [isMine, setIsMine] = useState(true);
+  const [isMine, setIsMine] = useState(false);
   // 음악 재생중(true)인지 check
   const [isPlaying, setIsPlaying] = useState(false);
+  // 팔로우 중(true)
+  const [isFollow, setIsFollow] = useState(false);
 
   return (
     <>
@@ -22,8 +28,10 @@ export default function YourProfile() {
           {/* 팔로우, 프로필 이미지, 팔로잉 */}
           <YP.Follow>
             <YP.Followers>
-              <strong>2950</strong>
-              <p>followers</p>
+              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
+                <strong>2950</strong>
+                <p>followers</p>
+              </Link>
             </YP.Followers>
             <YP.BasicImg src={BasicImg} alt="기본 이미지" />
             <YP.Followings>
@@ -38,7 +46,7 @@ export default function YourProfile() {
             <span>@ weniv_Mandarin</span>
             {isPlaying ? (
               <>
-                <ProfileMusicButton musicContent="히어로 LUCY" />
+                <ProfileMusicButton musicContent="후라이의꿈 AKMU(악뮤)" />
               </>
             ) : (
               <></>
@@ -69,27 +77,45 @@ export default function YourProfile() {
                 <YP.RoundButton>
                   <img src={ChatBtn} alt="채팅하기" />
                 </YP.RoundButton>
-                <ProfileButton content="팔로우" />
+                {isFollow ? (
+                  <ProfileButton
+                    content="언팔로우"
+                    color="#000"
+                    background="#fff"
+                    border="1px solid #767676"
+                  />
+                ) : (
+                  <ProfileButton content="팔로우" />
+                )}
                 <YP.RoundButton>
                   <img src={ShareBtn} alt="공유하기" />
                 </YP.RoundButton>
               </>
             )}
-
-            {/* yourprofile 일때 */}
-            {/* <YP.RoundButton>
-              <img src={ChatBtn} alt="채팅하기" />
-            </YP.RoundButton>
-            <ProfileButton content="팔로우" />
-            <YP.RoundButton>
-              <img src={ShareBtn} alt="공유하기" />
-            </YP.RoundButton> */}
           </YP.ButtonWrapper>
         </YP.ProfileWrapper>
 
-        <YP.PostWrapper>
-          <YP.PostType></YP.PostType>
-        </YP.PostWrapper>
+        {/* 노래가 들어가야할 곳 */}
+        {isPlaying ? (
+          <>
+            <YP.ProfileMusicWrapper>
+              <img src={Akmu} alt="커버사진" />
+              <YP.ProfileMusic>
+                <strong>후라이의 꿈</strong>
+                <p>AKMU(악뮤)</p>
+              </YP.ProfileMusic>
+              {/* 오디오바 */}
+              <YP.PlayBtn>
+                <img src={PlayBtn} alt="재생 버튼" />
+              </YP.PlayBtn>
+            </YP.ProfileMusicWrapper>
+          </>
+        ) : (
+          <></>
+        )}
+        {/* 게시물의 존재 유무 */}
+        {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
+        <ShowPost />
       </YP.Layout>
     </>
   );

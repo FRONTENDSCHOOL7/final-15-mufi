@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import Header from '../../components/GoBackHeader';
+import Header from '../../components/headers/GoBackHeader';
 import Input from '../../components/Input';
 import NextButton from '../../components/nextButton/NextButton';
 import EmailJoin from '../../components/nextButton/EmailJoin';
-
-
-
-
 
 import {
   Layout,
@@ -20,7 +16,7 @@ import {
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(true); 
+  const [showError, setShowError] = useState(true);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -36,7 +32,7 @@ const Login = () => {
 
   return (
     <Layout>
-      <Header/>
+      <Header />
       <Title>로그인</Title>
       <form onSubmit={handleSubmit}>
         <InputGroup>
@@ -67,8 +63,7 @@ const Login = () => {
           </InputGroup>
         )}
         <LoginButton type="submit">다음</LoginButton>
-          <EmailJoin/>
-      
+        <EmailJoin />
       </form>
     </Layout>
   );

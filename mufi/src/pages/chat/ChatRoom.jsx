@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef, useState } from 'react'
 import { Layout } from '../../components/Layout/LayoutStyle'
 import GoBackMoreTitleHeader from '../../components/headers/GoBackMoreTitleHeader'
 import * as C from "./ChatStyle"
@@ -86,6 +86,59 @@ export default function ChatRoom() {
     return (()=>{})
   }, [chatInput])
 
+  // 사진 업로드
+  const [imageHolders, setImageHolders] = useState([]);
+  const [imgSrc, setImgSrc] = useState([]);
+
+  const uploadImage = async (imageFile) => {
+    const baseUrl = 'https://api.mandarin.weniv.co.kr/';
+    const reqUrl = baseUrl + 'image/uploadfile';
+    // 폼데이터 만들기
+    const form = new FormData();
+    form.append('image', imageFile);
+
+    // 폼 바디에 넣어서 요청하기
+    const res = await fetch(reqUrl, {
+      method: 'POST',
+      body: form,
+    });
+    const json = await res.json();
+    const imageUrl = baseUrl + json.filename;
+
+    setImgSrc([...imgSrc ,imageUrl]);
+    // url로 만든 배열
+  };
+
+  const handleUploadImage = (e) => {
+    const file = e.target.files[0];
+    uploadImage(file);
+    console.log(imgSrc);
+  }
+
+  // url로 만든 배열로 imageHolders를 여러개 생성하기
+  useEffect(()=>{
+    // console.log(imgSrc)
+    const temp = imgSrc.map((src, index)=>{
+      return (
+        <>
+          <C.TempImageHolder key={index}>
+            <C.TempImage src={src}/>
+            <C.TempImageRemoveBtn onClick={()=>handleRemoveBtn(index)} />
+          </C.TempImageHolder>
+        </>
+      )
+    })
+    setImageHolders(temp);
+  },[imgSrc])
+
+  // removeBtn 누르면 사라지게 하기
+  const handleRemoveBtn = (index) => {
+    const temp = imgSrc.filter((_,i)=>{
+      return i !== index;
+    })
+    setImgSrc(temp);
+  }
+
   return (
     <Layout>
       <GoBackMoreTitleHeader/>
@@ -94,17 +147,22 @@ export default function ChatRoom() {
         {chatBalloons}
       </C.ChatTextContent>
 
+      {imageHolders &&
+        (<C.TempImageWrapper>
+          {imageHolders}
+        </C.TempImageWrapper>)}
+
       <C.ChatInputWrapper>
         <C.ImgInputLabel htmlFor='input-file'>
         </C.ImgInputLabel>
         <C.ImgInput 
           type="file"
-          onChange={handleEnter}
+          onChange={handleUploadImage}
           accept="image/*"
           id="input-file"
           />
+          
         <C.ChatInput
-          type='text'
           id='chat-input'
           placeholder='메시지를 입력하세요.'
           onChange={handleInputChange}></C.ChatInput>

@@ -2,6 +2,7 @@ import styled, { keyframes } from "styled-components";
 import basicProfile from '../../assets/basic-profile-small.png'
 import GoBackMoreHeader from '../../components/GoBackMoreHeader'
 import uploadImg from '../../assets/icon-image.png';
+import iconClose from '../../assets/icon-close.png'
 
 export const ChatList = styled.ul`
   height: 100%;
@@ -89,6 +90,7 @@ export const ChatInputWrapper = styled.div`
   box-sizing: border-box;
   gap: 14px;
   justify-content: space-between;
+  border-top: 1px solid #dbdbdb;
 `
 
 export const ImgInput = styled.input`
@@ -107,11 +109,11 @@ export const ImgInputLabel = styled.label`
   background-position: center;
 `
 
-export const ChatInput = styled.input`
+export const ChatInput = styled.textarea`
   flex-grow: 1;
-  height: 40px;
   border: none;
-  
+  resize:none;
+  font: inherit;
   ::placeholder {
     color: #c4c4c4;
   }
@@ -184,3 +186,39 @@ export const ChatBalloonSentTime = styled.p`
   }
 `
 
+// 채팅방 이미지
+export const TempImageWrapper = styled.div`
+  height: 142px;
+  width: 100%;
+  background-color: #fff;
+  border-top: 1px solid #dbdbdb;
+  padding: 8px;
+  box-sizing: border-box;
+  overflow: scroll;
+  white-space: nowrap;
+  display: flex;
+  gap: 8px;
+`
+export const TempImageHolder = styled.div`
+  background-color: #dbdbdb;
+  box-sizing: border-box;
+  border: 1px solid #c4c4c4;
+  border-radius: 10px;
+  position: relative;
+`
+export const TempImage = styled.img`
+  max-height: 100%;
+  border-radius: 8px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+`
+export const TempImageRemoveBtn = styled.button`
+  width: 22px;
+  height: 22px;
+  background-image: url(${iconClose});
+  background-color: transparent;
+  border: none;
+  position: absolute;
+  top:0;
+  right:0;
+`

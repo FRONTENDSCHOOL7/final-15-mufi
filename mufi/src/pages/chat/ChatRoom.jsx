@@ -112,7 +112,6 @@ export default function ChatRoom() {
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     uploadImage(file);
-    console.log(imgSrc);
   }
 
   // url로 만든 배열로 imageHolders를 여러개 생성하기
@@ -121,7 +120,7 @@ export default function ChatRoom() {
     const temp = imgSrc.map((src, index)=>{
       return (
         <>
-          <C.TempImageHolder key={index}>
+          <C.TempImageHolder>
             <C.TempImage src={src}/>
             <C.TempImageRemoveBtn onClick={()=>handleRemoveBtn(index)} />
           </C.TempImageHolder>
@@ -129,6 +128,12 @@ export default function ChatRoom() {
       )
     })
     setImageHolders(temp);
+    console.log(imgSrc)
+    
+    if(imgSrc.length > 5){
+      const tempImgWrapper = document.querySelector('.temp-image-wrapper');
+      tempImgWrapper.scrollLeft = tempImgWrapper.scrollWidth;
+    }
   },[imgSrc])
 
   // removeBtn 누르면 사라지게 하기
@@ -147,8 +152,8 @@ export default function ChatRoom() {
         {chatBalloons}
       </C.ChatTextContent>
 
-      {imageHolders &&
-        (<C.TempImageWrapper>
+      {imgSrc.length === 0 ? null :
+        (<C.TempImageWrapper className='temp-image-wrapper'>
           {imageHolders}
         </C.TempImageWrapper>)}
 
@@ -170,7 +175,6 @@ export default function ChatRoom() {
         <C.ChatSendButton 
         type='button' 
         onClick={handleSendButton}
-        disabled
         className='chat-send-button'>
           전송
         </C.ChatSendButton>

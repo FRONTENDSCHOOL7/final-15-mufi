@@ -25,7 +25,6 @@ export default function ChatRoom() {
     });
 
   let [chatBalloons, setChatBalloons] = useState(tempChatBalloons);
-  localStorage.setItem('key',chatBalloons);
 
   // text 인풋 값 받아오기
   const [chatInput, setChatInput] = useState('');

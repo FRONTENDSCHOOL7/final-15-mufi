@@ -9,7 +9,7 @@ export const Layout = styled.div`
   margin: auto;
   overflow: hidden;
   border-radius: 16px;
-`; 
+`;
 
 export const Title = styled.h2`
   font-size: 24px;
@@ -19,13 +19,13 @@ export const Title = styled.h2`
 `;
 
 export const InputGroup = styled.div`
- 
   width: 100%;
   max-width: 300px;
   text-align: left;
-    margin-left: 34px;
-`;
+  margin-left: 34px;
 
+  margin-bottom: 10px;
+`;
 
 export const Input = styled.div`
   margin-top: -10px;
@@ -41,7 +41,6 @@ export const Label = styled.label`
   text-align: left;
 `;
 
-
 export const ErrorMessage = styled.div`
   font-size: 12px;
   color: #eb5757;
@@ -52,7 +51,7 @@ export const LoginButton = styled.button`
   width: 100%;
   max-width: 300px;
   padding: 10px;
-  background-color: #2033E7;
+  background-color: #2033e7;
   color: #fff;
   border: none;
   border-radius: 4px;
@@ -66,10 +65,9 @@ export const LoginButton = styled.button`
 `;
 
 export const EmailJoin = styled(Input)`
- font-size: 12px;
+  font-size: 12px;
   color: #767676;
   margin-top: 20px;
   width: 100%;
   text-align: center;
-`
-
+`;

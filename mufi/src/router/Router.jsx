@@ -16,7 +16,6 @@ import YourProfile from '../pages/profile/YourProfile';
 import FollowerList from '../pages/followers/FollowerList';
 import Chat from '../pages/chat/Chat';
 
-
 export default function Router() {
   return (
     <Routes>
@@ -30,15 +29,13 @@ export default function Router() {
       <Route path="/upload/hashtag" element={<Hashtag />} />
       <Route path="/upload/festival" element={<Festival />} />
 
-        
-      <Route path='/home' element={<Home />} />
-      <Route path='/homesearch' element={<HomeSearch />} />
+      <Route path="/home" element={<Home />} />
+      <Route path="/homesearch" element={<HomeSearch />} />
 
       <Route path="/yourprofile" element={<YourProfile />} />
       <Route path="/followerlist" element={<FollowerList />} />
 
-      <Route path='/chat' element={<Chat/>}/>
-
+      <Route path="/chat" element={<Chat />} />
     </Routes>
   );
 }

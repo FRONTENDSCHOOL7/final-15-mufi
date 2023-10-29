@@ -6,8 +6,6 @@ export const InputWrapper = styled.div`
   flex-direction: column;
   gap: 3px;
   width: 322px;
-
-  padding-bottom: 16px;
 `;
 
 // Input과 함께 사용할 label 태그

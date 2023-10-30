@@ -8,7 +8,7 @@ export const Layout = styled.div`
   position: relative;
   text-align: center;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   background-color: #000;
   margin: auto;
   overflow: hidden;
@@ -27,6 +27,12 @@ export const P = styled.p`
   color: #767676;
 
   margin: 0 auto 30px;
+`;
+
+export const InputImageWrapper = styled.div`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 `;
 
 export const Img = styled.img`
@@ -49,4 +55,16 @@ export const ImgInputLabel = styled.label`
   position: relative;
   top: -36px;
   left: 36px;
+`;
+
+export const InputWrapper = styled.div`
+  margin-bottom: 30px;
+`;
+
+export const ErrorMessage = styled.p`
+  position: absolute;
+  font-size: 12px;
+  color: #eb5757;
+  margin-top: 7px;
+  padding-left: 2px;
 `;

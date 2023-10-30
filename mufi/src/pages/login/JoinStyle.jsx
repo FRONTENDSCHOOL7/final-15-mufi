@@ -6,7 +6,7 @@ export const JoinLayout = styled.form`
 
   position: relative;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   background-color: #000;
   margin: auto;
   overflow: hidden;

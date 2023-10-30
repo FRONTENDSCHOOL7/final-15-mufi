@@ -1,26 +1,16 @@
 import React, { useState } from 'react';
-import Header from '../../components/GoBackHeader';
+import Header from '../../components/headers/GoBackHeader';
 import Input from '../../components/Input';
-import NextButton from '../../components/nextButton/NextButton';
+import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
 import EmailJoin from '../../components/nextButton/EmailJoin';
-
-
-
-
-
-import {
-  Layout,
-  Title,
-  InputGroup,
-  Label,
-  LoginButton,
-  ErrorMessage,
-} from './LoginStyle';
+import { useNavigate } from 'react-router-dom';
+import { Layout, Title, InputGroup, Label, ErrorMessage } from './LoginStyle';
 
 const Login = () => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(true); 
+  const [showError, setShowError] = useState(true);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -32,11 +22,12 @@ const Login = () => {
     } else {
       setShowError(false);
     }
+    navigate('/home');
   };
 
   return (
     <Layout>
-      <Header/>
+      <Header />
       <Title>로그인</Title>
       <form onSubmit={handleSubmit}>
         <InputGroup>
@@ -66,9 +57,8 @@ const Login = () => {
             </ErrorMessage>
           </InputGroup>
         )}
-        <LoginButton type="submit">다음</LoginButton>
-          <EmailJoin/>
-      
+        <NextBtnStyle>로그인</NextBtnStyle>
+        <EmailJoin />
       </form>
     </Layout>
   );

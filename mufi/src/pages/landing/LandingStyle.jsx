@@ -5,11 +5,14 @@ export const Layout = styled.div`
   position: relative;
   text-align: center;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   background-color: #000;
   margin: auto;
   overflow: hidden;
   border-radius: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `
 export const Logo = styled.img`
   width: 286px;

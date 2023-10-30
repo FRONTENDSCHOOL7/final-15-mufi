@@ -57,5 +57,5 @@ export default function Chat() {
         <ChatList dataChat={dataChat}/>
         <NavBar/>
     </Layout>
-  )
+  );
 }

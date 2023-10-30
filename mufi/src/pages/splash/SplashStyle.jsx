@@ -11,7 +11,7 @@ export const Layout = styled.div`
   position: relative;
   text-align: center;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   background-color: #000;
   margin: auto;
   border-radius: 16px;
@@ -19,7 +19,7 @@ export const Layout = styled.div`
   &::after{ 
     content: '';
     width: 390px;
-    height: 844px;
+    height: 100vh;
     position: absolute;
     top: 0;
     left: 0; 

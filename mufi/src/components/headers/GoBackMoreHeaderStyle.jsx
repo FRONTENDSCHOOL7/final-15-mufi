@@ -5,7 +5,9 @@ export const HeaderWrapper = styled.div`
   min-height: 47.5px;
   background-color: #000;
 
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 10;
 `;
 
 export const BackButton = styled.button`
@@ -17,6 +19,17 @@ export const BackButton = styled.button`
   top: 50%;
   transform: translateY(-50%);
   left: 16px;
+`;
+
+export const Content = styled.p`
+  position: absolute;
+  top: 48%;
+  transform: translateY(-50%);
+  left: 52px;
+
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
 `;
 
 export const MoreButton = styled.button`

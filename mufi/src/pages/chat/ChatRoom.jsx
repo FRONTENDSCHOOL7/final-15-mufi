@@ -1,7 +1,7 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
-import { Layout } from '../../components/Layout/LayoutStyle'
-import GoBackMoreTitleHeader from '../../components/headers/GoBackMoreTitleHeader'
-import * as C from "./ChatStyle"
+import React, { memo, useEffect, useRef, useState } from 'react';
+import { Layout } from '../../components/Layout/LayoutStyle';
+import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
+import * as C from './ChatStyle';
 import ChatBalloon from './ChatBalloon';
 
 export default function ChatRoom() {
@@ -17,12 +17,9 @@ export default function ChatRoom() {
   ];
 
   // chat 기존 거 생성
-  const tempChatBalloons = 
-    dataChat.map((chat)=>{
-      return (
-          <ChatBalloon chat={chat}/>
-      )
-    });
+  const tempChatBalloons = dataChat.map((chat) => {
+    return <ChatBalloon chat={chat} />;
+  });
 
   let [chatBalloons, setChatBalloons] = useState(tempChatBalloons);
 
@@ -31,60 +28,59 @@ export default function ChatRoom() {
   const handleInputChange = (e) => {
     const newChat = e.target.value;
     setChatInput(newChat);
-    console.log(e.nativeEvent.isComposing)
-    if(e.nativeEvent.isComposing){
+    console.log(e.nativeEvent.isComposing);
+    if (e.nativeEvent.isComposing) {
       return;
     }
-  }
+  };
 
   // 전송 button
   const handleSendButton = (e) => {
-    if(chatInput === ''){
+    if (chatInput === '') {
       alert('메시지를 입력하세요');
       return;
     }
-    setChatBalloons([...chatBalloons, 
+    setChatBalloons([
+      ...chatBalloons,
       <>
-        <ChatBalloon 
-          chat={chatInput} 
-          isMyBalloon={true} />
-      </>
-    ])
+        <ChatBalloon chat={chatInput} isMyBalloon={true} />
+      </>,
+    ]);
     const chatInputEl = document.querySelector('#chat-input');
-    chatInputEl.value='';
+    chatInputEl.value = '';
     setChatInput('');
-  }
+  };
 
   // enter 키로 되게
   const handleEnter = (e) => {
-    if(e.key === "Enter"){
+    if (e.key === 'Enter') {
       // (() => { handleSendButton() })();
       handleSendButton();
     }
-  }
-  useEffect(()=>{
-    document.addEventListener('keydown',handleEnter)
-    return ()=>{
-      document.removeEventListener('keydown', handleEnter)
-    }
-  })
+  };
+  useEffect(() => {
+    document.addEventListener('keydown', handleEnter);
+    return () => {
+      document.removeEventListener('keydown', handleEnter);
+    };
+  });
 
   // 스크롤 아래로 끌어내리기
-  useEffect(()=>{
+  useEffect(() => {
     const chatTextContent = document.querySelector('.chat-text-content');
     chatTextContent.scrollTop = chatTextContent.scrollHeight;
   }, [chatBalloons]);
 
   // 인풋 있으면 액티브 하게 바뀌기
-  useEffect(()=>{
+  useEffect(() => {
     const sendBtn = document.querySelector('.chat-send-button');
-    if(chatInput!==''){
+    if (chatInput !== '') {
       sendBtn.disabled = false;
-    }else if(chatInput === ''){
+    } else if (chatInput === '') {
       sendBtn.disabled = true;
     }
-    return (()=>{})
-  }, [chatInput])
+    return () => {};
+  }, [chatInput]);
 
   // 사진 업로드
   const [imageHolders, setImageHolders] = useState([]);
@@ -105,80 +101,82 @@ export default function ChatRoom() {
     const json = await res.json();
     const imageUrl = baseUrl + json.filename;
 
-    setImgSrc([...imgSrc ,imageUrl]);
+    setImgSrc([...imgSrc, imageUrl]);
     // url로 만든 배열
   };
 
   const handleUploadImage = (e) => {
     const file = e.target.files[0];
     uploadImage(file);
-  }
+  };
 
   // url로 만든 배열로 imageHolders를 여러개 생성하기
-  useEffect(()=>{
+  useEffect(() => {
     // console.log(imgSrc)
-    const temp = imgSrc.map((src, index)=>{
+    const temp = imgSrc.map((src, index) => {
       return (
         <>
           <C.TempImageHolder>
-            <C.TempImage src={src}/>
-            <C.TempImageRemoveBtn onClick={()=>handleRemoveBtn(index)} />
+            <C.TempImage src={src} />
+            <C.TempImageRemoveBtn onClick={() => handleRemoveBtn(index)} />
           </C.TempImageHolder>
         </>
-      )
-    })
+      );
+    });
     setImageHolders(temp);
-    console.log(imgSrc)
-    
-    if(imgSrc.length > 5){
+    console.log(imgSrc);
+
+    if (imgSrc.length > 5) {
       const tempImgWrapper = document.querySelector('.temp-image-wrapper');
       tempImgWrapper.scrollLeft = tempImgWrapper.scrollWidth;
     }
-  },[imgSrc])
+  }, [imgSrc]);
 
   // removeBtn 누르면 사라지게 하기
   const handleRemoveBtn = (index) => {
-    const temp = imgSrc.filter((_,i)=>{
+    const temp = imgSrc.filter((_, i) => {
       return i !== index;
-    })
+    });
     setImgSrc(temp);
-  }
+  };
 
   return (
     <Layout>
-      <GoBackMoreTitleHeader/>
-      
-      <C.ChatTextContent className='chat-text-content'>
+      <GoBackMoreHeader content="애월읍 위니브 감귤농장" />
+
+      <C.ChatTextContent className="chat-text-content">
         {chatBalloons}
       </C.ChatTextContent>
 
-      {imgSrc.length === 0 ? null :
-        (<C.TempImageWrapper className='temp-image-wrapper'>
+      {imgSrc.length === 0 ? null : (
+        <C.TempImageWrapper className="temp-image-wrapper">
           {imageHolders}
-        </C.TempImageWrapper>)}
+        </C.TempImageWrapper>
+      )}
 
       <C.ChatInputWrapper>
-        <C.ImgInputLabel htmlFor='input-file'>
-        </C.ImgInputLabel>
-        <C.ImgInput 
+        <C.ImgInputLabel htmlFor="input-file"></C.ImgInputLabel>
+        <C.ImgInput
           type="file"
           onChange={handleUploadImage}
           accept="image/*"
           id="input-file"
-          />
-          
-        <C.ChatInput
-          id='chat-input'
-          placeholder='메시지를 입력하세요.'
-          onChange={handleInputChange}></C.ChatInput>
+        />
 
-        <C.ChatSendButton 
-        type='button' 
-        onClick={handleSendButton}
-        className='chat-send-button'>
+        <C.ChatInput
+          id="chat-input"
+          placeholder="메시지를 입력하세요."
+          onChange={handleInputChange}
+        ></C.ChatInput>
+
+        <C.ChatSendButton
+          type="button"
+          onClick={handleSendButton}
+          className="chat-send-button"
+        >
           전송
         </C.ChatSendButton>
       </C.ChatInputWrapper>
     </Layout>
-  )
+  );
 }

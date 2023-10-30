@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../../components/headers/GoBackHeader';
 import Input from '../../components/Input';
 import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
@@ -7,22 +7,58 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Title, InputGroup, Label, ErrorMessage } from './LoginStyle';
 
 const Login = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [showError, setShowError] = useState(true);
+  const [emailError, setEmailError] = useState('');
+  const [passwordError, setPasswordError] = useState('');
+
   const navigate = useNavigate();
+
+  const [isBtnActive, setIsBtnActive] = useState(true);
+
+  // 버튼 활성화 여부 결정
+  useEffect(() => {
+    if (
+      emailError === '' &&
+      passwordError === '' &&
+      email !== '' &&
+      password !== ''
+    ) {
+      setIsBtnActive(false);
+    } else {
+      setIsBtnActive(true);
+    }
+  }, [email, password, emailError, passwordError]);
+
+  // 이메일 유효성 검사
+  const userEmailValidation = (e) => {
+    const emailValue = e.target.value;
+    setEmail(emailValue);
+    const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
+    if (!emailReg.test(emailValue)) {
+      setEmailError('올바른 이메일 형식이 아닙니다.');
+    } else if (emailValue === '') {
+      setEmail('이메일을 입력해주세요.');
+    } else {
+      setEmailError('');
+    }
+  };
+
+  // 비밀번호 유효성 검사
+  const userPasswordValidation = (e) => {
+    const passwordValue = e.target.value;
+    setPassword(passwordValue);
+    if (passwordValue.length < 6) {
+      setPasswordError('비밀번호는 6자 이상이어야 합니다.');
+    } else if (passwordValue === '') {
+      setPasswordError('비밀번호를 입력해주세요.');
+    } else {
+      setPasswordError('');
+    }
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Username:', username);
-    console.log('Password:', password);
-
-    if (username === '' || password === '') {
-      setShowError(true);
-    } else {
-      setShowError(false);
-    }
-    navigate('/home');
   };
 
   return (
@@ -31,14 +67,17 @@ const Login = () => {
       <Title>로그인</Title>
       <form onSubmit={handleSubmit}>
         <InputGroup>
-          <Label htmlFor="username">이메일</Label>
+          <Label htmlFor="email">이메일</Label>
           <Input
-            id="username"
+            id="email"
             type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
+            value={email}
+            onChange={userEmailValidation}
             required
           />
+        </InputGroup>
+        <InputGroup>
+          <ErrorMessage>{emailError}</ErrorMessage>
         </InputGroup>
         <InputGroup>
           <Label htmlFor="password">비밀번호</Label>
@@ -46,18 +85,16 @@ const Login = () => {
             id="password"
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={userPasswordValidation}
             required
           />
         </InputGroup>
-        {showError && (
-          <InputGroup>
-            <ErrorMessage>
-              *이메일 또는 비밀번호가 일치하지 않습니다.
-            </ErrorMessage>
-          </InputGroup>
-        )}
-        <NextBtnStyle>로그인</NextBtnStyle>
+
+        <InputGroup>
+          <ErrorMessage>{passwordError}</ErrorMessage>
+        </InputGroup>
+
+        <NextBtnStyle disabled={isBtnActive}>로그인</NextBtnStyle>
         <EmailJoin />
       </form>
     </Layout>

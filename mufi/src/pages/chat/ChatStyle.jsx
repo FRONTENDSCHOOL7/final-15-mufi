@@ -1,8 +1,7 @@
-import styled, { keyframes } from "styled-components";
-import basicProfile from '../../assets/basic-profile-small.png'
-import GoBackMoreHeader from '../../components/GoBackMoreHeader'
+import styled, { keyframes } from 'styled-components';
+import basicProfile from '../../assets/basic-profile-small.png';
 import uploadImg from '../../assets/icon-image.png';
-import iconClose from '../../assets/icon-close.png'
+import iconClose from '../../assets/icon-close.png';
 
 export const ChatList = styled.ul`
   height: 100%;
@@ -11,7 +10,7 @@ export const ChatList = styled.ul`
   overflow: scroll;
   padding: 4px;
   box-sizing: border-box;
-`
+`;
 
 export const ChatItem = styled.li`
   padding: 8px 16px;
@@ -23,13 +22,13 @@ export const ChatItem = styled.li`
   border-bottom: 1px solid #efefef;
   gap: 8px;
   /* box-shadow: inset 0 0 32px blue; */
-`
+`;
 
 export const Content = styled.div`
   display: flex;
   gap: 13px;
   align-items: center;
-`
+`;
 
 export const UserProfile = styled.img`
   width: 40px;
@@ -37,8 +36,7 @@ export const UserProfile = styled.img`
   border-radius: 40px;
   background-image: url(${basicProfile});
   flex-shrink: 0;
-  
-`
+`;
 
 export const ChatContent = styled.div`
   display: flex;
@@ -46,12 +44,12 @@ export const ChatContent = styled.div`
   gap: 6px;
   align-items: flex-start;
   justify-content: flex-start;
-`
+`;
 
 export const SenderName = styled.h3`
   font-size: 14px;
   font-weight: 500;
-`
+`;
 export const SentContent = styled.p`
   font-size: 12px;
   color: #767676;
@@ -59,17 +57,12 @@ export const SentContent = styled.p`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
-`
+`;
 
 export const SentTime = styled.p`
   font-size: 12px;
   color: #dbdbdb;
-`
-
-// chatroom style
-export const ChatRoomHeader = styled(GoBackMoreHeader)`
-  color: white;
-`
+`;
 
 export const ChatTextContent = styled.main`
   background-color: #f2f2f2;
@@ -81,7 +74,7 @@ export const ChatTextContent = styled.main`
   padding: 16px;
   box-sizing: border-box;
   overflow: scroll;
-`
+`;
 
 export const ChatInputWrapper = styled.div`
   width: 100%;
@@ -91,11 +84,11 @@ export const ChatInputWrapper = styled.div`
   gap: 14px;
   justify-content: space-between;
   border-top: 1px solid #dbdbdb;
-`
+`;
 
 export const ImgInput = styled.input`
   display: none;
-`
+`;
 
 export const ImgInputLabel = styled.label`
   content: '';
@@ -107,26 +100,26 @@ export const ImgInputLabel = styled.label`
   background-image: url(${uploadImg});
   background-repeat: no-repeat;
   background-position: center;
-`
+`;
 
 export const ChatInput = styled.textarea`
   flex-grow: 1;
   border: none;
-  resize:none;
+  resize: none;
   font: inherit;
   ::placeholder {
     color: #c4c4c4;
   }
-`
+`;
 
 export const ChatSendButton = styled.button`
   color: #c4c4c4;
   border: none;
   background-color: transparent;
   &:enabled {
-    color: #0019FF;
+    color: #0019ff;
   }
-`
+`;
 
 // chatBalloon
 export const appearing = keyframes`
@@ -138,7 +131,7 @@ export const appearing = keyframes`
     transform: translateY(0);
   }
 
-`
+`;
 export const ChatBallonWrapper = styled.div`
   animation: ${appearing} 0.5s;
   transition: all 0.5s;
@@ -147,7 +140,7 @@ export const ChatBallonWrapper = styled.div`
   &.my {
     justify-content: flex-end;
   }
-`
+`;
 export const ChatSenderProfile = styled.img`
   width: 40px;
   height: 40px;
@@ -158,12 +151,12 @@ export const ChatSenderProfile = styled.img`
   &.my {
     display: none;
   }
-`
+`;
 export const ChatBalloonTextWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 6px;
-`
+`;
 export const ChatBalloon = styled.p`
   max-width: 214px;
   background-color: #1c1c1c;
@@ -177,14 +170,14 @@ export const ChatBalloon = styled.p`
     background-color: #2033e7;
     max-width: 238px;
   }
-`
+`;
 export const ChatBalloonSentTime = styled.p`
   color: #767676;
   font-size: 10px;
   &.my {
     order: -1;
   }
-`
+`;
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`
@@ -198,20 +191,20 @@ export const TempImageWrapper = styled.div`
   white-space: nowrap;
   display: flex;
   gap: 8px;
-`
+`;
 export const TempImageHolder = styled.div`
   background-color: #dbdbdb;
   box-sizing: border-box;
   border: 1px solid #c4c4c4;
   border-radius: 10px;
   position: relative;
-`
+`;
 export const TempImage = styled.img`
   max-height: 100%;
   border-radius: 8px;
   aspect-ratio: 1/1;
   object-fit: cover;
-`
+`;
 export const TempImageRemoveBtn = styled.button`
   width: 22px;
   height: 22px;
@@ -219,6 +212,6 @@ export const TempImageRemoveBtn = styled.button`
   background-color: transparent;
   border: none;
   position: absolute;
-  top:0;
-  right:0;
-`
+  top: 0;
+  right: 0;
+`;

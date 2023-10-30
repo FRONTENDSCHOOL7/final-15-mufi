@@ -1,8 +1,8 @@
 import React from 'react'
 import NextBtnStyle from './NextButtonStyle'
 
-export default function NextButton() {
+export default function NextButton({handleNextBtn}) {
   return (
-    <NextBtnStyle>다음</NextBtnStyle>
+    <NextBtnStyle onClick={handleNextBtn}>다음</NextBtnStyle>
   )
 }

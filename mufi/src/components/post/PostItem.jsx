@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 import BtnWrapper from './BtnWrapper'
 
 export default function PostItem({dataPost}) {
-  
+  console.log('postItem안에서 출력중!',dataPost)
   const postItems = dataPost.map(v=>{
 
     return (
@@ -17,23 +17,23 @@ export default function PostItem({dataPost}) {
         <P.PostContent>
           <Link to='/yourprofile'>
             <P.UserInfo>
-              <P.UserName>{v.title}</P.UserName>
-              <P.UserId>@weniv{v.content}</P.UserId>
+              <P.UserName>{v.author.username}</P.UserName>
+              <P.UserId>@{v.author.accountname}</P.UserId>
             </P.UserInfo>
           </Link>
 
           <Link>
-            {v.postImgContent && <P.PostContentImg src={v.postImgContent} />}
+            {v.image && <P.PostContentImg src={"https://api.mandarin.weniv.co.kr/"+v.image} />}
             <P.PostContentText>
-              {v.postTextContent}
+              {v.content}
             </P.PostContentText>
           </Link>
           
-          <BtnWrapper like={v.like} commentNum={v.commentNum}/>
+          <BtnWrapper like={v.heartCount} commentNum={v.commentCount}/>
           
           {v.tags && <TagList tags={v.tags} />}
 
-          <P.PostTime>{v.postTime}</P.PostTime>
+          <P.PostTime>{v.createdAt.slice(0,-14)}</P.PostTime>
 
         </P.PostContent>
       </P.PostItem>

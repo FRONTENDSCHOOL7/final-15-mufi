@@ -2,6 +2,9 @@ import { BrowserRouter } from 'react-router-dom';
 import { createGlobalStyle } from 'styled-components';
 import reset from 'styled-reset';
 import Router from './router/Router';
+import {
+  RecoilRoot
+} from 'recoil';    
 
 const GlobalStyle = createGlobalStyle`
 ${reset}
@@ -29,17 +32,18 @@ a {
   text-decoration: none;
   color:inherit;
 }
-`;
+`
 
 function App() {
   return (
-    <>
+    <RecoilRoot>
       <GlobalStyle />
       <BrowserRouter>
         <Router />
       </BrowserRouter>
-    </>
-  );
+    </RecoilRoot>
+  )
+  ;
 }
 
 export default App;

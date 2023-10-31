@@ -14,6 +14,7 @@ export const Container = styled.div`
   background-color: #000;
   position: sticky;
   bottom: 0;
+  z-index: 10;
 `
 
 export const IconList = styled.ul`

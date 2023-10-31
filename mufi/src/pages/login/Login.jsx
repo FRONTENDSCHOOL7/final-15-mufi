@@ -6,15 +6,21 @@ import EmailJoin from '../../components/nextButton/EmailJoin';
 import { useNavigate } from 'react-router-dom';
 import { Layout, Title, InputGroup, Label, ErrorMessage } from './LoginStyle';
 
+import { useSetRecoilState } from 'recoil';
+import { userLoginState } from '../../Atoms/atoms';
+import { userTokenState } from '../../Atoms/atoms';
+import { loginAPI } from '../../api/loginAPI'
+
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-
+  const setUserToken = useSetRecoilState(userTokenState);
   const navigate = useNavigate();
-
   const [isBtnActive, setIsBtnActive] = useState(true);
+  const setIsLogin = useSetRecoilState(userLoginState);
+
 
   // 버튼 활성화 여부 결정
   useEffect(() => {
@@ -57,8 +63,14 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async(e) => {
     e.preventDefault();
+    let userToken = await loginAPI(email, password);
+    if(userToken){
+      setUserToken(userToken);
+      setIsLogin(true);
+      navigate('/home');
+    }
   };
 
   return (

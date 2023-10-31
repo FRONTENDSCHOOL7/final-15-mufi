@@ -35,8 +35,10 @@ export default function YourProfile() {
             </YP.Followers>
             <YP.BasicImg src={BasicImg} alt="기본 이미지" />
             <YP.Followings>
-              <strong>128</strong>
-              <p>followings</p>
+              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
+                <strong>128</strong>
+                <p>followings</p>
+              </Link>
             </YP.Followings>
           </YP.Follow>
 

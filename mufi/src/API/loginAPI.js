@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-export const userLogin  = async (username='example@exam.ple', password='123123') => {
+export const loginAPI  = async (username='example@exam.ple', password='123123') => {
   let userToken = '';
 
   const option = {

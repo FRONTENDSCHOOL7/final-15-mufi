@@ -9,11 +9,9 @@ export default function UploadHeader({
   backButtonText,
 }) {
   const navigate = useNavigate();
-
   const handleGoBack = () => {
     navigate(-1);
   };
-
   const handleSpanClick = (event) => {
     event.stopPropagation();
   };

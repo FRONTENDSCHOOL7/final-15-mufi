@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import * as F from './FestivalStyle';
-import UploadHeader from '../../components/uploadheader/UploadHeader';
+import UploadHeader from '../../components/headers/UploadHeader';
 import searchIcon from '../../assets/icon-search-gray.png';
 
 export default function Festival() {

@@ -38,7 +38,6 @@ const Home = () => {
         { isModalOpen && <MoreModal></MoreModal> }
       </H.HLayout>
 
-      {/* 잔망 */}
       <button onClick={() => {
         const li = document.querySelectorAll('li');
         li.forEach(v=>v.classList.toggle('cardUI'))

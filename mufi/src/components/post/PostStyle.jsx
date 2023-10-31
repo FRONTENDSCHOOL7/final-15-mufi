@@ -3,6 +3,7 @@ import iconLike from "../../assets/icon-heart.png"
 import iconLikefill from "../../assets/icon-heart-fill.png"
 import iconComment from "../../assets/icon-message-white.png"
 import userProfile from "../../assets/basic-profile-small.png"
+import iconMore from '../../assets/icon-more-vertical-large.png';
 
 // 게시글 리스트
 export const PostList = styled.ul`
@@ -43,6 +44,11 @@ export const PostContent = styled.article`
     justify-content: center;
     gap: 16px;
 `
+export const UpperWrapper = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+`
 export const UserInfo = styled.div`
     display: flex;
     flex-direction: column;
@@ -56,6 +62,15 @@ export const UserName = styled.p`
 export const UserId = styled.p`
     color: #767676;
     font-size: 12px;
+`
+export const BtnMore = styled.button`
+    width: 18px;
+    height: 18px;
+    border: none;
+    background-color: transparent;
+    background-image: url(${iconMore});
+    background-size: 18px;
+    background-repeat: no-repeat;
 `
 export const PostContentImg = styled.img`
     max-width: 304px;

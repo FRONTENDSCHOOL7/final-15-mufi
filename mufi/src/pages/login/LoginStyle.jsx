@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
 
 export const Layout = styled.div`
   position: relative;
@@ -47,27 +48,18 @@ export const ErrorMessage = styled.div`
   margin-bottom: 30px;
 `;
 
-export const LoginButton = styled.button`
-  width: 100%;
-  max-width: 300px;
-  padding: 10px;
-  background-color: #2033e7;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: #0056b3;
-  }
-`;
-
 export const EmailJoin = styled(Input)`
   font-size: 12px;
   color: #767676;
   margin-top: 20px;
   width: 100%;
   text-align: center;
+`;
+
+export const NextBtn = styled(NextBtnStyle)`
+  &:disabled {
+    background-color: #1f2241;
+    color: #606367;
+    cursor: default;
+  }
 `;

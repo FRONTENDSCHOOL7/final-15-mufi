@@ -49,4 +49,7 @@ export const ModalBtn = styled.button`
   border: none;
   background-color: transparent;
   text-align: left;
+  &:hover {
+    background-color: #e0e0e0;
+  }
 `

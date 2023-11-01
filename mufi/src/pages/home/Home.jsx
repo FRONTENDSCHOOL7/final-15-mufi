@@ -8,7 +8,7 @@ import * as H from "./HomeStyle"
 import { getPostAPI } from '../../api/getPostAPI'
 
 // token 연결하기
-import { useRecoilValue } from 'recoil'
+import { useRecoilState, useRecoilValue } from 'recoil'
 import { userTokenState } from '../../Atoms/atoms'
 import { postMoreState } from '../../Atoms/atoms'
 import MoreModal from '../../components/moreModal/MoreModal';
@@ -18,14 +18,14 @@ const Home = () => {
   
   // Recoil에서 token 받아오기
   const token = useRecoilValue(userTokenState);
-  const isModalOpen = useRecoilValue(postMoreState);
+  const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
   
   // 마운트 될때 api 받아올 수 있게, await은 async안에서만 사용할 수 있으므로 새로 함수를 선언해서 바로 실행하기
   useEffect(()=>{
+    setIsModalOpen(false);
     const getPostList = async () => {
       const res = await getPostAPI(token);
       setPostData(res);
-      console.log(res);
     }
     getPostList();
   },[])

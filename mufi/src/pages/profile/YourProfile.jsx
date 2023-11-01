@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as YP from './YourProfileStyle';
 import BasicImg from '../../assets/basic-profile-large.png';
@@ -11,6 +12,10 @@ import PlayBtn from '../../assets/playBtn.png';
 import { Link } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
 
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../Atoms/atoms';
+import { profileAPI } from '../../api/profileAPI';
+
 export default function YourProfile() {
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(false);
@@ -18,6 +23,18 @@ export default function YourProfile() {
   const [isPlaying, setIsPlaying] = useState(false);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
+
+  const [profile, setProfile] = useState([]);
+
+  const token = useRecoilValue(userTokenState);
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const res = await profileAPI(token);
+      setProfile(res);
+    };
+    getProfile();
+  }, []);
 
   return (
     <>
@@ -29,14 +46,14 @@ export default function YourProfile() {
           <YP.Follow>
             <YP.Followers>
               <Link to="/followerlist" style={{ textDecoration: 'none' }}>
-                <strong>2950</strong>
+                <strong>{profile.followerCount}</strong>
                 <p>followers</p>
               </Link>
             </YP.Followers>
-            <YP.BasicImg src={BasicImg} alt="기본 이미지" />
+            <YP.BasicImg src={profile.image || BasicImg} alt="프로필 이미지" />
             <YP.Followings>
-              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
-                <strong>128</strong>
+              <Link to="/followinglist" style={{ textDecoration: 'none' }}>
+                <strong>{profile.followingCount}</strong>
                 <p>followings</p>
               </Link>
             </YP.Followings>
@@ -44,8 +61,8 @@ export default function YourProfile() {
 
           {/* 프로필 (사용자 이름, 계정, 소개) */}
           <YP.Profile>
-            <strong>애월읍 위니브 감귤농장</strong>
-            <span>@ weniv_Mandarin</span>
+            <strong>{profile.username}</strong>
+            <span>@ {profile.accountname}</span>
             {isPlaying ? (
               <>
                 <ProfileMusicButton musicContent="후라이의꿈 AKMU(악뮤)" />
@@ -53,7 +70,7 @@ export default function YourProfile() {
             ) : (
               <></>
             )}
-            <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
+            <p>{profile.intro}</p>
           </YP.Profile>
 
           <YP.ButtonWrapper>

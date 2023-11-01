@@ -3,12 +3,11 @@ import * as MM from './MoreModalStyle';
 import { useSetRecoilState } from 'recoil';
 import { postMoreState } from '../../Atoms/atoms';
 
-
 export default function MoreModal() {
-  const setIsModalOpen = useSetRecoilState(postMoreState)
+  const setIsModalOpen = useSetRecoilState(postMoreState);
   const handleClose = () => {
     setIsModalOpen(false);
-  }
+  };
 
   return (
     <>
@@ -17,5 +16,5 @@ export default function MoreModal() {
         <MM.ModalBtn onClick={handleClose}>삭제</MM.ModalBtn>
       </MM.ModalContainer>
     </>
-  )
+  );
 }

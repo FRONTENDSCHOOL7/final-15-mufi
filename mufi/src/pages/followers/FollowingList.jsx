@@ -1,24 +1,18 @@
 import React from 'react';
-import * as FL from './FollowerListStyle';
-import Follower from '../../components/follwer/Follower';
+import * as FL from './FollowingListStyle';
+import Following from '../../components/follwer/Following';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 
-export default function FollowerList() {
+export default function FollowingList() {
   return (
     <>
       <FL.Layout>
-        <GoBackMoreHeader content="Followers" />
-        <FL.FollowerList>
+        <GoBackMoreHeader content="Followings" />
+        <FL.FollowingList>
           <ul>
-            <Follower
-              username="감귤의 품격-애월읍"
-              userinfo="제주 노지귤, 하우스 한라봉 판매합니다!"
-            />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
+            <Following />
           </ul>
-        </FL.FollowerList>
+        </FL.FollowingList>
       </FL.Layout>
     </>
   );

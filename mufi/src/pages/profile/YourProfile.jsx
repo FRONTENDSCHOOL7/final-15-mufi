@@ -22,9 +22,6 @@ import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
 // 바꾼 부분
-
-import { useRecoilValue } from 'recoil';
-import { userTokenState } from '../../Atoms/atoms';
 import { profileAPI } from '../../api/profileAPI';
 
 export default function YourProfile() {
@@ -34,6 +31,7 @@ export default function YourProfile() {
   const [isPlaying, setIsPlaying] = useState(false);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
+  const [profile, setProfile] = useState([]);
 
   //내가 추가한 부분
   const token = useRecoilValue(userTokenState);
@@ -50,6 +48,14 @@ export default function YourProfile() {
     getPostList();
   }, []);
   // 추가한 부분
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const res = await profileAPI(token);
+      setProfile(res);
+    };
+    getProfile();
+  }, []);
 
   return (
     <>

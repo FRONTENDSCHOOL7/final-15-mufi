@@ -20,7 +20,6 @@ export const getPostAPI = async ( token ) => {
   // option에 따라 api 연결하기
   await axios(option)
     .then((res) => { // api연결 완료하면 수행할 동작
-      // console.log('dataPost받아오고싶어용', res.data);
       dataPost = res.data.posts;
     })
     .catch((error) => { // 오류나면 수행할 동작

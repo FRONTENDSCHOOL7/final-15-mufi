@@ -8,13 +8,19 @@ import hashtagImage from '../../assets/hashtag-fill.png';
 import imageUploadImage from '../../assets/image-fill.png';
 import deleteImage from '../../assets/x.png';
 
+import { uploadPostAPI } from '../../api/uploadPostAPI'
+import { useRecoilValue } from 'recoil';
+import { userTokenState } from '../../Atoms/atoms';
+
 export default function Upload() {
   const [profileImg, setProfileImg] = useState(profileSmall);
   const [postContent, setPostContent] = useState('');
   const [selectedImages, setSelectedImages] = useState([]);
+  const token = useRecoilValue(userTokenState)
 
   const postInputRef = useRef(null);
   const fileInputRef = useRef();
+  const selectedImagesContainer = useRef();
 
   const navigate = useNavigate();
 
@@ -44,7 +50,7 @@ export default function Upload() {
     e.preventDefault();
     fileInputRef.current.click();
   };
-  const handleFileSelect = (e) => {
+  const handleFileSelect = async (e) => {
     const file = e.target.files[0];
     if (file) {
       const reader = new FileReader();
@@ -56,16 +62,46 @@ export default function Upload() {
       };
       reader.readAsDataURL(file);
     }
+    // await uploadImage(file);
   };
-  //이미지 삭제
+  // const uploadImage = async (imageFile) => {
+  //   const baseUrl = 'https://api.mandarin.weniv.co.kr/';
+  //   const reqUrl = baseUrl + 'image/uploadfile';
+  //   // 폼데이터 만들기
+  //   const form = new FormData();
+  //   form.append('image', imageFile);
+
+  //   // 폼 바디에 넣어서 요청하기
+  //   const res = await fetch(reqUrl, {
+  //     method: 'POST',
+  //     body: form,
+  //   });
+  //   const json = await res.json();
+  //   const imageUrl = baseUrl + json.filename;
+  //   setSelectedImages([...selectedImages, imageUrl]);
+  //   // url로 만든 배열
+  // }
+  // 이미지 삭제
   const handleRemoveImage = (index) => {
     setSelectedImages((oldImages) => oldImages.filter((_, i) => i !== index));
   };
 
+  // 업로드 버튼 클릭
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // console.log(postContent);
+    console.log(selectedImages);
+    const post = {
+      "content": postContent,
+      "image": selectedImages,
+    }
+    uploadPostAPI({token, post});
+  }
+  
   return (
     <U.UploadWrapper>
-      <UploadHeader />
-      <U.UploadContent>
+      <UploadHeader formid={'form-post'}/>
+      <U.UploadContent id='form-post' onSubmit={handleSubmit}>
 
         {/* ---- 추가 버튼 ---- */}
         <U.ContentLayout>
@@ -77,7 +113,8 @@ export default function Upload() {
               onChange={handleContentChange}
               placeholder="게시글 입력하기..."
             />
-            <U.SelectedImagesContainer>
+            <U.SelectedImagesContainer
+              ref={selectedImagesContainer}>
               {selectedImages.map((img, index) => (
                 <U.ImageBox key={index}>
                   <U.SelectedImage src={img} />

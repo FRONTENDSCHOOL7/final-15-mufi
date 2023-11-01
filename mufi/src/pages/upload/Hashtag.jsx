@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as H from './HashtagStyle';
 import UploadHeader from '../../components/headers/UploadHeader';
 import searchIcon from '../../assets/icon-search-gray.png';
@@ -52,11 +52,21 @@ export default function Hashtag() {
     navigate('/upload')
   }
 
-  document.addEventListener('keydown', async (e) => {
-    if (e.key === "Enter") {
-      await fetchSearchResult();
+  useEffect(() => {
+    document.addEventListener('keydown', async (e) => {
+      if (e.key === "Enter") {
+        await fetchSearchResult();
+      }
+    })
+
+    return () => {
+      document.removeEventListener('keydown', async (e) => {
+        if (e.key === "Enter") {
+          await fetchSearchResult();
+        }
+      })
     }
-  })
+  }, []);
 
   return (
     <H.HashtagWrapper>

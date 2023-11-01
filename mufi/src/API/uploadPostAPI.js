@@ -28,7 +28,6 @@ export const uploadPostAPI = async ({token, post}) => {
   // option에 따라 api 연결하기
   await axios(option)
     .then((res) => { // api연결 완료하면 수행할 동작
-      console.log('data upload 하겠습니다~', res);
       resPost = res;
     })
     .catch((error) => { // 오류나면 수행할 동작

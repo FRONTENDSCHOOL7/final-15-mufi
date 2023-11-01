@@ -54,3 +54,9 @@ export const postImageState = atom({
   key: 'postImageState',
   default: []
 });
+
+// Delete;
+export const postIdState = atom({
+  key: 'postIdState',
+  default: ''
+})

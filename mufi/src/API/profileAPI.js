@@ -1,9 +1,8 @@
 import axios from 'axios';
 
-export const profileAPI = async (token) => {
+export const profileAPI = async ({ token, accountname }) => {
   let profileData = [];
-  console.log(token);
-  const apiUrl = 'user/myinfo';
+  const apiUrl = `profile/${accountname}`;
   const method = 'get';
   const reqHeaders = {
     Authorization: `Bearer ${token}`,
@@ -20,7 +19,7 @@ export const profileAPI = async (token) => {
   await axios(option)
     .then((res) => {
       console.log('사용자 프로필 받아오기', res.data);
-      profileData = res.data.user;
+      profileData = res.data.profile;
     })
     .catch((error) => {
       console.log('프로필 정보를 가져오는데 실패했습니다.', error);

@@ -7,10 +7,12 @@ import FollowButton from './FollowButton';
 import { useRecoilValue } from 'recoil';
 import { accountnameState, userTokenState } from '../../Atoms/atoms';
 import { followingAPI } from '../../api/followingAPI';
+import { useNavigate } from 'react-router-dom';
 
 export default function Follower() {
   const [isFollowing, setIsFollowing] = useState(false);
   const [followings, setFollowings] = useState([]);
+  const navigate = useNavigate();
 
   const onClickHandler = () => {
     setIsFollowing(!isFollowing);
@@ -32,8 +34,14 @@ export default function Follower() {
       {followings.map((following) => (
         <F.FollowingWrapper key={following._id}>
           <F.UserWrapper>
-            <img src={following.image || BasicProfileSmall} alt="프로필 사진" />
-            <F.ContentWrapper>
+            <img
+              onClick={() => navigate('/profile/' + following.accountname)}
+              src={following.image || BasicProfileSmall}
+              alt="프로필 사진"
+            />
+            <F.ContentWrapper
+              onClick={() => navigate('/profile/' + following.accountname)}
+            >
               <F.UserName>{following.username}</F.UserName>
               <F.UserInfo>{following.intro}</F.UserInfo>
             </F.ContentWrapper>

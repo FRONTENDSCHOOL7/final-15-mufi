@@ -4,43 +4,80 @@ import Input from '../../components/Input';
 import Header from '../../components/headers/GoBackHeader';
 import BasicImg from '../../assets/basic-profile-large.png';
 import UploadImg from '../../assets/icon-upload-img.png';
-import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
+
+// api import
+import { userIdValidAPI } from '../../api/user/userIdValidApi';
+import { joinAPI } from '../../api/user/joinAPI';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 export default function JoinProfile() {
-  const [userName, setUserName] = useState('');
+  const [username, setUserName] = useState('');
   const [userId, setUserId] = useState('');
+  const [userIntro, setUserIntro] = useState('');
 
-  const [userNameError, setUserNameError] = useState('');
+  const [usernameError, setUserNameError] = useState('');
   const [userIdError, setUserIdError] = useState('');
 
   const [imgSrc, setImgSrc] = useState(BasicImg);
   const [isBtnActive, setIsBtnActive] = useState(true);
 
+  const [isUsernameValid, setIsUsernameValid] = useState(false);
+  const [isUserIdValid, setIsUserIdValid] = useState(false);
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const userEmail = location.state?.email;
+  const userPassword = location.state?.password;
+
   // 사용자 이름 유효성 검사
   const userNameValidation = (e) => {
     const nameValue = e.target.value;
-    setUserName((prev) => nameValue);
+    setUserName(nameValue);
     if ((nameValue.length < 2 && nameValue !== '') || nameValue.length > 10) {
       setUserNameError('2~10자 이내여야 합니다.');
+      setIsUsernameValid(false);
     } else if (nameValue === '') {
       setUserNameError('사용자 이름을 입력해주세요.');
+      setIsUsernameValid(false);
     } else {
       setUserNameError('');
+      setIsUsernameValid(true);
     }
   };
 
-  // 계정 ID 유효성 검사(영문, 숫자, 밑줄 및 마침표)
+  // userId 계정 ID 유효성 검사(영문, 숫자, 밑줄 및 마침표)
   const userIdValidation = (e) => {
     const idValue = e.target.value;
     const userIdPattern = /^[A-Za-z0-9._]+$/;
-    setUserId((prev) => idValue);
+    setUserId(idValue);
     if (!userIdPattern.test(idValue)) {
       setUserIdError('영문, 숫자, 특수문자(.),(_)만 사용가능합니다.');
+      setIsUserIdValid(false);
     } else if (idValue === '') {
       setUserIdError('계정 ID를 입력해주세요.');
+      setIsUserIdValid(false);
     } else {
       setUserIdError('');
+      setIsUserIdValid(true);
     }
+  };
+
+  // userId 중복검사
+  const userIdDuplicateValid = async (e) => {
+    const userDuplicateId = e.target.value;
+    setUserId(userDuplicateId);
+    const validMessage = await userIdValidAPI(userDuplicateId);
+    if (validMessage?.message === '이미 가입된 계정ID 입니다.') {
+      setUserIdError('이미 사용 중인 ID입니다.');
+      setIsUserIdValid(false);
+    } else {
+      setIsUserIdValid(true);
+    }
+  };
+
+  const handleUserIntro = (e) => {
+    setUserIntro(e.target.value);
   };
 
   // 이미지 넣기
@@ -68,8 +105,8 @@ export default function JoinProfile() {
   };
 
   useEffect(() => {
-    if (!userNameError && !userIdError) {
-      if (!!userName && !!userId) {
+    if (!usernameError && !userIdError) {
+      if (!!username && !!userId) {
         setIsBtnActive((prev) => false);
       } else {
         setIsBtnActive((prev) => true);
@@ -77,10 +114,12 @@ export default function JoinProfile() {
     } else {
       setIsBtnActive((prev) => true);
     }
-  }, [userId, userName, userNameError, userIdError]);
+  }, [userId, username, usernameError, userIdError]);
 
-  const onSubmitProfile = (e) => {
+  const onSubmitProfile = async (e) => {
     e.preventDefault();
+    await joinAPI(username, userEmail, userPassword, userId, userIntro, imgSrc);
+    navigate('/home');
   };
 
   return (
@@ -118,17 +157,20 @@ export default function JoinProfile() {
               onChange={userNameValidation}
               alertMessage={setUserNameError}
               required
+              value={username}
             />
-            <JP.ErrorMessage>{userNameError}</JP.ErrorMessage>
+            <JP.ErrorMessage>{usernameError}</JP.ErrorMessage>
           </JP.InputWrapper>
           <JP.InputWrapper>
             <Input
               label="계정 ID"
               type="text"
               placeholder="영문, 숫자, 특수문자(.),(_)만 사용가능합니다."
+              onBlur={userIdDuplicateValid}
               onChange={userIdValidation}
               alertMessage={setUserIdError}
               required
+              value={userId}
             />
             <JP.ErrorMessage>{userIdError}</JP.ErrorMessage>
           </JP.InputWrapper>
@@ -137,11 +179,15 @@ export default function JoinProfile() {
             <Input
               label="소개"
               type="text"
+              value={userIntro}
               placeholder="자신에 대해서 소개해 주세요!"
+              onChange={handleUserIntro}
             />
           </JP.InputWrapper>
-          {/* 버튼 컴포넌트 - MUFI 시작하기 */}
-          <NextBtnStyle disabled={isBtnActive}>MUFI 시작하기</NextBtnStyle>
+
+          <JP.NextBtn disabled={isBtnActive} type="submit">
+            MUFI 시작하기
+          </JP.NextBtn>
         </form>
       </JP.Layout>
     </>

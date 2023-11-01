@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
 
 export const Layout = styled.div`
   display: flex;
@@ -43,11 +44,6 @@ export const Img = styled.img`
   position: relative;
 `;
 
-// input이 하나밖에 안들어가서 직접 style 줌
-// export const ImgInput = styled.input`
-//   display: none;
-// `;
-
 export const ImgInputLabel = styled.label`
   width: 36px;
   height: 36px;
@@ -67,4 +63,12 @@ export const ErrorMessage = styled.p`
   color: #eb5757;
   margin-top: 7px;
   padding-left: 2px;
+`;
+
+export const NextBtn = styled(NextBtnStyle)`
+  &:disabled {
+    background-color: #1f2241;
+    color: #606367;
+    cursor: default;
+  }
 `;

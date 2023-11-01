@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as YP from './YourProfileStyle';
 import BasicImg from '../../assets/basic-profile-large.png';
@@ -10,6 +9,15 @@ import Akmu from '../../assets/akmu.png';
 import PlayBtn from '../../assets/playBtn.png';
 import { Link } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
+// 내가 바꾼거~
+import { getUserPostAPI } from '../../api/getUserPostAPI';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import { accountnameState, postMoreState, userTokenState } from '../../Atoms/atoms';
+import PostList from '../../components/post/PostList';
+import NavBar from '../../components/navBar/NavBar';
+import React, { useEffect, useState } from 'react';
+import MoreModal from '../../components/moreModal/MoreModal';
+// 바꾼 부분
 
 export default function YourProfile() {
   // your profile(false)인지 my profile(true) 인지 check
@@ -18,6 +26,22 @@ export default function YourProfile() {
   const [isPlaying, setIsPlaying] = useState(false);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
+
+  //내가 추가한 부분
+  const token = useRecoilValue(userTokenState);
+  const accountname = useRecoilValue(accountnameState);
+  const [dataPost, setDataPost] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
+
+  useEffect(()=>{
+    setIsModalOpen(false);
+    const getPostList = async () => {
+      const dataPost = await getUserPostAPI({token, accountname});
+      setDataPost(dataPost);
+    }
+    getPostList();
+  },[]);
+  // 추가한 부분
 
   return (
     <>
@@ -118,6 +142,11 @@ export default function YourProfile() {
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
         <ShowPost />
+        {/* 내가 바꾼 부분 */}
+        <PostList dataPost={dataPost}></PostList>
+        {isModalOpen && <MoreModal></MoreModal>}
+        <NavBar />
+        {/* 내가 바꾼 부분 */}
       </YP.Layout>
     </>
   );

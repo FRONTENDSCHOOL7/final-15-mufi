@@ -9,6 +9,7 @@ export default function Input({
   onChange,
   minLength,
   maxLength,
+  onBlur,
 }) {
   return (
     <InputWrapper>
@@ -21,6 +22,7 @@ export default function Input({
         // 사용자 이름에서 필요한 것
         minLength={minLength}
         maxLength={maxLength}
+        onBlur={onBlur}
       />
     </InputWrapper>
   );

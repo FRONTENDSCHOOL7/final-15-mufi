@@ -1,26 +1,33 @@
 import React, { useState, useCallback, useEffect } from 'react';
 import Header from '../../components/headers/GoBackHeader';
 import Input from '../../components/Input';
-import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
+// import NextBtnStyle from '../../components/nextButton/NextButtonStyle';
 import EmailJoin from '../../components/nextButton/EmailJoin';
 import { useNavigate } from 'react-router-dom';
-import { Layout, Title, InputGroup, Label, ErrorMessage } from './LoginStyle';
+import {
+  Layout,
+  Title,
+  InputGroup,
+  Label,
+  ErrorMessage,
+  NextBtn,
+} from './LoginStyle';
 
+// api 연동 import
 import { useSetRecoilState } from 'recoil';
-import { userLoginState } from '../../Atoms/atoms';
-import { userTokenState } from '../../Atoms/atoms';
-import { loginAPI } from '../../api/loginAPI'
+import { loginEmailAPI } from '../../api/user/loginEmailAPI';
+import { userTokenState, userLoginState } from '../../Atoms/atoms';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const setUserToken = useSetRecoilState(userTokenState);
-  const navigate = useNavigate();
   const [isBtnActive, setIsBtnActive] = useState(true);
-  const setIsLogin = useSetRecoilState(userLoginState);
+  const navigate = useNavigate();
 
+  const setUserToken = useSetRecoilState(userTokenState); // 사용자 토큰 상태 설정
+  const setUserLoginState = useSetRecoilState(userLoginState); // 로그인 상태 설정
 
   // 버튼 활성화 여부 결정
   useEffect(() => {
@@ -37,7 +44,7 @@ const Login = () => {
   }, [email, password, emailError, passwordError]);
 
   // 이메일 유효성 검사
-  const userEmailValidation = (e) => {
+  const userEmailValidation = useCallback((e) => {
     const emailValue = e.target.value;
     setEmail(emailValue);
     const emailReg = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/;
@@ -48,10 +55,10 @@ const Login = () => {
     } else {
       setEmailError('');
     }
-  };
+  }, []);
 
   // 비밀번호 유효성 검사
-  const userPasswordValidation = (e) => {
+  const userPasswordValidation = useCallback((e) => {
     const passwordValue = e.target.value;
     setPassword(passwordValue);
     if (passwordValue.length < 6) {
@@ -61,17 +68,27 @@ const Login = () => {
     } else {
       setPasswordError('');
     }
-  };
+  }, []);
 
-  const handleSubmit = async(e) => {
-    e.preventDefault();
-    let userToken = await loginAPI(email, password);
-    if(userToken){
-      setUserToken(userToken);
-      setIsLogin(true);
-      navigate('/home');
-    }
-  };
+  // 로그인 처리 + api 연동
+  const handleSubmit = useCallback(
+    async (e) => {
+      e.preventDefault();
+      // 버튼 활성화 상태
+      if (!isBtnActive) {
+        const data = await loginEmailAPI(email, password);
+        console.log(data); // 나중에 삭제
+        if (!data || !data.user || !data.user.token) {
+          setPasswordError('이메일 또는 비밀번호가 일치하지 않습니다!');
+        } else {
+          setUserToken(data.user.token);
+          setUserLoginState(true);
+          navigate('/home');
+        }
+      }
+    },
+    [isBtnActive, email, password, navigate, setUserLoginState, setUserToken]
+  );
 
   return (
     <Layout>
@@ -88,9 +105,11 @@ const Login = () => {
             required
           />
         </InputGroup>
+
         <InputGroup>
           <ErrorMessage>{emailError}</ErrorMessage>
         </InputGroup>
+
         <InputGroup>
           <Label htmlFor="password">비밀번호</Label>
           <Input
@@ -106,7 +125,9 @@ const Login = () => {
           <ErrorMessage>{passwordError}</ErrorMessage>
         </InputGroup>
 
-        <NextBtnStyle disabled={isBtnActive}>로그인</NextBtnStyle>
+        <NextBtn disabled={isBtnActive} onClick={handleSubmit}>
+          로그인
+        </NextBtn>
         <EmailJoin />
       </form>
     </Layout>

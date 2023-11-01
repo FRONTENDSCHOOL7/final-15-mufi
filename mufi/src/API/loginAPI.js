@@ -23,7 +23,6 @@ export const loginAPI  = async (username='example@exam.ple', password='123123') 
         // console.log('아이디,비밀번호를 확인해주세요!')
         return user;
       }
-      console.log(res);
       user = (res.data.user);
       return user;
     })

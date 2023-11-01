@@ -1,12 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import * as S from './SplashStyle';
 import { useNavigate } from 'react-router-dom';
 
 export default function Splash() {
   const navigate = useNavigate();
-  document.addEventListener('click',()=>{
-    navigate('/');
-  })
+  
+  useEffect(()=>{
+    document.addEventListener('click',()=>{
+      navigate('/');
+    })
+
+    return ()=>{
+      document.removeEventListener('click', ()=>{
+        navigate('/');
+      })
+    }
+  }, [])
 
   return (
     <S.Layout>

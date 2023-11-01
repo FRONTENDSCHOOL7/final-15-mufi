@@ -1,8 +1,6 @@
 import axios from 'axios';
 
 export const getUserPostAPI = async ({ token, accountname }) => {
-  console.log(token);
-  console.log(accountname, 'accountname');
   let dataPost = [];
 
   const apiUrl = `post/${accountname}/userpost`;
@@ -23,7 +21,6 @@ export const getUserPostAPI = async ({ token, accountname }) => {
   await axios(option)
     .then((res) => {
       // api연결 완료하면 수행할 동작
-      // console.log('dataPost받아오고싶어용', res.data);
       dataPost = res.data.post;
     })
     .catch((error) => {

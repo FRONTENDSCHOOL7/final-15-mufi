@@ -7,7 +7,7 @@ import { useNavigate } from 'react-router-dom';
 import { Layout, Title, InputGroup, Label, ErrorMessage } from './LoginStyle';
 
 import { useSetRecoilState } from 'recoil';
-import { userLoginState } from '../../Atoms/atoms';
+import { accountnameState, userLoginState } from '../../Atoms/atoms';
 import { userTokenState } from '../../Atoms/atoms';
 import { loginAPI } from '../../api/loginAPI'
 
@@ -20,7 +20,7 @@ const Login = () => {
   const navigate = useNavigate();
   const [isBtnActive, setIsBtnActive] = useState(true);
   const setIsLogin = useSetRecoilState(userLoginState);
-
+  const setAccountname = useSetRecoilState(accountnameState);
 
   // 버튼 활성화 여부 결정
   useEffect(() => {
@@ -65,10 +65,13 @@ const Login = () => {
 
   const handleSubmit = async(e) => {
     e.preventDefault();
-    let userToken = await loginAPI(email, password);
+    let user = await loginAPI(email, password);
+    let userToken = user.token;
+    let userAccountname = user.accountname;
     if(userToken){
       setUserToken(userToken);
       setIsLogin(true);
+      setAccountname(userAccountname);
       navigate('/home');
     }
   };

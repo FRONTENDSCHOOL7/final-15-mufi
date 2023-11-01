@@ -25,6 +25,7 @@ const Home = () => {
     const getPostList = async () => {
       const res = await getPostAPI(token);
       setPostData(res);
+      console.log(res);
     }
     getPostList();
   },[])

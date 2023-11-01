@@ -1,10 +1,8 @@
 import axios from 'axios';
 
 
-export const uploadPostAPI = ({token, post}) => {
-
-  let resPost = [];
-  console.log(post)
+export const uploadPostAPI = async ({token, post}) => {
+  let resPost;
   
   const apiUrl = 'post';
   const method = 'POST';
@@ -24,11 +22,11 @@ export const uploadPostAPI = ({token, post}) => {
     url: "https://api.mandarin.weniv.co.kr/"+apiUrl,
     method: method,
     headers: reqHeaders,
-    body: JSON.stringify(reqBody),
+    data: reqBody,
   };
 
   // option에 따라 api 연결하기
-  axios(option)
+  await axios(option)
     .then((res) => { // api연결 완료하면 수행할 동작
       console.log('data upload 하겠습니다~', res);
       resPost = res;

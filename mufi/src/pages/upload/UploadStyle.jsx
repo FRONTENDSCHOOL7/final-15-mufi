@@ -77,6 +77,7 @@ export const ButtonContainer = styled.div`
   justify-content: flex-end;
   width: 100%;
   height: 120px; // 버튼들의 높이와 마진을 고려하여 적절한 높이 설정
+  z-index: 20;
 `;
 
 export const Button = styled.button`
@@ -129,13 +130,22 @@ export const SelectedImagesContainer = styled.div`
   &::-webkit-scrollbar {
     display: none;
   }
+  /* &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, white 0%, transparent 10% 70%, white 80%);
+    position: absolute;
+    z-index: 10;
+  } */
 `;
 
 export const SelectedImage = styled.img`
-  max-width: 304px;
-  max-height: 228px;
-  object-fit: contain;
+  height: 228px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
   border-radius: 10px;
+  border: 1px solid #dbdbdb;
   margin-right: 10px;
 `;
 

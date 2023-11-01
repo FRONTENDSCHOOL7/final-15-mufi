@@ -1,9 +1,11 @@
 import axios from 'axios';
 
-export const getPostAPI = async ( token ) => {
+export const getUserPostAPI = async ({ token, accountname}) => {
+  console.log(token);
+  console.log(accountname, 'accountname')
   let dataPost = [];
 
-  const apiUrl = 'post/feed';
+  const apiUrl = `post/${accountname}/userpost`;
   const method = 'get';
   const reqHeaders = {
     "Authorization" : `Bearer ${token}`,
@@ -21,10 +23,10 @@ export const getPostAPI = async ( token ) => {
   await axios(option)
     .then((res) => { // api연결 완료하면 수행할 동작
       // console.log('dataPost받아오고싶어용', res.data);
-      dataPost = res.data.posts;
+      dataPost = res.data.post;
     })
     .catch((error) => { // 오류나면 수행할 동작
-      console.log('팔로잉한 사람 게시글 불러오기 api 요청 오류', error);
+      console.log('특정 유저 게시글 불러오기 api 요청 오류', error);
       return null;
     })
   return dataPost

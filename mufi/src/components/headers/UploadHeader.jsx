@@ -7,13 +7,12 @@ export default function UploadHeader({
   okButtonText = '업로드',
   showOkButton = true,
   backButtonText,
+  formid,
 }) {
   const navigate = useNavigate();
-
   const handleGoBack = () => {
     navigate(-1);
   };
-
   const handleSpanClick = (event) => {
     event.stopPropagation();
   };
@@ -26,7 +25,7 @@ export default function UploadHeader({
           <span onClick={handleSpanClick}>{backButtonText}</span>
         )}
       </BackBtn>
-      {showOkButton && <OkBtn>{okButtonText}</OkBtn>}
+      {showOkButton && <OkBtn type='submit' form={formid}>{okButtonText}</OkBtn>}
     </HeaderWrapper>
   );
 }

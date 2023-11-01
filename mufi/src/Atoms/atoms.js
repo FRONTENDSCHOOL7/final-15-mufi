@@ -9,7 +9,13 @@ export const userTokenState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
-// 로그인 상태
+// accountname - upload용
+export const accountnameState = atom({
+  key: 'accountnameState',
+  default: '',
+  effects_UNSTABLE: [persistAtom]
+})
+
 export const userLoginState = atom({
   key: 'LoginState',
   default: false,
@@ -26,4 +32,25 @@ export const accountNameState = atom({
 export const postMoreState = atom({
   key: 'postMoreState',
   default: false,
+});
+
+// upload 상태
+export const festivalState = atom({
+  key: 'festivalState',
+  default: [],
+});
+
+export const tagsState = atom({
+  key: 'tagsState',
+  default: [],
+});
+
+export const postContentState = atom({
+  key: 'postContentState',
+  default: ''
+});
+
+export const postImageState = atom({
+  key: 'postImageState',
+  default: []
 });

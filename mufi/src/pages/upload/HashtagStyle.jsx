@@ -47,9 +47,12 @@ export const SearchButton = styled.button`
 `;
 
 // 검색 결과를 보여주는 styled components
-export const SearchResult = styled.div`
-  height: 25px;
-  padding: 14px 8px;
+export const SearchResult = styled.button`
+  border: none;
+  background-color: transparent;
+
+  padding: 18px 8px;
+  width: 100%;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -58,7 +61,11 @@ export const SearchResult = styled.div`
   align-items: center;
 
   border-bottom: 1px solid #efefef;
+  &:hover {
+    background-color: #e0e0e0;
+  }
 `;
+
 
 // 검색 결과 리스트를 보여주는 styled components
 export const SearchList = styled.div`

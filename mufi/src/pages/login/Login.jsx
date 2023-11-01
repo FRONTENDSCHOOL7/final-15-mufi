@@ -15,8 +15,8 @@ import {
 
 // api 연동 import
 import { useSetRecoilState } from 'recoil';
-import { loginEmailAPI } from '../../api/user/loginEmailAPI';
-import { userTokenState, userLoginState } from '../../Atoms/atoms';
+import { loginAPI } from '../../api/loginAPI'
+import { userTokenState, userLoginState, accountnameState } from '../../Atoms/atoms';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -24,8 +24,9 @@ const Login = () => {
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
   const [isBtnActive, setIsBtnActive] = useState(true);
-  const navigate = useNavigate();
 
+  const setAccountname = useSetRecoilState(accountnameState);
+  const navigate = useNavigate();
   const setUserToken = useSetRecoilState(userTokenState); // 사용자 토큰 상태 설정
   const setUserLoginState = useSetRecoilState(userLoginState); // 로그인 상태 설정
 
@@ -70,19 +71,20 @@ const Login = () => {
     }
   }, []);
 
+
   // 로그인 처리 + api 연동
   const handleSubmit = useCallback(
     async (e) => {
       e.preventDefault();
       // 버튼 활성화 상태
       if (!isBtnActive) {
-        const data = await loginEmailAPI(email, password);
-        console.log(data); // 나중에 삭제
-        if (!data || !data.user || !data.user.token) {
+        let user = await loginAPI(email, password);
+        if (!user || !user.token) {
           setPasswordError('이메일 또는 비밀번호가 일치하지 않습니다!');
         } else {
-          setUserToken(data.user.token);
+          setUserToken(user.token);
           setUserLoginState(true);
+          setAccountname(user.accountname);
           navigate('/home');
         }
       }

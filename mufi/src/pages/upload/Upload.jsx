@@ -1,111 +1,122 @@
-import React, { useState, useEffect, useRef, memo } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as U from './UploadStyle';
-import UploadHeader from '../../components/uploadheader/UploadHeader';
+import UploadHeader from '../../components/headers/UploadHeader';
+import TagList from '../../components/post/TagList';
 import profileSmall from '../../assets/basic-profile-small.png';
 import festivalImage from '../../assets/guitar-fill.png';
 import hashtagImage from '../../assets/hashtag-fill.png';
 import imageUploadImage from '../../assets/image-fill.png';
 import deleteImage from '../../assets/x.png';
 
-const MemoizedSelectedImage = memo(function SelectedImage({ src, onRemove }) {
-  const imageRef = useRef(null);
-
-  useEffect(() => {
-    const handleImageLoad = () => {
-      imageRef.current.parentElement.scrollLeft =
-        imageRef.current.parentElement.scrollWidth;
-    };
-    imageRef.current.addEventListener('load', handleImageLoad);
-    return () => {
-      if (imageRef.current) {
-        imageRef.current.removeEventListener('load', handleImageLoad);
-      }
-    };
-  }, []);
-
-  return (
-    <U.SelectedImagesContainer>
-      <U.SelectedImage ref={imageRef} src={src} alt="Selected" />
-      <U.RemoveImageButton src={deleteImage} onClick={onRemove} alt="Remove" />
-    </U.SelectedImagesContainer>
-  );
-});
+import { uploadPostAPI } from '../../api/uploadPostAPI'
+import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
+import { festivalState, postContentState, postImageState, tagsState, userTokenState } from '../../Atoms/atoms';
 
 export default function Upload() {
   const [profileImg, setProfileImg] = useState(profileSmall);
-  const [postContent, setPostContent] = useState('');
-  const [selectedImages, setSelectedImages] = useState([]);
+  const [postContent, setPostContent] = useRecoilState(postContentState);
+  const [selectedImages, setSelectedImages] = useRecoilState(postImageState);
 
-  const contentLayoutRef = useRef(null);
+  const token = useRecoilValue(userTokenState);
+  const festival = useRecoilValue(festivalState);
+  const tags = useRecoilValue(tagsState);
+  const resetFestival = useResetRecoilState(festivalState);
+  const resetTags = useResetRecoilState(tagsState);
+  const resetContent = useResetRecoilState(postContentState);
+  const resetImage = useResetRecoilState(postImageState);
+  
+  const postInputRef = useRef(null);
+  const fileInputRef = useRef();
+  const selectedImagesContainer = useRef();
+  
   const navigate = useNavigate();
+  
+  // 페이지이동
+  const openFestivalAdder = () => {
+    navigate('/upload/festival');
+  };
+  const openHashtagAdder = () => {
+    navigate('/upload/hashtag'); 
+  };
 
+  // 글 내용 바뀔때마다
   const handleContentChange = (e) => {
     setPostContent(e.target.value);
-    if (postInputRef.current) {
-      postInputRef.current.scrollTop = postInputRef.current.scrollHeight;
-    }
   };
-
-  const calculateRows = (text) => {
-    return text.split('').length; // 입력된 텍스트의 줄 수를 계산
-  };
-
+  // 글 내용에 따라 스크롤 높이 조절
   useEffect(() => {
     postInputRef.current.style.height = 'auto'; // 높이를 초기화
     postInputRef.current.style.height = `${postInputRef.current.scrollHeight}px`; // 스크롤 높이만큼 높이를 설정
   }, [postContent]);
 
-  const openFestivalAdder = () => {
-    navigate('/upload/festival'); // 페스티벌 추가 버튼 클릭 시 /upload/festival로 이동
-  };
-
-  const openHashtagAdder = () => {
-    navigate('/upload/hashtag'); // 해시태그 버튼 클릭 시 /upload/hashtag로 이동
-  };
-
-  const postInputRef = useRef(null);
-
-  const fileInputRef = useRef();
-
+  // 이미지 업로드
   const handleFileButtonClick = (e) => {
     e.preventDefault();
     fileInputRef.current.click();
   };
-
-  const handleFileSelect = (e) => {
+  const handleFileSelect = async (e) => {
     const file = e.target.files[0];
-    if (file) {
-      const reader = new FileReader();
-      reader.onloadend = () => {
-        setSelectedImages((oldImages) => [
-          ...oldImages,
-          reader.result.toString(),
-        ]);
-      };
-      reader.readAsDataURL(file);
-    }
+    await uploadImage(file);
   };
+  const uploadImage = async (imageFile) => {
+    const baseUrl = 'https://api.mandarin.weniv.co.kr/';
+    const reqUrl = baseUrl + 'image/uploadfile';
+    // 폼데이터 만들기
+    const form = new FormData();
+    form.append('image', imageFile);
 
+    // 폼 바디에 넣어서 요청하기
+    const res = await fetch(reqUrl, {
+      method: 'POST',
+      body: form,
+    });
+    const json = await res.json();
+    const imageUrl = baseUrl + json.filename;
+    setSelectedImages([...selectedImages, imageUrl]);
+    // url로 만든 배열
+  };
+  // 이미지 삭제
   const handleRemoveImage = (index) => {
     setSelectedImages((oldImages) => oldImages.filter((_, i) => i !== index));
   };
 
+  // 태그 및 페스티벌을 post.content에 추가하기
+
+  // 업로드 버튼 클릭
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const post = {
+      "content": `content:${postContent}\n\\festival:${festival}\\tag:${tags}`,
+      "image": selectedImages.join(''),
+    }
+    const res = await uploadPostAPI({token, post});
+    if(res){
+      resetFestival();
+      resetTags();
+      resetContent();
+      resetImage();
+      navigate('/home');
+    }
+  }
+  
   return (
     <U.UploadWrapper>
-      <UploadHeader />
-      <U.UploadContent>
-        <U.ContentLayout ref={contentLayoutRef}>
+      <UploadHeader formid={'form-post'}/>
+      <U.UploadContent id='form-post' onSubmit={handleSubmit}>
+
+        {/* ---- 추가 버튼 ---- */}
+        <U.ContentLayout>
           <U.ProfileImage src={profileImg} alt="프로필 이미지" />
           <U.InputWithImage>
             <U.PostInput
-              안녕하세요
               ref={postInputRef}
               value={postContent}
               onChange={handleContentChange}
               placeholder="게시글 입력하기..."
             />
-            <U.SelectedImagesContainer>
+            <U.SelectedImagesContainer
+              ref={selectedImagesContainer}>
               {selectedImages.map((img, index) => (
                 <U.ImageBox key={index}>
                   <U.SelectedImage src={img} />
@@ -119,15 +130,20 @@ export default function Upload() {
             </U.SelectedImagesContainer>
           </U.InputWithImage>
         </U.ContentLayout>
+        {/* ---- 추가 버튼 ---- */}
+
+        {/* ---- 추가 버튼 ---- */}
         <U.ButtonContainer>
           <U.Button onClick={openFestivalAdder}>
             <U.ButtonImage src={festivalImage} alt="festival" />
-            페스티벌 추가하기
+            { festival.length ? <TagList tags={festival} isFestival={true}></TagList> : '페스티벌 추가하기'} 
           </U.Button>
+
           <U.Button onClick={openHashtagAdder}>
             <U.ButtonImage src={hashtagImage} alt="hashtag" />
-            해시 태그
+            { tags.length ? <TagList tags={tags}></TagList> : '해시 태그 추가하기'} 
           </U.Button>
+
           <U.Button type="button" onClick={handleFileButtonClick}>
             <U.ButtonImage src={imageUploadImage} alt="image upload" />
             사진 추가하기
@@ -140,6 +156,7 @@ export default function Upload() {
             onChange={handleFileSelect}
           />
         </U.ButtonContainer>
+         {/* ---- 추가 버튼 ---- */}
       </U.UploadContent>
     </U.UploadWrapper>
   );

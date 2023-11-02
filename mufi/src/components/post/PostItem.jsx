@@ -4,12 +4,12 @@ import * as P from './PostStyle';
 import { Link } from 'react-router-dom';
 import BtnWrapper from './BtnWrapper';
 import { useRecoilState, useSetRecoilState } from 'recoil';
-import { postIdState, postMoreState } from '../../Atoms/atoms';
-import TagItem from './TagItem';
+import { postInfoState, postIdState, postMoreState } from '../../Atoms/atoms';
 
 export default function PostItem({ dataPost }) {
   const setIsModalOpen = useSetRecoilState(postMoreState);
   const [postId, setPostId] = useRecoilState(postIdState);
+  const [postInfo, setPostInfo] = useRecoilState(postInfoState);
 
   const postItems = dataPost.map((v) => {
     // 게시글 내용 데이터 처리
@@ -40,6 +40,7 @@ export default function PostItem({ dataPost }) {
     const handleBtnMore = () => {
       setIsModalOpen(true);
       setPostId(v.id);
+      setPostInfo(v);
     };
 
     // 유저 정보 내보내기

@@ -83,6 +83,8 @@ export const PostContentImg = styled.img`
   aspect-ratio: 1.3 / 1;
   object-fit: cover;
   border-radius: 10px;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
 `
 export const PostContentText = styled.p`
   text-align: left;

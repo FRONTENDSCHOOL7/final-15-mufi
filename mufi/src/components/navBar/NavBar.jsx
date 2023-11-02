@@ -1,11 +1,13 @@
-import React, { useEffect } from 'react'
-import * as NB from "./NavBarStyle"
+import React, { useEffect } from 'react';
+import * as NB from './NavBarStyle';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useRecoilValue } from 'recoil';
+import { accountnameState } from '../../Atoms/atoms';
 
 export default function NavBar() {
   const location = useLocation();
-  
-  useEffect(()=>{
+
+  useEffect(() => {
     //  ('location',    location.pathname);
 
     switch (location.pathname) {
@@ -20,7 +22,7 @@ export default function NavBar() {
       case '/chat':
         const btnChat = document.querySelector('.btn-chat');
         btnChat.classList.add('selected');
-        
+
         const textChat = btnChat.querySelector('p');
         textChat.classList.add('selected');
         break;
@@ -33,7 +35,7 @@ export default function NavBar() {
         textUpload.classList.add('selected');
         break;
 
-      case '/yourprofile':
+      case '/profile':
         const btnProfile = document.querySelector('.btn-profile');
         btnProfile.classList.add('selected');
 
@@ -43,54 +45,53 @@ export default function NavBar() {
       default:
         break;
     }
-  }, [location])
-  
+  }, [location]);
+
+  const accountName = useRecoilValue(accountnameState);
 
   const navigate = useNavigate();
   const toHome = () => {
     navigate('/home');
-  }
+  };
   const toChat = () => {
     navigate('/chat');
-  }
+  };
   const toUpload = () => {
     navigate('/upload');
-  }
+  };
   const toProfile = () => {
-    navigate('/yourprofile');
-  }
+    navigate(`/profile/${accountName}`);
+  };
 
   return (
     <>
       <NB.Container>
         <NB.IconList>
-
           <li>
-            <NB.Home className='btn-home' onClick={toHome}>
+            <NB.Home className="btn-home" onClick={toHome}>
               <NB.Label>홈</NB.Label>
             </NB.Home>
           </li>
 
           <li>
-            <NB.Chat className='btn-chat' onClick={toChat}>
+            <NB.Chat className="btn-chat" onClick={toChat}>
               <NB.Label>채팅</NB.Label>
             </NB.Chat>
           </li>
 
           <li>
-            <NB.Upload className='btn-upload' onClick={toUpload}>
+            <NB.Upload className="btn-upload" onClick={toUpload}>
               <NB.Label>게시물 작성</NB.Label>
             </NB.Upload>
           </li>
 
           <li>
-            <NB.Profile className='btn-profile' onClick={toProfile}>
+            <NB.Profile className="btn-profile" onClick={toProfile}>
               <NB.Label>프로필</NB.Label>
             </NB.Profile>
           </li>
-
         </NB.IconList>
       </NB.Container>
     </>
-  )
+  );
 }

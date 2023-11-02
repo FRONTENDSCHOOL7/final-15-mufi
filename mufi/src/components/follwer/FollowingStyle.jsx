@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FollowerWrapper = styled.li`
+export const FollowingWrapper = styled.li`
   display: flex;
   width: 342px;
   height: 48px;

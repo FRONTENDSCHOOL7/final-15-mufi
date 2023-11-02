@@ -10,13 +10,7 @@ export default function FollowerList() {
         <GoBackMoreHeader content="Followers" />
         <FL.FollowerList>
           <ul>
-            <Follower
-              username="감귤의 품격-애월읍"
-              userinfo="제주 노지귤, 하우스 한라봉 판매합니다!"
-            />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
-            <Follower username="한라봉의 신" userinfo="나 감귤 좋아하네?" />
+            <Follower />
           </ul>
         </FL.FollowerList>
       </FL.Layout>

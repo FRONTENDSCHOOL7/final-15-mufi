@@ -19,6 +19,6 @@ export const Layout = styled.div`
   align-items: center;
 `;
 
-export const FollowerList = styled.div`
+export const FollowingList = styled.div`
   padding: 4px auto;
 `;

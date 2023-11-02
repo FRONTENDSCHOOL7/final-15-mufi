@@ -12,7 +12,7 @@ import Festival from '../pages/upload/Festival';
 
 import Home from '../pages/home/Home';
 import HomeSearch from '../pages/home/HomeSearch';
-import YourProfile from '../pages/profile/YourProfile';
+import Profile from '../pages/profile/Profile';
 import FollowerList from '../pages/followers/FollowerList';
 import FollowingList from '../pages/followers/FollowingList';
 import Chat from '../pages/chat/Chat';
@@ -34,7 +34,7 @@ export default function Router() {
       <Route path="/home" element={<Home />} />
       <Route path="/homesearch" element={<HomeSearch />} />
 
-      <Route path="/yourprofile" element={<YourProfile />} />
+      <Route path="/profile/:accountname" element={<Profile />} />
       <Route path="/followerlist" element={<FollowerList />} />
       <Route path="/followinglist" element={<FollowingList />} />
 

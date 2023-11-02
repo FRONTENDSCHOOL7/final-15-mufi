@@ -1,5 +1,5 @@
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
-import * as YP from './YourProfileStyle';
+import * as P from './ProfileStyle';
 import BasicImg from '../../assets/basic-profile-large.png';
 import ProfileButton from '../../components/profileButton/ProfileButton';
 import ProfileMusicButton from '../../components/profileButton/ProfileMusicButton';
@@ -7,69 +7,85 @@ import ChatBtn from '../../assets/icon-chat-btn.png';
 import ShareBtn from '../../assets/icon-share-btn.png';
 import Akmu from '../../assets/akmu.png';
 import PlayBtn from '../../assets/playBtn.png';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
 // 내가 바꾼거~
 import { getUserPostAPI } from '../../api/getUserPostAPI';
 import { useRecoilState, useRecoilValue } from 'recoil';
-import { accountnameState, postMoreState, userTokenState } from '../../Atoms/atoms';
+import {
+  accountnameState,
+  postMoreState,
+  userTokenState,
+} from '../../Atoms/atoms';
 import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
 // 바꾼 부분
+import { profileAPI } from '../../api/profileAPI';
 
-export default function YourProfile() {
-  // your profile(false)인지 my profile(true) 인지 check
-  const [isMine, setIsMine] = useState(false);
+export default function Profile() {
   // 음악 재생중(true)인지 check
   const [isPlaying, setIsPlaying] = useState(false);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
+  const [profile, setProfile] = useState([]);
 
   //내가 추가한 부분
   const token = useRecoilValue(userTokenState);
-  const accountname = useRecoilValue(accountnameState);
+  const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
   const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
 
-  useEffect(()=>{
+  const { accountname } = useParams();
+  // your profile(false)인지 my profile(true) 인지 check
+  const [isMine, setIsMine] = useState(myAccountname === accountname);
+
+  useEffect(() => {
     setIsModalOpen(false);
     const getPostList = async () => {
-      const dataPost = await getUserPostAPI({token, accountname});
+      const dataPost = await getUserPostAPI({ token, accountname });
       setDataPost(dataPost);
-    }
+    };
     getPostList();
-  },[]);
+  }, []);
   // 추가한 부분
+
+  useEffect(() => {
+    const getProfile = async () => {
+      const res = await profileAPI({ token, accountname });
+      setProfile(res);
+    };
+    getProfile();
+  }, []);
 
   return (
     <>
-      <YP.Layout>
+      <P.Layout>
         <GoBackMoreHeader />
 
-        <YP.ProfileWrapper>
+        <P.ProfileWrapper>
           {/* 팔로우, 프로필 이미지, 팔로잉 */}
-          <YP.Follow>
-            <YP.Followers>
+          <P.Follow>
+            <P.Followers>
               <Link to="/followerlist" style={{ textDecoration: 'none' }}>
-                <strong>2950</strong>
+                <strong>{profile.followerCount}</strong>
                 <p>followers</p>
               </Link>
-            </YP.Followers>
-            <YP.BasicImg src={BasicImg} alt="기본 이미지" />
-            <YP.Followings>
-              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
-                <strong>128</strong>
+            </P.Followers>
+            <P.BasicImg src={profile.image || BasicImg} alt="프로필 이미지" />
+            <P.Followings>
+              <Link to="/followinglist" style={{ textDecoration: 'none' }}>
+                <strong>{profile.followingCount}</strong>
                 <p>followings</p>
               </Link>
-            </YP.Followings>
-          </YP.Follow>
+            </P.Followings>
+          </P.Follow>
 
           {/* 프로필 (사용자 이름, 계정, 소개) */}
-          <YP.Profile>
-            <strong>애월읍 위니브 감귤농장</strong>
-            <span>@ weniv_Mandarin</span>
+          <P.Profile>
+            <strong>{profile.username}</strong>
+            <span>@ {profile.accountname}</span>
             {isPlaying ? (
               <>
                 <ProfileMusicButton musicContent="후라이의꿈 AKMU(악뮤)" />
@@ -77,10 +93,10 @@ export default function YourProfile() {
             ) : (
               <></>
             )}
-            <p>애월읍 감귤 전국 배송, 귤따기 체험, 감귤 농장</p>
-          </YP.Profile>
+            <p>{profile.intro}</p>
+          </P.Profile>
 
-          <YP.ButtonWrapper>
+          <P.ButtonWrapper>
             {isMine ? (
               // myProfile
               <>
@@ -100,9 +116,9 @@ export default function YourProfile() {
             ) : (
               // yourProfile
               <>
-                <YP.RoundButton>
+                <P.RoundButton>
                   <img src={ChatBtn} alt="채팅하기" />
-                </YP.RoundButton>
+                </P.RoundButton>
                 {isFollow ? (
                   <ProfileButton
                     content="언팔로우"
@@ -113,28 +129,28 @@ export default function YourProfile() {
                 ) : (
                   <ProfileButton content="팔로우" />
                 )}
-                <YP.RoundButton>
+                <P.RoundButton>
                   <img src={ShareBtn} alt="공유하기" />
-                </YP.RoundButton>
+                </P.RoundButton>
               </>
             )}
-          </YP.ButtonWrapper>
-        </YP.ProfileWrapper>
+          </P.ButtonWrapper>
+        </P.ProfileWrapper>
 
         {/* 노래가 들어가야할 곳 */}
         {isPlaying ? (
           <>
-            <YP.ProfileMusicWrapper>
+            <P.ProfileMusicWrapper>
               <img src={Akmu} alt="커버사진" />
-              <YP.ProfileMusic>
+              <P.ProfileMusic>
                 <strong>후라이의 꿈</strong>
                 <p>AKMU(악뮤)</p>
-              </YP.ProfileMusic>
+              </P.ProfileMusic>
               {/* 오디오바 */}
-              <YP.PlayBtn>
+              <P.PlayBtn>
                 <img src={PlayBtn} alt="재생 버튼" />
-              </YP.PlayBtn>
-            </YP.ProfileMusicWrapper>
+              </P.PlayBtn>
+            </P.ProfileMusicWrapper>
           </>
         ) : (
           <></>
@@ -147,7 +163,7 @@ export default function YourProfile() {
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
         {/* 내가 바꾼 부분 */}
-      </YP.Layout>
+      </P.Layout>
     </>
   );
 }

@@ -9,22 +9,25 @@ import hashtagImage from '../../assets/hashtag-fill.png';
 import imageUploadImage from '../../assets/image-fill.png';
 import deleteImage from '../../assets/x.png';
 
-import { uploadPostAPI } from '../../api/uploadPostAPI'
+import { uploadPostAPI } from '../../api/uploadPostAPI';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { festivalState, postContentState, postImageState, tagsState, userTokenState } from '../../Atoms/atoms';
+import { festivalState, postContentState, postImageState, postInfoState, tagsState, userTokenState } from '../../Atoms/atoms';
+import { editPostAPI } from '../../api/editPostAPI';
 
 export default function Upload() {
   const [profileImg, setProfileImg] = useState(profileSmall);
   const [postContent, setPostContent] = useRecoilState(postContentState);
   const [selectedImages, setSelectedImages] = useRecoilState(postImageState);
-
+  const [festival, setFestival] = useRecoilState(festivalState);
+  const [tags, setTags] = useRecoilState(tagsState);
+  
   const token = useRecoilValue(userTokenState);
-  const festival = useRecoilValue(festivalState);
-  const tags = useRecoilValue(tagsState);
+  const postInfo = useRecoilValue(postInfoState);
   const resetFestival = useResetRecoilState(festivalState);
   const resetTags = useResetRecoilState(tagsState);
   const resetContent = useResetRecoilState(postContentState);
   const resetImage = useResetRecoilState(postImageState);
+  const resetPostInfo = useResetRecoilState(postInfoState);
   
   const postInputRef = useRef(null);
   const fileInputRef = useRef();
@@ -81,25 +84,59 @@ export default function Upload() {
     setSelectedImages((oldImages) => oldImages.filter((_, i) => i !== index));
   };
 
-  // 태그 및 페스티벌을 post.content에 추가하기
-
   // 업로드 버튼 클릭
   const handleSubmit = async (e) => {
     e.preventDefault();
+    let res;
     const post = {
       "content": `content:${postContent}\n\\festival:${festival}\\tag:${tags}`,
       "image": selectedImages.join(''),
     }
-    const res = await uploadPostAPI({token, post});
-    if(res){
+
+    // 수정 or 업로드 분기
+    if (postInfo.id !== undefined) {
+      const postId = postInfo.id
+      res = await editPostAPI({token, postId, post});
+    } else {
+      res = await uploadPostAPI({token, post});
+    }
+
+    if (res) {
       resetFestival();
       resetTags();
       resetContent();
       resetImage();
+      resetPostInfo();
       navigate('/home');
     }
   }
   
+  // postInfo에 값이 있으면 '수정'!
+  useEffect(()=>{
+    if(postInfo.id !== undefined){
+      const regExpTag = /(content:|\\|tag:|festival:)/g;
+      const contents = postInfo.content.split(regExpTag);
+      if ( contents[2] ) {
+        const textContent = contents[2];
+        setPostContent(textContent);
+      }
+
+      if (contents[contents.length - 1]) {
+        const tags = contents[contents.length - 1].split(',');
+        setTags(tags);
+      }
+
+      if (contents[6]) {
+        const festival = contents[6].split(',');
+        setFestival(festival);
+      }
+
+      if (postInfo.image) {
+        setSelectedImages([postInfo.image]);
+      }
+    }
+  }, [postInfo])
+
   return (
     <U.UploadWrapper>
       <UploadHeader formid={'form-post'}/>

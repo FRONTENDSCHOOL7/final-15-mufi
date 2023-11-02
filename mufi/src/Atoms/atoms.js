@@ -52,11 +52,17 @@ export const postContentState = atom({
 
 export const postImageState = atom({
   key: 'postImageState',
-  default: []
+  default: [],
 });
 
 // Delete;
 export const postIdState = atom({
   key: 'postIdState',
-  default: ''
+  default: '',
+})
+
+// Edit; 
+export const postInfoState = atom({
+  key: 'postInfoState',
+  default: {},
 })

@@ -7,9 +7,10 @@ export default function SaveButton() {
 const navigate = useNavigate();
 
   const onJoin = () => {
-    navigate('/join');
+    navigate('/ProfileChange');
   }
   return (
     <SaveButtonStyle onClick={onJoin}>저장</SaveButtonStyle>
+    
   )
 }

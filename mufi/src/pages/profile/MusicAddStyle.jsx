@@ -1,48 +1,110 @@
-import styled, { keyframes } from "styled-components";
-import NextBtnStyle from "../../components/nextButton/NextButtonStyle";
+import styled from 'styled-components';
 
-export const Layout = styled.div`
+export const HashtagWrapper = styled.div`
   position: relative;
   width: 390px;
-  height: 844px;
+  height: 100vh;
   background-color: #fff;
   margin: auto;
-  overflow: hidden;
   border-radius: 16px;
+`;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-`
+export const SearchBox = styled.div`
+  position: relative;
+  width: auto;
+  // padding-top: 8px;
+  padding-left: 37px;
+  padding-right: 37px;
+`;
 
-export const ContentEmptyWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 20px;
-`
+export const SearchInput = styled.input`
+  width: 316px;
+  height: 32px;
+  margin-top: 8px; 
+  box-sizing: border-box;
+  border-radius: 32px;
+  border: none;
+  outline: none;
 
-export const ImgWrapper = styled.div`
-  width: 100px;
-  height: 70px;
-  margin-bottom: 10px;
-`
-
-export const FollowBtnLarge = styled(NextBtnStyle)`
-  width: 120px;
-  height: 44px;
+  background-color: #f2f2f2;
+  padding: 0;
+  padding-left: 16px;
+  color: #000000;
+ &::placeholder {
+    color: #C4C4C4; // placeholder의 색상 설정
+    }
+    
+  font-family: Pretendard;
   font-size: 14px;
-  color: #fff;
-`
+  font-style: normal;
+  font-weight: 400;
+`;
 
-export const Text = styled.p`
-  color:#767676;
-  font-size:14px;
-  line-height: 14px;
-`
+export const SearchButton = styled.button`
+  position: absolute;
+  border: none;
+  background: none;
+  padding: 0;
+  top: 13px;
+  right: 49px;
+`;
 
-export const TempHeader = styled.div`
+export const SearchResult = styled.div`
+  border: none;
+  background-color: transparent;
+  padding: 5px 8px;
   width: 100%;
-  height: 60px;
-  background-color: #000;
-`
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #efefef;
+  &:hover {
+    background-color: #e0e0e0;
+  }
+`;
+
+export const Title = styled.div`
+  font-size: 14px;
+`;
+
+export const Artist = styled.div`
+  font-size: 12px;
+  color: #767676;
+`;
+
+export const SearchList = styled.div`
+  width: 100%;
+  padding: 16px;
+  box-sizing: border-box;
+  max-height: 300px; 
+  overflow-y: scroll; 
+  overflow-x: hidden; 
+`;
+
+
+export const SelectButton = styled.button`
+  width: 56px;
+  height: 28px;
+  background-color: #2033e7;
+  color: #ffffff;
+  font: 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+
+  border-radius: 5px;
+  margin-left: 171px;
+  cursor: pointer;
+  display: flex;
+  justify-content: center; 
+  align-items: center;
+`;
+
+export const SelectedButton = styled(SelectButton)`
+background-color: #D9D9D9;
+  color: #fff;
+    border: none;
+`;

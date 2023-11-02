@@ -6,7 +6,7 @@ export const HeaderWrapper = styled.header`
   background-color: #000;
   border-bottom: 0.5px solid #dbdbdb;
 
-  margin-bottom: 46px;
+  margin-bottom: 5px;
 
   position: relative;
 `;

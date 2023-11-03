@@ -12,17 +12,17 @@ export const getPostAPI = async ( token ) => {
 
   // option 설정하기
   const option = {
-    url: "https://api.mandarin.weniv.co.kr/"+apiUrl,
+    url: "https://api.mandarin.weniv.co.kr/" + apiUrl,
     method: method,
     headers: reqHeaders,
   };
 
   // option에 따라 api 연결하기
   await axios(option)
-    .then((res) => { // api연결 완료하면 수행할 동작
+    .then((res) => { 
       dataPost = res.data.posts;
     })
-    .catch((error) => { // 오류나면 수행할 동작
+    .catch((error) => {
       console.log('팔로잉한 사람 게시글 불러오기 api 요청 오류', error);
       return null;
     })

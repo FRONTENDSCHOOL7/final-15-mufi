@@ -7,12 +7,11 @@ export const HLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-
   overflow: scroll;
 
-  &::-webkit-scrollbar {
+  /* &::-webkit-scrollbar {
     display: none;
-  }
+  } */
 `;
 
 export const ContentEmptyWrapper = styled.div`

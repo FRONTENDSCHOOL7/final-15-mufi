@@ -56,6 +56,9 @@ export const BasicImg = styled.img`
   width: 110px;
   height: 110px;
   border-radius: 50%;
+  border: 1px solid #efefef;
+  box-sizing: border-box;
+  object-fit: cover;
 `;
 
 export const Followings = styled.div`
@@ -81,8 +84,13 @@ export const Profile = styled.div`
   margin: 17px 0 20px;
 
   strong {
+    width: 70%;
     font-size: 16px;
     font-weight: 700;
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
   }
 
   span {

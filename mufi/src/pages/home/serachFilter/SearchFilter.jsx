@@ -28,13 +28,13 @@ export default function SearchFilter({setIsAccount, setIsTag, setIsFestival}) {
       if(btnEl.classList.contains("selected")){
         switch (true) {
           case btnEl.classList.contains("account"):
-            setIsAccount(true)
+            setIsAccount(true);
             break;
           case btnEl.classList.contains("tag"):
-            setIsTag(true)
+            setIsTag(true);
             break;
           case btnEl.classList.contains("festival"):
-            setIsFestival(true)
+            setIsFestival(true);
               break;
           default:
             break;
@@ -61,7 +61,7 @@ export default function SearchFilter({setIsAccount, setIsTag, setIsFestival}) {
     <SF.SearchFilter>
       <SF.BtnList className='btn-list'>
         <li>
-          <SF.TextBtn className='account' onClick={handleFilterSelection}>계정</SF.TextBtn>
+          <SF.TextBtn className='account selected' onClick={handleFilterSelection}>계정</SF.TextBtn>
         </li>
         <li>
           <SF.TextBtn className='tag' onClick={handleFilterSelection}>태그</SF.TextBtn>

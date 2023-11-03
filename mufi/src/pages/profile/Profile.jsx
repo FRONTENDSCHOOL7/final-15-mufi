@@ -9,7 +9,6 @@ import Akmu from '../../assets/akmu.png';
 import PlayBtn from '../../assets/playBtn.png';
 import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
-// 내가 바꾼거~
 import { getUserPostAPI } from '../../api/getUserPostAPI';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -21,7 +20,6 @@ import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
-// 바꾼 부분
 import { profileAPI } from '../../api/profileAPI';
 
 export default function Profile() {
@@ -31,7 +29,6 @@ export default function Profile() {
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
 
-  //내가 추가한 부분
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
@@ -49,7 +46,6 @@ export default function Profile() {
     };
     getPostList();
   }, []);
-  // 추가한 부분
 
   useEffect(() => {
     const getProfile = async () => {
@@ -58,6 +54,12 @@ export default function Profile() {
     };
     getProfile();
   }, []);
+
+  // 프로필 이미지 엑박 처리 추가
+  const handleImgError = (e) => {
+    console.log('이미지에러~!~!')
+    e.target.src = BasicImg;
+  }
 
   return (
     <>
@@ -73,7 +75,7 @@ export default function Profile() {
                 <p>followers</p>
               </Link>
             </P.Followers>
-            <P.BasicImg src={profile.image || BasicImg} alt="프로필 이미지" />
+            <P.BasicImg src={BasicImg && profile.image } alt="프로필이미지" onError={handleImgError}/>
             <P.Followings>
               <Link to="/followinglist" style={{ textDecoration: 'none' }}>
                 <strong>{profile.followingCount}</strong>
@@ -158,11 +160,19 @@ export default function Profile() {
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
         <ShowPost />
-        {/* 내가 바꾼 부분 */}
-        <PostList dataPost={dataPost}></PostList>
+        {/* 레이아웃 깨짐 임시 방지 */}
+        <div 
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: "white",
+          display: 'flex',
+          overflow: 'scroll'
+        }}>
+          <PostList dataPost={dataPost}></PostList>
+        </div>
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
-        {/* 내가 바꾼 부분 */}
       </P.Layout>
     </>
   );

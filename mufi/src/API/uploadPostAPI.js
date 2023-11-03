@@ -19,7 +19,7 @@ export const uploadPostAPI = async ({token, post}) => {
 
   // option 설정하기
   const option = {
-    url: "https://api.mandarin.weniv.co.kr/"+apiUrl,
+    url: "https://api.mandarin.weniv.co.kr/" + apiUrl,
     method: method,
     headers: reqHeaders,
     data: reqBody,
@@ -27,10 +27,10 @@ export const uploadPostAPI = async ({token, post}) => {
 
   // option에 따라 api 연결하기
   await axios(option)
-    .then((res) => { // api연결 완료하면 수행할 동작
+    .then((res) => {
       resPost = res;
     })
-    .catch((error) => { // 오류나면 수행할 동작
+    .catch((error) => {
       console.log('data upload api 요청 오류', error);
       return null;
     })

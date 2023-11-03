@@ -18,7 +18,7 @@ export const profileAPI = async ({ token, accountname }) => {
   // option에 따라 api 연결
   await axios(option)
     .then((res) => {
-      console.log('사용자 프로필 받아오기', res.data);
+      // console.log('사용자 프로필 받아오기', res.data);
       profileData = res.data.profile;
     })
     .catch((error) => {

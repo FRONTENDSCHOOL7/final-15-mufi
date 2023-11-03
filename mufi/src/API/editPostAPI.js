@@ -18,7 +18,7 @@ export const editPostAPI = async ({ token, postId, post }) => {
 
   // option 설정하기
   const option = {
-    url: "https://api.mandarin.weniv.co.kr/"+apiUrl,
+    url: "https://api.mandarin.weniv.co.kr/" + apiUrl,
     method: method,
     headers: reqHeaders,
     data: body
@@ -27,7 +27,7 @@ export const editPostAPI = async ({ token, postId, post }) => {
   // option에 따라 api 연결하기
   await axios(option)
     .then((res) => { 
-      console.log('edit성공~!', res)
+      // console.log('edit성공~!', res)
       response = res;
     })
     .catch((error) => { 

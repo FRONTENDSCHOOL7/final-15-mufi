@@ -29,7 +29,7 @@ export const HeaderBtn = styled.button`
 `;
 
 
-export const SearchContainer = styled.div`
+export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;

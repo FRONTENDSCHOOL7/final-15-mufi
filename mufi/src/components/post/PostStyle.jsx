@@ -9,7 +9,7 @@ import iconMore from '../../assets/icon-more-vertical-large.png';
 export const PostList = styled.ul`
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  margin: 0 auto;
 `
 
 // 게시물 하나
@@ -33,7 +33,8 @@ export const PostItem = styled.li`
 export const UserProfile = styled.img`
   width: 40px;
   height: 40px;
-  background-image: url(${userProfile});
+  background-color: #767676;
+  object-fit: cover;
   border-radius: 40px;
 `
 
@@ -64,6 +65,10 @@ export const UserInfo = styled.div`
 export const UserName = styled.p`
   color: #000;
   font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 `
 export const UserId = styled.p`
   color: #767676;

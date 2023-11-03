@@ -66,3 +66,14 @@ export const postInfoState = atom({
   key: 'postInfoState',
   default: {},
 })
+
+// Search;
+export const keywordState = atom({
+  key: 'keywordState',
+  default: '',
+})
+
+export const searchUserResultState = atom({
+  key: 'searchUserResultState',
+  default: [],
+})

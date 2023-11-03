@@ -1,51 +1,67 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import * as F from './FestivalStyle';
 import UploadHeader from '../../components/headers/UploadHeader';
 import searchIcon from '../../assets/icon-search-gray.png';
 import { useNavigate } from 'react-router-dom';
-import { useSetRecoilState } from 'recoil';
-import { festivalState } from '../../Atoms/atoms';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import { festivalState, festivalStoreState } from '../../Atoms/atoms';
 
 export default function Festival() {
-  const [searchText, setSearchText] = useState('');
-  const [inputText, setInputInput] = useState('');
-  const [searchResult, setSearchResult] = useState([]);
-  const [isResultEmpty, setIsResultEmpty] = useState(false);
-  const setFestival = useSetRecoilState(festivalState);
   const navigate = useNavigate();
+  // 이 안에서 쓰이는 상태
+  const [inputText, setInputText] = useState('');
+  const [isResultEmpty, setIsResultEmpty] = useState(false);
+  // 이 밖에서 갖고오거나 밖으로 갖고 갈 상태
+  const setFestival = useSetRecoilState(festivalState);
+  const [festivalStore, setFestivalStore] = useRecoilState(festivalStoreState);
+  const [searchResult, setSearchResult] = useState(festivalStore);
 
-
-  // 검색 결과를 가져오는 함수
-  const fetchSearchResult = async () => {
-    // 임시로 검색 결과를 만듬
-    const result = ['애월읍 페스티벌', '애월읍 락락 페스티벌'];
-    if (inputText === '한라산') {
-      setSearchResult([`${inputText}에 대한 검색 결과가 없어요 ㅜ_ㅜ`]);
-      setIsResultEmpty(true);
+  const handleInputChange = async (e) => {
+    if (e.target.value.length > 20) {
+      e.target.value = e.target.value.slice(0,20);
+      alert('20글자 이하까지만 작성할 수 있어요!');
     } else {
-      setSearchResult(result);
-      setIsResultEmpty(false);
+      setInputText(e.target.value);
+      setSearchResult(festivalStore.filter(v=>v.includes(e.target.value)));
+    if(searchResult.length === 0){
+      setSearchResult([`${inputText}에 대한 검색결과가 없어요 T.T`])
+      setIsResultEmpty(true);
     }
-    setSearchText(inputText);
+    }
   };
 
-  const handleInputChange = (e) => {
-    let text = e.target.value;
-    setInputInput(text);
-  };
-
-  const addSearchResult = async (e) => {
+  const addSearchResult = (e) => {
     const festival = e.target.textContent;
-    console.log(festival);
-    setFestival([festival])
-    navigate('/upload')
+    setFestival([festival]);
+    navigate('/upload');
   }
 
-  document.addEventListener('keydown', async (e) => {
-    if (e.key === "Enter") {
-      await fetchSearchResult();
+  const addFestival = () => {
+    if(!festivalStore.includes(inputText)){
+      setFestivalStore(
+        [...festivalStore, inputText]
+      );
+      alert(`#${inputText} (이)가 추가되었습니다!`);
     }
-  })
+    setFestival([inputText]);
+    navigate('/upload');
+  }
+
+  // useEffect(() => {
+  //   document.addEventListener('keydown', async (e) => {
+  //     if (e.key === "Enter") {
+  //       await fetchSearchResult();
+  //     }
+  //   })
+
+  //   return () => {
+  //     document.removeEventListener('keydown', async (e) => {
+  //       if (e.key === "Enter") {
+  //         await fetchSearchResult();
+  //       }
+  //     })
+  //   }
+  // }, []);
 
   return (
     <F.FestivalWrapper>
@@ -56,7 +72,7 @@ export default function Festival() {
           onChange={handleInputChange}
           placeholder="검색어를 입력하세요"
         />
-        <F.SearchButton onClick={fetchSearchResult}>
+        <F.SearchButton>
           <img src={searchIcon} alt="search" />
         </F.SearchButton>
       </F.SearchBox>
@@ -64,8 +80,8 @@ export default function Festival() {
       <F.SearchList>
         {searchResult.map((result, index) => (
           <F.SearchResult key={index} onClick={addSearchResult}>
-            {result.split(new RegExp(`(${searchText})`)).map((part, index) =>
-              part.trim() === searchText.trim() ? (
+            {result.split(new RegExp(`(${inputText})`)).map((part, index) =>
+              part.trim() === inputText.trim() ? (
                 <F.HighlightedText
                   key={index}
                   style={{ whiteSpace: 'pre-wrap' }}
@@ -80,7 +96,7 @@ export default function Festival() {
         ))}
       </F.SearchList>
 
-      {isResultEmpty && <F.AddTagBtn>태그 추가하기</F.AddTagBtn>}
+      {isResultEmpty && <F.AddTagBtn onClick={addFestival}>'{inputText}' 추가하기</F.AddTagBtn>}
     </F.FestivalWrapper>
   );
 }

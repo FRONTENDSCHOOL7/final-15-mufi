@@ -58,7 +58,6 @@ export default function PostItem({ dataPost }) {
     //
     const handleImgError = (e) => {
       e.target.src = img;
-      console.log('error!')
     }
 
     return (
@@ -84,7 +83,11 @@ export default function PostItem({ dataPost }) {
             <P.PostContentText>{textContent}</P.PostContentText>
           </Link>
 
-          <BtnWrapper like={v.heartCount} commentNum={v.commentCount} />
+          <BtnWrapper 
+          heartCount={v.heartCount} 
+          commentNum={v.commentCount} 
+          postId={v.id}
+          isHearted={v.hearted}/>
 
           {
             festival && tags &&

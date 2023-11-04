@@ -56,7 +56,11 @@ export default function MoreModal({ btnList = ['삭제', '수정'] }) {
 
   // 신고기능
   const handleReport = async () => {
-    await reportPostAPI({token, postId});
+    if(window.confirm('정말 신고하시겠습니까?')){
+      await reportPostAPI({token, postId});
+      alert('신고되었습니다!');
+    }
+    handleClose();
   }
 
   return (

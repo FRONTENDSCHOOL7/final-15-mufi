@@ -1,21 +1,5 @@
 import styled from 'styled-components';
 
-export const Layout = styled.div`
-  position: relative;
-  text-align: center;
-  width: 390px;
-  height: 844px;
-  /* background-color: #fff; */
-  margin: auto;
-  overflow: hidden;
-  border-radius: 16px;
-
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  background-color: #f2f2f2;
-`;
 
 export const H1 = styled.h1`
   font-size: 24px;
@@ -37,6 +21,7 @@ export const Img = styled.img`
   border-radius: 50%;
   z-index: 0;
   position: relative;
+  margin-top: 56px;
 `;
 
 

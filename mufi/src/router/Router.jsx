@@ -17,6 +17,10 @@ import FollowerList from '../pages/followers/FollowerList';
 import FollowingList from '../pages/followers/FollowingList';
 import Chat from '../pages/chat/Chat';
 import ChatRoom from '../pages/chat/ChatRoom';
+import MusicAdd from '../pages/profile/MusicAdd';
+import ProfileChange from '../pages/profile/ProfileChange';
+import ErrorPage from '../pages/errorPage/ErrorPage';
+
 
 export default function Router() {
   return (
@@ -40,6 +44,9 @@ export default function Router() {
 
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom" element={<ChatRoom />} />
+      <Route path="/musicAdd" element={<MusicAdd />} />
+      <Route path="/profileChange" element={<ProfileChange/>} />
+      <Route path="/errorPage" element={<ErrorPage/>} />
     </Routes>
   );
 }

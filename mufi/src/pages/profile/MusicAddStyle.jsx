@@ -80,8 +80,6 @@ export const SearchList = styled.div`
   padding: 16px;
   box-sizing: border-box;
   max-height: 300px; 
-  overflow-y: scroll; 
-  overflow-x: hidden; 
 `;
 
 

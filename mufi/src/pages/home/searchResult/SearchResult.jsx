@@ -16,7 +16,7 @@ export default function SearchResult({
   // 태그랑 페스티벌
   const searchTags = useRecoilValue(searchTagsState);
   const searchFestival = useRecoilValue(searchFestivalState);
-  const urlPostList = '/postlist/';
+  const urlPostList = '/searched';
 
   return (
     <>

@@ -10,14 +10,16 @@ import guitarFill from '../../../assets/guitar-fill.png';
 export default function SearchResultItem({ data, url, isSth }) {
   const navigate = useNavigate();
   const keyword = useRecoilValue(keywordState);
-
+  
   // 들어온 데이터 가지고 map돌리기
   const SRItems = data.map((v, i)=>{
     const moveTo = () => {
       if (v.accountname) {
         navigate(`${url}/${v.accountname}`);
-      } else {
-        window.location.replace('')
+      } else if (isSth === "tag") {
+        navigate(`${url}/${v.slice(1)}`);
+      } else if (isSth === "festival") {
+        navigate(`${url}/${v}`);
       }
     }
 

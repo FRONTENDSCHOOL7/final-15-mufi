@@ -17,6 +17,7 @@ import FollowerList from '../pages/followers/FollowerList';
 import FollowingList from '../pages/followers/FollowingList';
 import Chat from '../pages/chat/Chat';
 import ChatRoom from '../pages/chat/ChatRoom';
+import Searched from '../pages/searched/Searched';
 
 export default function Router() {
   return (
@@ -33,6 +34,7 @@ export default function Router() {
 
       <Route path="/home" element={<Home />} />
       <Route path="/homesearch" element={<HomeSearch />} />
+      <Route path="/searched/:keyword" element={<Searched />} />
 
       <Route path="/profile/:accountname" element={<Profile />} />
       <Route path="/followerlist" element={<FollowerList />} />

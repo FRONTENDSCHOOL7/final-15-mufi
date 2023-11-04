@@ -52,7 +52,7 @@ export default function PostItem({ dataPost }) {
     // 유저 정보 내보내기
     const handleUser = () => {
       // v.author
-      console.log(v.author.accountname);
+      // console.log(v.author.accountname);
     };
 
     //

@@ -18,6 +18,8 @@ import FollowingList from '../pages/followers/FollowingList';
 import Chat from '../pages/chat/Chat';
 import ChatRoom from '../pages/chat/ChatRoom';
 
+import PostDetail from '../pages/post/PostDetail';
+
 export default function Router() {
   return (
     <Routes>
@@ -40,6 +42,8 @@ export default function Router() {
 
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom" element={<ChatRoom />} />
+
+      <Route path="/postdetail/:postId" element={<PostDetail />} />
     </Routes>
   );
 }

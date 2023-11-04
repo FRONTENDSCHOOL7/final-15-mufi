@@ -17,7 +17,7 @@ export default function ProfileChange() {
   const [imgSrc, setImgSrc] = useState(BasicImg);
   const navigate = useNavigate();
   const onProfile = () => {
-    navigate('/profile');
+    navigate('/profile/');
   }
 
   // 사용자 이름 유효성 검사
@@ -88,7 +88,7 @@ export default function ProfileChange() {
           id="input-file"
           style={{ display: 'none' }}
         />
- <MusicChangeBtn></MusicChangeBtn>
+<MusicChangeBtn></MusicChangeBtn>
         <Input
           label="사용자 이름"
           type="text"

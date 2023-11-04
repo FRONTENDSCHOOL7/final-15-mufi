@@ -23,6 +23,7 @@ import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
 // 바꾼 부분
 import { profileAPI } from '../../api/profileAPI';
+import { useNavigate } from 'react-router-dom';
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
@@ -40,6 +41,11 @@ export default function Profile() {
   const { accountname } = useParams();
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(myAccountname === accountname);
+
+  const navigate = useNavigate();
+  const onProfileChange = () => {
+    navigate('/profilechange');
+  }
 
   useEffect(() => {
     setIsModalOpen(false);
@@ -100,7 +106,7 @@ export default function Profile() {
             {isMine ? (
               // myProfile
               <>
-                <ProfileButton
+                <ProfileButton onClick={onProfileChange}
                   content="프로필 수정"
                   background="#fff"
                   color="#000"

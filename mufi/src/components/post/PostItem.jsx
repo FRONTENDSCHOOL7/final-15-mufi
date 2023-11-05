@@ -8,11 +8,12 @@ import { postInfoState, postIdState, postMoreState } from '../../Atoms/atoms';
 import img from '../../assets/basic-profile-small.png';
 
 export default function PostItem({ dataPost }) {
+  console.log(dataPost);
   const setIsModalOpen = useSetRecoilState(postMoreState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [postInfo, setPostInfo] = useRecoilState(postInfoState);
 
-  const postItems = dataPost.map((v) => {
+  const postItems = dataPost.map((v, index) => {
     // 게시글 내용 데이터 처리
     const regExpTag = /(content:|\\|tag:|festival:)/g;
     let contents;
@@ -30,6 +31,10 @@ export default function PostItem({ dataPost }) {
         festival = contents[6].split(',');
       }
     }
+    // console.log('-------',index,'--------')
+    // console.log('textContent', textContent);
+    // console.log('tags', tags);
+    // console.log('festival', festival);
 
     // 게시글 날짜 표시
     const createdAt = new Date(v.createdAt);
@@ -60,8 +65,12 @@ export default function PostItem({ dataPost }) {
       e.target.src = img;
     }
 
+    const handleContentImgError = (e) => {
+      e.target.setAttribute('style', "display:none");
+    }
+
     return (
-      <P.PostItem>
+      <P.PostItem key={index}>
         <Link to={'/profile/' + v.author.accountname} onClick={handleUser}>
           <P.UserProfile src={v.author.image} onError={handleImgError}/>
         </Link>
@@ -79,7 +88,7 @@ export default function PostItem({ dataPost }) {
           </P.UpperWrapper>
 
           <Link>
-            {v.image && <P.PostContentImg src={v.image} />}
+            {v.image && <P.PostContentImg src={v.image} onError={handleContentImgError}/>}
             <P.PostContentText>{textContent}</P.PostContentText>
           </Link>
 
@@ -90,7 +99,7 @@ export default function PostItem({ dataPost }) {
           isHearted={v.hearted}/>
 
           {
-            festival && tags &&
+            (festival || tags) &&
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
               {festival && <TagList tags={festival} isFestival={true} />}
               {tags && <TagList tags={tags} />}

@@ -4,7 +4,8 @@ import NextBtnStyle from "../../components/nextButton/NextButtonStyle";
 export const Layout = styled.div`
   position: relative;
   text-align: center;
-  width: 390px;
+  width: 100vw; 
+  max-width: 390px; 
   height: 100vh;
   background-color: #000;
   margin: auto;
@@ -15,24 +16,27 @@ export const Layout = styled.div`
   align-items: center;
 `
 export const Logo = styled.img`
-  width: 286px;
-  height: 71px;
-  margin: 280px 0 265px;
+  width: 73.33vw;
+  max-width: 286px;
+  height: auto;
+  margin-top: 30vh;
+  margin-bottom: 15vh; 
+
 `
 const moveUpwards = keyframes`
-  0% {
-    margin: 280px 0 265px;
+0% {
+    transform: translateY(0);
   }
   100% {
-    margin: 235px 0 310px;
+    transform: translateY(-5vh); // Y축으로 뷰포트 높이의 5%만큼 이동
   }
 `
 export const LogoUp = styled(Logo)`
   animation: ${moveUpwards} 0.8s forwards;
 `
 export const divText = styled.div`
-  margin-top: 45px;
-  margin-bottom: 49px;
+margin-top: 5vh;
+  margin-bottom: 5vh
 `
 export const desc = styled.p`
   color: #767676;

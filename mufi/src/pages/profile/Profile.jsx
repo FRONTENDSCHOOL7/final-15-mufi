@@ -21,6 +21,9 @@ import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
 import { profileAPI } from '../../api/profileAPI';
+import { useNavigate } from 'react-router-dom';
+import { followStateAPI } from '../../api/followStateAPI';
+import { unfollowStateAPI } from '../../api/unfollowStateAPI';
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
@@ -38,6 +41,42 @@ export default function Profile() {
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(myAccountname === accountname);
 
+  const navigate = useNavigate();
+  const onProfileChange = () => {
+    navigate('/profilechange');
+  }
+  const onClickHandler = async () => {
+    if (isFollow) {
+      // Unfollow
+      try {
+        const res = await unfollowStateAPI({
+          token,
+          accountname: profile.accountname,
+        });
+        if (res) {
+          setIsFollow(false);
+        }
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    } else {
+      // Follow
+      try {
+        const res = await followStateAPI({
+          token,
+          accountname: profile.accountname,
+        });
+        if (res) {
+          setIsFollow(true);
+        }
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    }
+    const res = await profileAPI({ token, accountname });
+    setProfile(res);
+  };
+
   useEffect(() => {
     setIsModalOpen(false);
     const getPostList = async () => {
@@ -51,6 +90,7 @@ export default function Profile() {
     const getProfile = async () => {
       const res = await profileAPI({ token, accountname });
       setProfile(res);
+      setIsFollow(res.isfollow);
     };
     getProfile();
   }, []);
@@ -70,14 +110,20 @@ export default function Profile() {
           {/* 팔로우, 프로필 이미지, 팔로잉 */}
           <P.Follow>
             <P.Followers>
-              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
+              <Link
+                to={`/followerslist/${accountname}`}
+                style={{ textDecoration: 'none' }}
+              >
                 <strong>{profile.followerCount}</strong>
                 <p>followers</p>
               </Link>
             </P.Followers>
             <P.BasicImg src={BasicImg && profile.image } alt="프로필이미지" onError={handleImgError}/>
             <P.Followings>
-              <Link to="/followinglist" style={{ textDecoration: 'none' }}>
+              <Link
+                to={`/followingslist/${accountname}`}
+                style={{ textDecoration: 'none' }}
+              >
                 <strong>{profile.followingCount}</strong>
                 <p>followings</p>
               </Link>
@@ -102,7 +148,7 @@ export default function Profile() {
             {isMine ? (
               // myProfile
               <>
-                <ProfileButton
+                <ProfileButton onClick={onProfileChange}
                   content="프로필 수정"
                   background="#fff"
                   color="#000"
@@ -127,9 +173,10 @@ export default function Profile() {
                     color="#000"
                     background="#fff"
                     border="1px solid #767676"
+                    onClick={onClickHandler}
                   />
                 ) : (
-                  <ProfileButton content="팔로우" />
+                  <ProfileButton content="팔로우" onClick={onClickHandler} />
                 )}
                 <P.RoundButton>
                   <img src={ShareBtn} alt="공유하기" />

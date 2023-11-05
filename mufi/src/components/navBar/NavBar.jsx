@@ -9,7 +9,6 @@ export default function NavBar() {
   const params = useParams();
 
   useEffect(() => {
-
     switch (location.pathname) {
       case '/home':
         const btnHome = document.querySelector('.btn-home');
@@ -61,6 +60,7 @@ export default function NavBar() {
   };
   const toProfile = () => {
     navigate(`/profile/${accountName}`);
+    window.location.replace('');
   };
 
   return (

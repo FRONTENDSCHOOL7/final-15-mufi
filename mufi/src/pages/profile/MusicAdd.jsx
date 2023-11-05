@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GoBackMusicHeader from "../../components/GoBackMusicHeader";
+import UploadHeader from "../../components/headers/UploadHeader";
 import * as M from './MusicAddStyle';
 import musicicon from '../../assets/music-cover.png';
 import searchIcon from '../../assets/icon-search.png'; 
@@ -57,7 +57,7 @@ export default function MusicAdd() {
 
   return (
     <M.HashtagWrapper>
-      <GoBackMusicHeader title="곡추가" />
+      <UploadHeader okButtonText="추가" backButtonText="프로필 뮤직 추가" />
       <M.SearchBox>
         <M.SearchInput
           value={inputText}

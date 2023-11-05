@@ -54,6 +54,7 @@ export const SearchResult = styled.div`
   background-color: transparent;
   padding: 5px 8px;
   width: 100%;
+  box-sizing: border-box;
   font-size: 14px;
   font-style: normal;
   font-weight: 500;
@@ -61,6 +62,7 @@ export const SearchResult = styled.div`
   display: flex;
   align-items: center;
   border-bottom: 1px solid #efefef;
+
   &:hover {
     background-color: #e0e0e0;
   }
@@ -80,8 +82,6 @@ export const SearchList = styled.div`
   padding: 16px;
   box-sizing: border-box;
   max-height: 300px; 
-  overflow-y: scroll; 
-  overflow-x: hidden; 
 `;
 
 

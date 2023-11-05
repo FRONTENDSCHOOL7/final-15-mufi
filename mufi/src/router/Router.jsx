@@ -19,6 +19,10 @@ import Chat from '../pages/chat/Chat';
 import ChatRoom from '../pages/chat/ChatRoom';
 import Searched from '../pages/searched/Searched';
 
+import MusicAdd from '../pages/profile/MusicAdd';
+import ProfileChange from '../pages/profile/ProfileChange';
+import ErrorPage from '../pages/errorPage/ErrorPage';
+
 export default function Router() {
   return (
     <Routes>
@@ -37,11 +41,14 @@ export default function Router() {
       <Route path="/searched/:keyword" element={<Searched />} />
 
       <Route path="/profile/:accountname" element={<Profile />} />
-      <Route path="/followerlist" element={<FollowerList />} />
-      <Route path="/followinglist" element={<FollowingList />} />
+      <Route path="/followerslist/:accountname" element={<FollowerList />} />
+      <Route path="/followingslist/:accountname" element={<FollowingList />} />
 
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom" element={<ChatRoom />} />
+      <Route path="/musicAdd" element={<MusicAdd />} />
+      <Route path="/profileChange" element={<ProfileChange/>} />
+      <Route path="/errorPage" element={<ErrorPage/>} />
     </Routes>
   );
 }

@@ -15,30 +15,31 @@ import UserComment from '../../components/comment/UserComment';
 
 export default function PostDetail() {
   const { postId } = useParams();
-  console.log(postId);
+  // console.log(postId);
 
-  const userToken = useRecoilValue(userTokenState);
+  const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountnameState);
   const [postDetailItem, setPostDetailItem] = useState([]);
   const [profileImg, setProfileImg] = useState('');
   const [comments, setComments] = useState([]);
+  const [inputComment, setInputComment] = useState('');
   console.log(postDetailItem);
 
   // 게시글 가져오기(절대 손대지 말 것)
   useEffect(() => {
     // 프로필 이미지(data.user.image) 요청
-    getProfileInfoAPI(userToken).then((data) => {
-      console.log(data); // 이건 제대로 뜬다
+    getProfileInfoAPI(token).then((data) => {
+      // console.log(data); // 이건 제대로 뜬다
       setProfileImg(data.user.image);
     });
     // 게시글 가져오기
     const getPostDetail = async () => {
-      const res = await getPostDetailAPI(userToken, postId);
-      console.log(userToken);
-      console.log(postId);
+      const res = await getPostDetailAPI(token, postId);
+      // console.log(userToken);
+      // console.log(postId);
       setPostDetailItem([res]);
-      console.log(res); // 제대로 들어옴
-      console.log(typeof res); // object
+      // console.log(res); // 제대로 들어옴
+      // console.log(typeof res); // object
     };
     getPostDetail();
   }, []);
@@ -59,20 +60,32 @@ export default function PostDetail() {
 
   // 댓글 가져오기
   useEffect(() => {
-    getCommentAPI(postId).then((data) => {
-      setComments(Array.from(data.comments));
+    getCommentAPI({token, postId}).then((data) => {
+      if(data){
+        setComments(Array.from(data.comments));
+      }
     });
   }, []);
 
-  // commentCount + 1
+  // 댓글 게시 commentCount + 1
   const onCommentSubmit = () => {
-    setPostDetailItem((prevData) => ({
-      ...prevData,
-      post: {
-        ...prevData.post,
-        commentCount: prevData.post.commentCount + 1,
-      },
-    }));
+    // setPostDetailItem((prevData) => {
+    //   return [{
+    //     ...prevData[0],
+    //     commentCount: prevData[0].commentCount + 1,
+    //   }]
+    // });
+
+    const tempDetail = {
+      ...postDetailItem[0],
+      comments: [
+        ...postDetailItem[0].comments,
+        inputComment
+      ],
+      commentCount: postDetailItem[0].commentCount + 1
+    };
+    console.log('tempDetail!!!!----',tempDetail);
+    setPostDetailItem([tempDetail]);
   };
 
   // 댓글 삭제 - 1
@@ -105,6 +118,8 @@ export default function PostDetail() {
           profileImg={profileImg}
           postId={postId}
           onCommentSubmit={onCommentSubmit}
+          inputComment={inputComment} 
+          setInputComment={setInputComment}
         />
       </PD.PDLayout>
     </>

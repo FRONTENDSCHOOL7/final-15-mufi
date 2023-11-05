@@ -6,7 +6,6 @@ export const HLayout = styled(Layout)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
 `;
 
 export const ContentEmptyWrapper = styled.div`
@@ -14,6 +13,8 @@ export const ContentEmptyWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  height: 100%;
+  justify-content: center;
 `;
 
 export const ImgWrapper = styled.div`
@@ -51,3 +52,10 @@ export const HomeFeed = styled.div`
     display: none;
   } */
 `;
+
+export const HomeSearch = styled.div`
+overflow: scroll;
+width:100%;
+height: 100%;
+margin: 0 auto;
+`

@@ -13,15 +13,15 @@ export default function HomeSearch() {
   return (
     <>
       <H.HLayout>
-        <div style={{"width": "100%"}}>
-          <SearchHeader isAccount={isAccount} isTag={isTag} isFestival={isFestival}></SearchHeader>
-          <SearchFilter setIsAccount={setIsAccount} setIsFestival={setIsFestival} setIsTag={setIsTag}></SearchFilter>
+        <SearchHeader isAccount={isAccount} isTag={isTag} isFestival={isFestival}></SearchHeader>
+        <SearchFilter setIsAccount={setIsAccount} setIsFestival={setIsFestival} setIsTag={setIsTag}></SearchFilter>
+
+        <H.HomeSearch>
 
           {/* 검색결과 */}
-          <SearchResult isAccount={isAccount} isTag={isTag} isFestival={isFestival}></SearchResult>
-          
-        </div>
-        <H.TempHeader></H.TempHeader>
+            <SearchResult isAccount={isAccount} isTag={isTag} isFestival={isFestival} />
+        </H.HomeSearch>
+        
       </H.HLayout>
     </>
   )

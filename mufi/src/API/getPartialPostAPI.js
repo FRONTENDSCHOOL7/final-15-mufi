@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getPartialPostAPI = async ({ token, number }) => {
   let dataPost = [];
 
-  const apiUrl = `post?limit=${number}&skip=${number}`;
+  const apiUrl = `post?limit=${number}&skip=${0}`;
   const method = 'GET';
   const reqHeaders = {
     "Authorization" : `Bearer ${token}`,

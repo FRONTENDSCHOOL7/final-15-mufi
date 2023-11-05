@@ -18,13 +18,18 @@ export const P = styled.p`
 export const Img = styled.img`
   width: 110px;
   height: 110px;
+  object-fit: cover;
   border-radius: 50%;
   z-index: 0;
   position: relative;
   margin-top: 56px;
 `;
 
-
+export const InputContainer = styled.div`
+display: flex;
+flex-direction: column;
+gap: 16px;
+`
 export const ImgInputLabel = styled.label`
   width: 36px;
   height: 36px;
@@ -32,5 +37,5 @@ export const ImgInputLabel = styled.label`
   position: relative;
   top: -36px;
   left: 36px;
-  cusor: pointer;
+  cursor: pointer;
 `;

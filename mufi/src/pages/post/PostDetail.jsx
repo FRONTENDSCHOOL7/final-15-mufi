@@ -60,33 +60,31 @@ export default function PostDetail() {
   // 댓글 가져오기
   useEffect(() => {
     getCommentAPI(postId).then((data) => {
-      setComments([data]);
+      setComments(Array.from(data.comments));
     });
-  }, [postId]);
+  }, []);
 
   // commentCount + 1
-  // const onCommentSubmit = () => {
-  //   setPostDetailItem((prevData) => ({
-  //     ...prevData,
-  //     post: {
-  //       ...prevData.post,
-  //       commentCount: prevData.post.commentCount + 1,
-  //     },
-  //   }));
-  // };
+  const onCommentSubmit = () => {
+    setPostDetailItem((prevData) => ({
+      ...prevData,
+      post: {
+        ...prevData.post,
+        commentCount: prevData.post.commentCount + 1,
+      },
+    }));
+  };
 
   // 댓글 삭제 - 1
-  // const onCommentDelete = () => {
-  //   setPostDetailItem((prevData) => ({
-  //     ...prevData,
-  //     post: {
-  //       ...prevData.post,
-  //       commentCount: prevData.post.commentCount - 1,
-  //     },
-  //   }));
-  // };
-
-  console.log();
+  const onCommentDelete = () => {
+    setPostDetailItem((prevData) => ({
+      ...prevData,
+      post: {
+        ...prevData.post,
+        commentCount: prevData.post.commentCount - 1,
+      },
+    }));
+  };
 
   return (
     <>
@@ -103,7 +101,11 @@ export default function PostDetail() {
             ))}
         </PD.CommentWrapper>
         {/* 댓글 Input 자리 */}
-        <CommentInput profileImg={profileImg} postId={postId} />
+        <CommentInput
+          profileImg={profileImg}
+          postId={postId}
+          onCommentSubmit={onCommentSubmit}
+        />
       </PD.PDLayout>
     </>
   );

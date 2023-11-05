@@ -9,7 +9,7 @@ import { postCommentAPI } from '../../api/comment/postCommentAPI';
 import { getProfileInfoAPI } from '../../api/user/getProfileInfoAPI';
 import { useParams } from 'react-router-dom';
 
-export default function CommentInput() {
+export default function CommentInput({ onCommentSubmit }) {
   const { postId } = useParams();
   const [userImg, setUserImg] = useState('');
   const [inputComment, setInputComment] = useState('');
@@ -40,7 +40,6 @@ export default function CommentInput() {
     console.log('내용' + comment.content);
     console.log('토큰' + userToken);
     console.log('아이디' + postId);
-    console.log(res);
     setInputComment(res);
   };
 
@@ -48,6 +47,7 @@ export default function CommentInput() {
     postComment();
     setInputComment('');
     setDisabled(true);
+    onCommentSubmit();
   };
 
   return (

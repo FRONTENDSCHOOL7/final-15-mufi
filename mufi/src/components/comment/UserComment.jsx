@@ -11,12 +11,12 @@ export default function UserComment({ comment }) {
   const navigate = useNavigate();
   const [myComment, setMyComment] = useState(false);
 
-  const accountname = useRecoilValue(accountnameState);
-  useEffect(() => {
-    if (comment.author.accountname === accountname) {
-      setMyComment(true);
-    }
-  }, [comment.author.accountname, accountname]);
+  // const accountname = useRecoilValue(accountnameState);
+  // useEffect(() => {
+  //   if (comment.author.accountname === accountname) {
+  //     setMyComment(true);
+  //   }
+  // }, [comment.author.accountname, accountname]);
 
   // 댓글 시간 계산
   const createdAt = comment.createdAt; // 밀리초의 형태

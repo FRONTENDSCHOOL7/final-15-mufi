@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { authAxios } from '../authoAxios';
 
 // // 7.4 댓글 신고
 export const reportCommentAPI = async ({ postId, commentId }) => {

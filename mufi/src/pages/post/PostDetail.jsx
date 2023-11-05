@@ -55,7 +55,7 @@ export default function PostDetail() {
     });
   }, [comments]);
 
-  // commentCount + 1
+  // 댓글 게시 commentCount + 1
   const onCommentSubmit = () => {
     const tempDetail = {
       ...postDetailItem[0],

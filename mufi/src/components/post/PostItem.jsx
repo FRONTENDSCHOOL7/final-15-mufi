@@ -8,7 +8,7 @@ import { postInfoState, postIdState, postMoreState } from '../../Atoms/atoms';
 import img from '../../assets/basic-profile-small.png';
 
 export default function PostItem({ dataPost }) {
-  console.log(dataPost);
+  // console.log(dataPost);
   const setIsModalOpen = useSetRecoilState(postMoreState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [postInfo, setPostInfo] = useRecoilState(postInfoState);
@@ -63,11 +63,11 @@ export default function PostItem({ dataPost }) {
     //
     const handleImgError = (e) => {
       e.target.src = img;
-    }
+    };
 
     const handleContentImgError = (e) => {
-      e.target.setAttribute('style', "display:none");
-    }
+      e.target.setAttribute('style', 'display:none');
+    };
 
     return (
       <P.PostItem key={index}>
@@ -93,16 +93,17 @@ export default function PostItem({ dataPost }) {
             <P.PostContentText>{textContent}</P.PostContentText>
           </Link>
 
-          <BtnWrapper 
-          heartCount={v.heartCount} 
-          commentNum={v.commentCount} 
-          postId={v.id}
-          isHearted={v.hearted}/>
+          <BtnWrapper
+            heartCount={v.heartCount}
+            commentNum={v.commentCount}
+            postId={v.id}
+            isHearted={v.hearted}
+          />
 
-          {
-            (festival || tags) &&
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
-
+          {(festival || tags) && (
+            <div
+              style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}
+            >
               {festival && <TagList tags={festival} isFestival={true} />}
               {tags && <TagList tags={tags} />}
             </div>

@@ -18,7 +18,6 @@ export const Container = styled.div`
   align-items: center;
   /* justify-content: space-between; */
   /* box-sizing: border-box; */
-  padding-bottom: 7px;
 `;
 
 export const Content = styled.div``;
@@ -27,11 +26,12 @@ export const UserImg = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 50%;
+  object-fit: cover;
+  flex-shrink: 0;
 `;
 
 export const UserName = styled.h2`
   font-size: 14px;
-  font-weight: bold;
   padding-right: 6px;
 `;
 

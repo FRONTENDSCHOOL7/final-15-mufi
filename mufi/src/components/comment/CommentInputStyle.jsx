@@ -22,6 +22,8 @@ export const UserImg = styled.img`
   border-radius: 50%;
   margin-right: 14px;
   text-align: center;
+  object-fit: cover;
+  flex-shrink: 0;
 `;
 
 export const Input = styled.input`

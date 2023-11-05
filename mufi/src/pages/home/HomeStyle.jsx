@@ -46,4 +46,13 @@ export const TempHeader = styled.div`
   background-color: #fff;
 `;
 
-export const HomeFeed = styled.div``;
+export const HomeFeed = styled.div`
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+`;

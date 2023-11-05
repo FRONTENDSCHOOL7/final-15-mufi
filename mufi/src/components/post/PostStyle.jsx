@@ -83,7 +83,7 @@ export const BtnMore = styled.button`
   background-repeat: no-repeat;
 `
 export const PostContentImg = styled.img`
-  max-width: 304px;
+  width: 304px;
   aspect-ratio: 1.3 / 1;
   object-fit: cover;
   border-radius: 10px;

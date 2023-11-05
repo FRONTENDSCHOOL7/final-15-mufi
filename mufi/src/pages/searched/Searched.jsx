@@ -3,8 +3,11 @@ import { useParams } from 'react-router-dom';
 import { getPartialPostAPI } from '../../api/getPartialPostAPI';
 import { getAllPostAPI } from '../../api/getAllPostAPI'
 import { useRecoilValue } from 'recoil';
-import { userTokenState } from '../../Atoms/atoms'
+import { userTokenState } from '../../Atoms/atoms';
+import { Layout } from '../../components/Layout/LayoutStyle';
 import PostList from '../../components/post/PostList';
+import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader'
+import NavBar from '../../components/navBar/NavBar';
 import * as S from './SearchedStyle';
 
 export default function Searched() {
@@ -12,7 +15,7 @@ export default function Searched() {
   console.log(keyword); // 박재범
   
   const token = useRecoilValue(userTokenState);
-  const number = 50;
+  const number = 20;
 
   const [dataPost, setDataPost] = useState([]);
 
@@ -23,12 +26,7 @@ export default function Searched() {
 
       // ----- 게시글 필터 -----
       tempDataPost = tempDataPost.filter(v => {
-        // console.log('v.content',v.content);
         let content = JSON.stringify(v.content);
-        if(content === undefined){
-          content = 'undefined'
-        }
-        // filter해주기
         if(content.indexOf(keyword) !== -1){
           return true;
         } else {
@@ -43,8 +41,13 @@ export default function Searched() {
   },[]);
 
   return (
-    <S.SLayout>
-      <PostList dataPost={dataPost}></PostList>
-    </S.SLayout>
+    <Layout>
+      <GoBackMoreHeader content={`'${keyword}' 검색결과`}/>
+      <S.SLayout>
+        <PostList dataPost={dataPost}></PostList>
+      </S.SLayout>
+      <NavBar />
+    </Layout>
+
   )
 }

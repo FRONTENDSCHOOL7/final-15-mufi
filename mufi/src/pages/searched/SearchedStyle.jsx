@@ -1,6 +1,7 @@
 import styled from 'styled-components';
-import { Layout } from '../../components/Layout/LayoutStyle';
 
-export const SLayout = styled(Layout)`
+
+export const SLayout = styled.div`
+  height: 100%;
   overflow: scroll;
 `

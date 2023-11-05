@@ -19,7 +19,7 @@ export default function BtnWrapper({ like, commentNum }) {
 
   const navigate = useNavigate();
   const moveToComment = () => {
-    navigate('/postdetail');
+    navigate();
   };
 
   return (

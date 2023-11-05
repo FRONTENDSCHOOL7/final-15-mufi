@@ -4,19 +4,23 @@ import IconMore from '../../assets/icon-more-vertical-small.png';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { accountnameState } from '../../Atoms/atoms';
+import CommentModal from './CommentModal';
 
-// import userImg from '../../assets/basic-profile-small.png';
-
-export default function UserComment({ comment }) {
+export default function UserComment({ comment, postId, OnCommentDelete }) {
   const navigate = useNavigate();
-  const [myComment, setMyComment] = useState(false);
+  const [isMyComment, setIsMyComment] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // const accountname = useRecoilValue(accountnameState);
-  // useEffect(() => {
-  //   if (comment.author.accountname === accountname) {
-  //     setMyComment(true);
-  //   }
-  // }, [comment.author.accountname, accountname]);
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const accountname = useRecoilValue(accountnameState);
+  useEffect(() => {
+    if (comment.author.accountname === accountname) {
+      setIsMyComment(true);
+    }
+  }, [comment.author.accountname, accountname]);
 
   // 댓글 시간 계산
   const createdAt = comment.createdAt; // 밀리초의 형태
@@ -42,7 +46,7 @@ export default function UserComment({ comment }) {
       const createdDateDetail = `${year}년 ${month}월 ${day}일 `;
       setCommentDate(createdDateDetail);
     }
-  }, []);
+  }, [comment]);
 
   return (
     <>
@@ -55,13 +59,22 @@ export default function UserComment({ comment }) {
           <UC.Container>
             <UC.UserName>{comment.author.username}</UC.UserName>
             <UC.CommentTime>{commentDate}</UC.CommentTime>
-            <UC.MoreIcon>
+            <UC.MoreIcon onClick={showModal}>
               <img src={IconMore} alt="더보기" />
             </UC.MoreIcon>
           </UC.Container>
           <UC.Comment>{comment.content}</UC.Comment>
         </UC.Content>
       </UC.Wrapper>
+      {isModalOpen ? (
+        <CommentModal
+          setIsModalOpen={setIsModalOpen}
+          isMyComment={isMyComment}
+          commentId={comment.id}
+          postId={postId}
+          OnCommentDelete={OnCommentDelete}
+        />
+      ) : null}
     </>
   );
 }

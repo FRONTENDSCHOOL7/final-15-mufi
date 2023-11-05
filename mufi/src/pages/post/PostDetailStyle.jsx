@@ -15,4 +15,6 @@ export const PDLayout = styled(Layout)`
 
 export const Div = styled.div``;
 
-export const CommentWrapper = styled.div``;
+export const CommentWrapper = styled.div`
+  overflow: scroll;
+`;

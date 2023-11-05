@@ -1,9 +1,9 @@
 import axios from 'axios';
 
-export const getPostDetailAPI = async (token, id) => {
-  let postDetail;
+export const getPostDetailAPI = async ({ token, postId }) => {
+  let postDetail = [];
 
-  const apiUrl = `post/${id}`;
+  const apiUrl = `post/${postId}`;
   const method = 'get';
   const reqHeaders = {
     Authorization: `Bearer ${token}`,

@@ -10,13 +10,12 @@ export default function MoreModal({ btnList = ['삭제', '수정'] }) {
   const token = useRecoilValue(userTokenState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const navigate = useNavigate();
-  
+
   const handleClose = () => {
     setIsModalOpen(false);
   };
 
   useEffect(() => {
-    console.log('postId', postId);
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleClose();
@@ -39,10 +38,10 @@ export default function MoreModal({ btnList = ['삭제', '수정'] }) {
     window.location.replace('');
   };
 
-    // 수정기능
-    const handleEdit = async () => {
-      navigate('/upload')
-    }
+  // 수정기능
+  const handleEdit = async () => {
+    navigate('/upload');
+  };
 
   return (
     <>

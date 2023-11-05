@@ -9,10 +9,13 @@ import { postCommentAPI } from '../../api/comment/postCommentAPI';
 import { getProfileInfoAPI } from '../../api/user/getProfileInfoAPI';
 import { useParams } from 'react-router-dom';
 
-export default function CommentInput({ onCommentSubmit }) {
+export default function CommentInput({
+  onCommentSubmit,
+  inputComment,
+  setInputComment,
+}) {
   const { postId } = useParams();
   const [userImg, setUserImg] = useState('');
-  const [inputComment, setInputComment] = useState('');
 
   const [disabled, setDisabled] = useState(true);
 
@@ -36,15 +39,14 @@ export default function CommentInput({ onCommentSubmit }) {
   };
 
   const postComment = async () => {
-    const res = await postCommentAPI(postId, inputComment);
-    console.log('내용' + comment.content);
-    console.log('토큰' + userToken);
-    console.log('아이디' + postId);
+    const content = comment.content;
+    const token = userToken;
+    const res = await postCommentAPI({ token, content, postId });
     setInputComment(res);
   };
 
-  const onSubmit = () => {
-    postComment();
+  const onSubmit = async () => {
+    await postComment();
     setInputComment('');
     setDisabled(true);
     onCommentSubmit();

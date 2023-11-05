@@ -44,7 +44,7 @@ export const TempHeader = styled.div`
 
 export const HomeFeed = styled.div`
   overflow: scroll;
-  width:100%;
+  width: 100%;
   height: 100%;
   margin: 0 auto;
 

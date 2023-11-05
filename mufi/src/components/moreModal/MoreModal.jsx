@@ -14,7 +14,7 @@ export default function MoreModal({ btnList = ['삭제', '수정'] }) {
   const [postId, setPostId] = useRecoilState(postIdState);
   const [postInfo, setPostInfo] = useRecoilState(postInfoState);
   const navigate = useNavigate();
-  
+
   const handleClose = () => {
     setIsModalOpen(false);
   };
@@ -25,8 +25,6 @@ export default function MoreModal({ btnList = ['삭제', '수정'] }) {
         setIsMine(false);
       }
     }
-
-
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         handleClose();

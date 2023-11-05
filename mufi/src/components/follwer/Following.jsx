@@ -7,24 +7,65 @@ import FollowButton from './FollowButton';
 import { useRecoilValue } from 'recoil';
 import { accountnameState, userTokenState } from '../../Atoms/atoms';
 import { followingAPI } from '../../api/followingAPI';
-import { useNavigate } from 'react-router-dom';
+import { followStateAPI } from '../../api/followStateAPI';
+import { unfollowStateAPI } from '../../api/unfollowStateAPI';
+import { useNavigate, useParams } from 'react-router-dom';
 
-export default function Follower() {
-  const [isFollowing, setIsFollowing] = useState(false);
+export default function Following() {
   const [followings, setFollowings] = useState([]);
   const navigate = useNavigate();
 
-  const onClickHandler = () => {
-    setIsFollowing(!isFollowing);
-  };
-
   const token = useRecoilValue(userTokenState);
   const accountname = useRecoilValue(accountnameState);
+  const { accountname: paramAccountname } = useParams();
+
+  const onClickHandler = async (id) => {
+    const index = followings.findIndex((following) => following._id === id);
+    if (index !== -1) {
+      const following = followings[index];
+      if (following.isFollowing) {
+        // Unfollow
+        try {
+          const res = await unfollowStateAPI({
+            token,
+            accountname: following.accountname,
+          });
+          if (res) {
+            setFollowings((prev) =>
+              prev.map((f) => (f._id === id ? { ...f, isFollowing: false } : f))
+            );
+          }
+        } catch (error) {
+          console.error(error.response.data.message);
+        }
+      } else {
+        // Follow
+        try {
+          const res = await followStateAPI({
+            token,
+            accountname: following.accountname,
+          });
+          if (res) {
+            setFollowings((prev) =>
+              prev.map((f) => (f._id === id ? { ...f, isFollowing: true } : f))
+            );
+          }
+        } catch (error) {
+          console.error(error.response.data.message);
+        }
+      }
+    }
+  };
 
   useEffect(() => {
     const getfollowings = async () => {
-      const res = await followingAPI({ token, accountname });
-      setFollowings(res);
+      const res = await followingAPI({ token, accountname: paramAccountname });
+      setFollowings(
+        res.map((following) => ({
+          ...following,
+          isFollowing: following.isfollow,
+        }))
+      );
     };
     getfollowings();
   }, []);
@@ -46,18 +87,22 @@ export default function Follower() {
               <F.UserInfo>{following.intro}</F.UserInfo>
             </F.ContentWrapper>
           </F.UserWrapper>
-          {isFollowing ? (
-            // following 되어있을 때
-            <FollowButton
-              content="취소"
-              background="#fff"
-              color="#000"
-              border="1px solid #767676"
-              onClick={onClickHandler}
-            />
-          ) : (
-            <FollowButton content="팔로우" onClick={onClickHandler} />
-          )}
+          {following.accountname !== accountname &&
+            (following.isFollowing ? (
+              // following 되어있을 때
+              <FollowButton
+                content="취소"
+                background="#fff"
+                color="#000"
+                border="1px solid #767676"
+                onClick={() => onClickHandler(following._id)}
+              />
+            ) : (
+              <FollowButton
+                content="팔로우"
+                onClick={() => onClickHandler(following._id)}
+              />
+            ))}
         </F.FollowingWrapper>
       ))}
     </>

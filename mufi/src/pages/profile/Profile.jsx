@@ -9,7 +9,6 @@ import Akmu from '../../assets/akmu.png';
 import PlayBtn from '../../assets/playBtn.png';
 import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
-// 내가 바꾼거~
 import { getUserPostAPI } from '../../api/getUserPostAPI';
 import { useRecoilState, useRecoilValue } from 'recoil';
 import {
@@ -21,9 +20,13 @@ import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
-// 바꾼 부분
 import { profileAPI } from '../../api/profileAPI';
+<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
+=======
+import { followStateAPI } from '../../api/followStateAPI';
+import { unfollowStateAPI } from '../../api/unfollowStateAPI';
+>>>>>>> 2fbd3ab826c350b2f6169ece075bd86caaf9fbb4
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
@@ -32,7 +35,6 @@ export default function Profile() {
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
 
-  //내가 추가한 부분
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
@@ -42,10 +44,44 @@ export default function Profile() {
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(myAccountname === accountname);
 
+<<<<<<< HEAD
   const navigate = useNavigate();
   const onProfileChange = () => {
     navigate('/profilechange');
   }
+=======
+  const onClickHandler = async () => {
+    if (isFollow) {
+      // Unfollow
+      try {
+        const res = await unfollowStateAPI({
+          token,
+          accountname: profile.accountname,
+        });
+        if (res) {
+          setIsFollow(false);
+        }
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    } else {
+      // Follow
+      try {
+        const res = await followStateAPI({
+          token,
+          accountname: profile.accountname,
+        });
+        if (res) {
+          setIsFollow(true);
+        }
+      } catch (error) {
+        console.error(error.response.data.message);
+      }
+    }
+    const res = await profileAPI({ token, accountname });
+    setProfile(res);
+  };
+>>>>>>> 2fbd3ab826c350b2f6169ece075bd86caaf9fbb4
 
   useEffect(() => {
     setIsModalOpen(false);
@@ -55,15 +91,21 @@ export default function Profile() {
     };
     getPostList();
   }, []);
-  // 추가한 부분
 
   useEffect(() => {
     const getProfile = async () => {
       const res = await profileAPI({ token, accountname });
       setProfile(res);
+      setIsFollow(res.isfollow);
     };
     getProfile();
   }, []);
+
+  // 프로필 이미지 엑박 처리 추가
+  const handleImgError = (e) => {
+    console.log('이미지에러~!~!')
+    e.target.src = BasicImg;
+  }
 
   return (
     <>
@@ -74,14 +116,20 @@ export default function Profile() {
           {/* 팔로우, 프로필 이미지, 팔로잉 */}
           <P.Follow>
             <P.Followers>
-              <Link to="/followerlist" style={{ textDecoration: 'none' }}>
+              <Link
+                to={`/followerslist/${accountname}`}
+                style={{ textDecoration: 'none' }}
+              >
                 <strong>{profile.followerCount}</strong>
                 <p>followers</p>
               </Link>
             </P.Followers>
-            <P.BasicImg src={profile.image || BasicImg} alt="프로필 이미지" />
+            <P.BasicImg src={BasicImg && profile.image } alt="프로필이미지" onError={handleImgError}/>
             <P.Followings>
-              <Link to="/followinglist" style={{ textDecoration: 'none' }}>
+              <Link
+                to={`/followingslist/${accountname}`}
+                style={{ textDecoration: 'none' }}
+              >
                 <strong>{profile.followingCount}</strong>
                 <p>followings</p>
               </Link>
@@ -131,9 +179,10 @@ export default function Profile() {
                     color="#000"
                     background="#fff"
                     border="1px solid #767676"
+                    onClick={onClickHandler}
                   />
                 ) : (
-                  <ProfileButton content="팔로우" />
+                  <ProfileButton content="팔로우" onClick={onClickHandler} />
                 )}
                 <P.RoundButton>
                   <img src={ShareBtn} alt="공유하기" />
@@ -164,11 +213,19 @@ export default function Profile() {
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
         <ShowPost />
-        {/* 내가 바꾼 부분 */}
-        <PostList dataPost={dataPost}></PostList>
+        {/* 레이아웃 깨짐 임시 방지 */}
+        <div 
+        style={{
+          width: '100%',
+          height: '100%',
+          backgroundColor: "white",
+          display: 'flex',
+          overflow: 'scroll'
+        }}>
+          <PostList dataPost={dataPost}></PostList>
+        </div>
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
-        {/* 내가 바꾼 부분 */}
       </P.Layout>
     </>
   );

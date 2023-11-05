@@ -40,8 +40,8 @@ export default function Router() {
       <Route path="/homesearch" element={<HomeSearch />} />
 
       <Route path="/profile/:accountname" element={<Profile />} />
-      <Route path="/followerlist" element={<FollowerList />} />
-      <Route path="/followinglist" element={<FollowingList />} />
+      <Route path="/followerslist/:accountname" element={<FollowerList />} />
+      <Route path="/followingslist/:accountname" element={<FollowingList />} />
 
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom" element={<ChatRoom />} />

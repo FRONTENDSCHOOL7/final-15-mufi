@@ -20,7 +20,6 @@ export const getUserPostAPI = async ({ token, accountname }) => {
   // option에 따라 api 연결하기
   await axios(option)
     .then((res) => {
-      // api연결 완료하면 수행할 동작
       dataPost = res.data.post;
     })
     .catch((error) => {

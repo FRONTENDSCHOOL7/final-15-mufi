@@ -29,7 +29,7 @@ export const HeaderBtn = styled.button`
 `;
 
 
-export const SearchContainer = styled.div`
+export const SearchForm = styled.form`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -47,6 +47,7 @@ export const HeaderSearchInput = styled.input`
     color: #c4c4c4;
     font-size: 14px;
   }
+  width: 100%;
   background-color: transparent;
   border: none;
   outline: none;

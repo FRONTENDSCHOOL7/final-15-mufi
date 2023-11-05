@@ -1,15 +1,14 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import iconLike from "../../assets/icon-heart.png"
 import iconLikefill from "../../assets/icon-heart-fill.png"
 import iconComment from "../../assets/icon-message-white.png"
-import userProfile from "../../assets/basic-profile-small.png"
 import iconMore from '../../assets/icon-more-vertical-large.png';
 
 // 게시글 리스트
 export const PostList = styled.ul`
   display: flex;
   flex-direction: column;
-  overflow: scroll;
+  margin: 0 auto;
 `
 
 // 게시물 하나
@@ -33,7 +32,8 @@ export const PostItem = styled.li`
 export const UserProfile = styled.img`
   width: 40px;
   height: 40px;
-  background-image: url(${userProfile});
+  background-color: #767676;
+  object-fit: cover;
   border-radius: 40px;
 `
 
@@ -64,6 +64,10 @@ export const UserInfo = styled.div`
 export const UserName = styled.p`
   color: #000;
   font-size: 14px;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
 `
 export const UserId = styled.p`
   color: #767676;
@@ -92,6 +96,30 @@ export const PostContentText = styled.p`
   line-height: 17px;
 `
 // Btn
+const blooming = keyframes`
+  0% {
+    opacity: 0;
+    scale: 1;
+    transform: translateY(0);
+  } 50% {
+    transform: translateY(-10px);
+    scale: 1;
+  } 100% {
+    opacity: 1;
+    scale: 1;
+    transform: translateY(0);
+  }
+`
+const disappearing = keyframes`
+  0% {
+    transform: translateY(0);
+  } 50% {
+    transform: translateY(10px);
+    scale: 1;
+  }  100% {
+    background: url(${iconLike});
+  }
+`
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 16px;
@@ -109,12 +137,17 @@ export const BtnLike = styled.button`
     content: '';
     width: 20px;
     height: 20px;
-    background: url(${iconLike});
     position: absolute;
+    background: url(${iconLike});
     top: -0.25em;
     left: -18px;
   }
-  &.liked::before{
+  &.unliked::before {
+    animation: ${disappearing} 0.7s forwards;
+    background: url(${iconLikefill});
+  }
+  &.liked::before {
+    animation: ${blooming} 0.7s forwards;
     background: url(${iconLikefill});
   }
 `

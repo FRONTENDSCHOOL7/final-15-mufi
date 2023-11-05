@@ -78,19 +78,20 @@ export const HighlightedText = styled.span`
   color: #2033e7;
 `;
 
+
 export const AddTagBtn = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 120px;
-  height: 34px;
+  max-width: 250px;
+  line-height: 18px;
+  padding: 8px 16px;
   color: #fff;
   font-size: 14px;
   font-style: normal;
   font-weight: 600;
   background-color: #2033e7;
-  margin: auto; // 추가
-
+  margin: auto;
   border-radius: 4px;
   border: none;
 `;

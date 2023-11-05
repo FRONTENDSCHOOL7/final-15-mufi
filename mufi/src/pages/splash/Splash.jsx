@@ -6,15 +6,9 @@ export default function Splash() {
   const navigate = useNavigate();
   
   useEffect(()=>{
-    document.addEventListener('click',()=>{
-      navigate('/');
-    })
-
-    return ()=>{
-      document.removeEventListener('click', ()=>{
-        navigate('/');
-      })
-    }
+    setTimeout(()=>{  
+      window.location.replace('/')
+    }, 3000)
   }, [])
 
   return (

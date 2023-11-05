@@ -17,6 +17,11 @@ import FollowerList from '../pages/followers/FollowerList';
 import FollowingList from '../pages/followers/FollowingList';
 import Chat from '../pages/chat/Chat';
 import ChatRoom from '../pages/chat/ChatRoom';
+import Searched from '../pages/searched/Searched';
+
+import MusicAdd from '../pages/profile/MusicAdd';
+import ProfileChange from '../pages/profile/ProfileChange';
+import ErrorPage from '../pages/errorPage/ErrorPage';
 
 import PostDetail from '../pages/post/PostDetail';
 
@@ -35,15 +40,22 @@ export default function Router() {
 
       <Route path="/home" element={<Home />} />
       <Route path="/homesearch" element={<HomeSearch />} />
+      <Route path="/searched/:keyword" element={<Searched />} />
 
       <Route path="/profile/:accountname" element={<Profile />} />
-      <Route path="/followerlist" element={<FollowerList />} />
-      <Route path="/followinglist" element={<FollowingList />} />
+      <Route path="/followerslist/:accountname" element={<FollowerList />} />
+      <Route path="/followingslist/:accountname" element={<FollowingList />} />
 
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom" element={<ChatRoom />} />
 
+
       <Route path="/postdetail/:postId" element={<PostDetail />} />
+
+      <Route path="/musicAdd" element={<MusicAdd />} />
+      <Route path="/profileChange" element={<ProfileChange/>} />
+      <Route path="/errorPage" element={<ErrorPage/>} />
+
     </Routes>
   );
 }

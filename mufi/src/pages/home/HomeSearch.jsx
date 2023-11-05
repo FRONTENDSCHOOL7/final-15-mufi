@@ -14,7 +14,7 @@ export default function HomeSearch() {
     <>
       <H.HLayout>
         <div style={{"width": "100%"}}>
-          <SearchHeader></SearchHeader>
+          <SearchHeader isAccount={isAccount} isTag={isTag} isFestival={isFestival}></SearchHeader>
           <SearchFilter setIsAccount={setIsAccount} setIsFestival={setIsFestival} setIsTag={setIsTag}></SearchFilter>
 
           {/* 검색결과 */}

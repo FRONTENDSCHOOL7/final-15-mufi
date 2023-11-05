@@ -11,6 +11,7 @@ export default function UploadHeader({
   backButtonText,
   formid,
   handleGoBack,
+  onClick
 }) {
   const resetFestival = useResetRecoilState(festivalState);
   const resetTags = useResetRecoilState(tagsState);
@@ -48,7 +49,7 @@ export default function UploadHeader({
           <span onClick={handleSpanClick}>{backButtonText}</span>
         )}
       </BackBtn>
-      {showOkButton && <OkBtn type='submit' form={formid}>{okButtonText}</OkBtn>}
+      {showOkButton && <OkBtn onClick={onClick} type='submit' form={formid}>{okButtonText}</OkBtn>}
     </HeaderWrapper>
   );
 }

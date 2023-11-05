@@ -1,15 +1,14 @@
 import React, { useEffect } from 'react';
 import * as NB from './NavBarStyle';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { useRecoilValue } from 'recoil';
 import { accountnameState } from '../../Atoms/atoms';
 
 export default function NavBar() {
   const location = useLocation();
+  const params = useParams();
 
   useEffect(() => {
-    //  ('location',    location.pathname);
-
     switch (location.pathname) {
       case '/home':
         const btnHome = document.querySelector('.btn-home');
@@ -35,7 +34,7 @@ export default function NavBar() {
         textUpload.classList.add('selected');
         break;
 
-      case '/profile':
+      case '/profile/' + params.accountname:
         const btnProfile = document.querySelector('.btn-profile');
         btnProfile.classList.add('selected');
 
@@ -45,7 +44,7 @@ export default function NavBar() {
       default:
         break;
     }
-  }, [location]);
+  }, [location.pathname]);
 
   const accountName = useRecoilValue(accountnameState);
 
@@ -61,6 +60,7 @@ export default function NavBar() {
   };
   const toProfile = () => {
     navigate(`/profile/${accountName}`);
+    window.location.replace('');
   };
 
   return (

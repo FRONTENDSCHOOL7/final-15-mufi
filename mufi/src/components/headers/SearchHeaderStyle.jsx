@@ -47,6 +47,7 @@ export const HeaderSearchInput = styled.input`
     color: #c4c4c4;
     font-size: 14px;
   }
+  width: 100%;
   background-color: transparent;
   border: none;
   outline: none;

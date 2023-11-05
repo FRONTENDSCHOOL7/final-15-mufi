@@ -9,9 +9,9 @@ import hashtagImage from '../../assets/hashtag-fill.png';
 import imageUploadImage from '../../assets/image-fill.png';
 import deleteImage from '../../assets/x.png';
 
-import { uploadPostAPI } from '../../api/uploadPostAPI';
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
-import { festivalState, postContentState, postImageState, postInfoState, tagsState, userTokenState } from '../../Atoms/atoms';
+import { festivalState, isEditState, postContentState, postImageState, postInfoState, tagsState, userTokenState } from '../../Atoms/atoms';
+import { uploadPostAPI } from '../../api/uploadPostAPI';
 import { editPostAPI } from '../../api/editPostAPI';
 
 export default function Upload() {
@@ -20,9 +20,10 @@ export default function Upload() {
   const [selectedImages, setSelectedImages] = useRecoilState(postImageState);
   const [festival, setFestival] = useRecoilState(festivalState);
   const [tags, setTags] = useRecoilState(tagsState);
+  const [isEdit, setIsEdit] = useRecoilState(isEditState);
   
-  const token = useRecoilValue(userTokenState);
   const postInfo = useRecoilValue(postInfoState);
+  const token = useRecoilValue(userTokenState);
   const resetFestival = useResetRecoilState(festivalState);
   const resetTags = useResetRecoilState(tagsState);
   const resetContent = useResetRecoilState(postContentState);
@@ -87,6 +88,7 @@ export default function Upload() {
   // 업로드 버튼 클릭
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     let res;
     const post = {
       "content": `content:${postContent}\n\\festival:${festival}\\tag:${tags}`,
@@ -94,10 +96,11 @@ export default function Upload() {
     }
 
     // 수정 or 업로드 분기
-    if (postInfo.id !== undefined) {
-      const postId = postInfo.id
+    if (isEdit) {
+      const postId = isEdit;
+      console.log(postId);
       res = await editPostAPI({token, postId, post});
-    } else {
+    } else if (isEdit === false) {
       res = await uploadPostAPI({token, post});
     }
 
@@ -114,8 +117,10 @@ export default function Upload() {
   // postInfo에 값이 있으면 '수정'!
   useEffect(()=>{
     if(postInfo.id !== undefined){
+      setIsEdit(postInfo.id);
       const regExpTag = /(content:|\\|tag:|festival:)/g;
       const contents = postInfo.content.split(regExpTag);
+
       if ( contents[2] ) {
         const textContent = contents[2];
         setPostContent(textContent);
@@ -135,6 +140,7 @@ export default function Upload() {
         setSelectedImages([postInfo.image]);
       }
     }
+    resetPostInfo();
   }, [postInfo])
 
   return (

@@ -14,7 +14,7 @@ export const accountnameState = atom({
   key: 'accountnameState',
   default: '',
   effects_UNSTABLE: [persistAtom]
-})
+});
 
 export const userLoginState = atom({
   key: 'LoginState',
@@ -59,53 +59,59 @@ export const postImageState = atom({
 export const postIdState = atom({
   key: 'postIdState',
   default: '',
-})
+});
 
 // Edit; 
 export const postInfoState = atom({
   key: 'postInfoState',
   default: {},
-})
+});
 
 // Search;
 export const keywordState = atom({
   key: 'keywordState',
   default: '',
-})
+});
 
 export const searchUserResultState = atom({
   key: 'searchUserResultState',
   default: [],
-})
+});
 
 export const tagStoreState = atom({
   key: 'tagStoreState',
   default: ['#박재범', '#박재범 타투'],
   effects_UNSTABLE: [persistAtom]
-})
+});
 
 export const festivalStoreState = atom({
   key: 'festivalStoreState',
   default: ['감귤 축제', '감귤 많이 먹기 대회'],
   effects_UNSTABLE: [persistAtom]
-})
+});
 
 export const searchTagsState = atom({
   key: 'searchTagsState',
   default: [],
   effects_UNSTABLE: [persistAtom]
-})
+});
 
 export const searchFestivalState = atom({
   key: 'searchFestivalState',
   default: [],
   effects_UNSTABLE: [persistAtom]
-})
+});
 
 export const isEditState = atom({
   key: 'isEditState',
   default: false,
-})
+});
+
+// profile 정보저장
+export const changedProfileState = atom({
+  key: 'changedProfileState',
+  default: {},
+});
 
 export const isLoadingState = atom({
   key: 'isLoadingState',

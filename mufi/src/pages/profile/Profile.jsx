@@ -10,9 +10,10 @@ import PlayBtn from '../../assets/playBtn.png';
 import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
 import { getUserPostAPI } from '../../api/getUserPostAPI';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   accountnameState,
+  changedProfileState,
   postMoreState,
   userTokenState,
 } from '../../Atoms/atoms';
@@ -31,7 +32,7 @@ export default function Profile() {
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
-
+  const setChangedProfile = useSetRecoilState(changedProfileState)
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
@@ -43,8 +44,12 @@ export default function Profile() {
 
   const navigate = useNavigate();
   const onProfileChange = () => {
-    navigate('/profilechange');
+    if (isMine) {
+      navigate('/profilechange');
+      setChangedProfile(profile);
+    }
   }
+
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow

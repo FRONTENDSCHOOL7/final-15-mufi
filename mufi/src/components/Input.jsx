@@ -10,6 +10,7 @@ export default function Input({
   minLength,
   maxLength,
   onBlur,
+  styleEdit
 }) {
   return (
     <InputWrapper>
@@ -23,6 +24,7 @@ export default function Input({
         minLength={minLength}
         maxLength={maxLength}
         onBlur={onBlur}
+        style={styleEdit}
       />
     </InputWrapper>
   );

@@ -8,7 +8,6 @@ import { cancelLikeAPI } from '../../api/cancelLikeAPI';
 
 export default function BtnWrapper({heartCount, commentNum, postId, isHearted}) {
   const navigate = useNavigate();
-
   const token = useRecoilValue(userTokenState);
   const heart = useRef();
   const [likedNum, setLikedNum] = useState(heartCount);
@@ -47,5 +46,5 @@ export default function BtnWrapper({heartCount, commentNum, postId, isHearted}) 
             <P.BtnComment onClick={moveToComment}>{commentNum}</P.BtnComment>
         </P.BtnWrapper>
     </>
-  )
+  );
 }

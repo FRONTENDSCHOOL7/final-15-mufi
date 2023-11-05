@@ -42,6 +42,7 @@ export const Img = styled.img`
   border-radius: 50%;
   z-index: 0;
   position: relative;
+  object-fit: cover;
 `;
 
 export const ImgInputLabel = styled.label`

@@ -1,10 +1,11 @@
 import styled from "styled-components"
 
 export const SearchFilter = styled.header`
-    background-color: transparent;
-    box-shadow: inset 0 -1px 0 #c4c4c4;
-    box-sizing: border-box;
-    padding: 0 44px;
+  width: 100%;
+  background-color: transparent;
+  box-shadow: inset 0 -1px 0 #c4c4c4;
+  box-sizing: border-box;
+  padding: 0 44px;
 `
 export const BtnList = styled.ul`
   display: flex;

@@ -106,3 +106,8 @@ export const isEditState = atom({
   key: 'isEditState',
   default: false,
 })
+
+export const isLoadingState = atom({
+  key: 'isLoadingState',
+  default: false,
+})

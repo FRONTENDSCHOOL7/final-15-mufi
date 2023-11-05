@@ -6,12 +6,6 @@ export const HLayout = styled(Layout)`
   height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  overflow: scroll;
-
-  /* &::-webkit-scrollbar {
-    display: none;
-  } */
 `;
 
 export const ContentEmptyWrapper = styled.div`
@@ -19,6 +13,8 @@ export const ContentEmptyWrapper = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 20px;
+  height: 100%;
+  justify-content: center;
 `;
 
 export const ImgWrapper = styled.div`
@@ -46,4 +42,20 @@ export const TempHeader = styled.div`
   background-color: #fff;
 `;
 
-export const HomeFeed = styled.div``;
+export const HomeFeed = styled.div`
+  overflow: scroll;
+  width:100%;
+  height: 100%;
+  margin: 0 auto;
+
+  /* &::-webkit-scrollbar {
+    display: none;
+  } */
+`;
+
+export const HomeSearch = styled.div`
+overflow: scroll;
+width:100%;
+height: 100%;
+margin: 0 auto;
+`

@@ -8,7 +8,7 @@ import { postInfoState, postIdState, postMoreState } from '../../Atoms/atoms';
 import img from '../../assets/basic-profile-small.png';
 
 export default function PostItem({ dataPost }) {
-  console.log(dataPost);
+  // console.log(dataPost);
   const setIsModalOpen = useSetRecoilState(postMoreState);
   const [postId, setPostId] = useRecoilState(postIdState);
   const [postInfo, setPostInfo] = useRecoilState(postInfoState);

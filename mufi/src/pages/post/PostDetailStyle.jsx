@@ -6,15 +6,13 @@ export const PDLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 
-  /* overflow: scroll;
+  overflow-y: scroll;
 
   &::-webkit-scrollbar {
     display: none;
-  } */
+  }
 `;
 
 export const Div = styled.div``;
 
-export const CommentWrapper = styled.div`
-  overflow: scroll;
-`;
+export const CommentWrapper = styled.div``;

@@ -21,12 +21,9 @@ import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
 import { profileAPI } from '../../api/profileAPI';
-<<<<<<< HEAD
 import { useNavigate } from 'react-router-dom';
-=======
 import { followStateAPI } from '../../api/followStateAPI';
 import { unfollowStateAPI } from '../../api/unfollowStateAPI';
->>>>>>> 2fbd3ab826c350b2f6169ece075bd86caaf9fbb4
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
@@ -44,12 +41,10 @@ export default function Profile() {
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(myAccountname === accountname);
 
-<<<<<<< HEAD
   const navigate = useNavigate();
   const onProfileChange = () => {
     navigate('/profilechange');
   }
-=======
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow
@@ -81,7 +76,6 @@ export default function Profile() {
     const res = await profileAPI({ token, accountname });
     setProfile(res);
   };
->>>>>>> 2fbd3ab826c350b2f6169ece075bd86caaf9fbb4
 
   useEffect(() => {
     setIsModalOpen(false);

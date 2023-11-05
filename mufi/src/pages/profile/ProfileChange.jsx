@@ -7,6 +7,12 @@ import { Img, ImgInputLabel, InputContainer } from './ProfileChangeStyle';
 import MusicChangeBtn from '../../components/MusicChangeBtn';
 import {Layout} from '../../components/Layout/LayoutStyle';
 import { useNavigate } from 'react-router-dom';
+import { profileChangeAPI } from '../../api/profileChangeAPI';
+import { useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
+import { accountNameState, accountnameState, userTokenState } from '../../Atoms/atoms';
+
+
 
 export default function ProfileChange() {
   const [userName, setUserName] = useState('');
@@ -14,12 +20,22 @@ export default function ProfileChange() {
   const [userid, setUserId] = useState('');
   const [userIdError, setUserIdError] = useState('');
   const [imgSrc, setImgSrc] = useState(BasicImg);
+  const [introduction, setIntroduction] = useState('');
+  const token = useRecoilValue(userTokenState);
+  const accountname = useRecoilValue(accountnameState);
   const navigate = useNavigate();
-  const onProfile = () => {
-    navigate('/profile/');
+  const onProfile = async () => {
+    console.log("a");
+    const user = {
+  userName,
+  accountname,
+  introduction,
+  imgSrc
+  }
+    // navigate('/profile/');
+    await profileChangeAPI({token, user})
   }
 
-  // 사용자 이름 유효성 검사
   const userNameValidation = (e) => {
     const nameValue = e.target.value;
     setUserName(nameValue);
@@ -30,7 +46,6 @@ export default function ProfileChange() {
     }
   };
 
-  // 계정 ID 유효성 검사(영문, 숫자, 밑줄 및 마침표)
   const userIdValidation = (e) => {
     const idValue = e.target.value;
     const userIdPattern = /^[A-Za-z0-9._]+$/;

@@ -9,10 +9,8 @@ import {Layout} from '../../components/Layout/LayoutStyle';
 import { useNavigate } from 'react-router-dom';
 import { profileChangeAPI } from '../../api/profileChangeAPI';
 import { useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
-import { accountNameState, accountnameState, userTokenState } from '../../Atoms/atoms';
-
-
+import { useRecoilValue, useSetRecoilState } from 'recoil';
+import { accountnameState, userTokenState } from '../../Atoms/atoms';
 
 export default function ProfileChange() {
   const [userName, setUserName] = useState('');
@@ -21,21 +19,25 @@ export default function ProfileChange() {
   const [userIdError, setUserIdError] = useState('');
   const [imgSrc, setImgSrc] = useState(BasicImg);
   const [introduction, setIntroduction] = useState('');
+  const setAccountname = useSetRecoilState(accountnameState);
   const token = useRecoilValue(userTokenState);
-  const accountname = useRecoilValue(accountnameState);
   const navigate = useNavigate();
   const onProfile = async () => {
     console.log("a");
     const user = {
-  userName,
-  accountname,
-  introduction,
-  imgSrc
-  }
-    // navigate('/profile/');
-    await profileChangeAPI({token, user})
+      userName,
+      userid,
+      introduction,
+      imgSrc
+      }
+      await profileChangeAPI({token, user});
+      setAccountname(userid);
+      navigate(`/profile/${userid}`);
   }
 
+  const handleIntro = (e) => {
+    setIntroduction(e.target.value)
+  }
   const userNameValidation = (e) => {
     const nameValue = e.target.value;
     setUserName(nameValue);
@@ -154,6 +156,7 @@ export default function ProfileChange() {
             label="소개"
             type="text"
             placeholder="자신에 대해서 소개해 주세요!"
+            onChange={handleIntro}
             styleEdit={styleEdit}
           />
         </InputContainer>

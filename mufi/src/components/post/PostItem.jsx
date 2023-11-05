@@ -17,7 +17,7 @@ export default function PostItem({ dataPost }) {
     // 게시글 내용 데이터 처리
     const regExpTag = /(content:|\\|tag:|festival:)/g;
     let contents;
-    let textContent
+    let textContent;
     let tags;
     let festival = null;
 
@@ -72,7 +72,7 @@ export default function PostItem({ dataPost }) {
     return (
       <P.PostItem key={index}>
         <Link to={'/profile/' + v.author.accountname} onClick={handleUser}>
-          <P.UserProfile src={v.author.image} onError={handleImgError}/>
+          <P.UserProfile src={v.author.image} onError={handleImgError} />
         </Link>
 
         <P.PostContent>
@@ -87,8 +87,9 @@ export default function PostItem({ dataPost }) {
             <P.BtnMore onClick={handleBtnMore} />
           </P.UpperWrapper>
 
-          <Link>
-            {v.image && <P.PostContentImg src={v.image} onError={handleContentImgError}/>}
+          <Link to={`/postdetail/${v.id}`}>
+            {v.image && <P.PostContentImg src={v.image} />}
+
             <P.PostContentText>{textContent}</P.PostContentText>
           </Link>
 
@@ -101,10 +102,11 @@ export default function PostItem({ dataPost }) {
           {
             (festival || tags) &&
             <div style={{ display: 'flex', flexDirection: 'column', gap: '4px' }}>
+
               {festival && <TagList tags={festival} isFestival={true} />}
               {tags && <TagList tags={tags} />}
             </div>
-          }
+          )}
 
           <P.PostTime>
             {year}년 {month}월 {date}일 {hours}:{minutes}

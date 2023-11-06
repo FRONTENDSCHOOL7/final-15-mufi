@@ -44,13 +44,11 @@ export default function Profile() {
 
   const navigate = useNavigate();
   const onProfileChange = () => {
-    navigate('/profilechange');
-  };
     if (isMine) {
       navigate('/profilechange');
       setChangedProfile(profile);
     }
-  }
+  };
 
   const onClickHandler = async () => {
     if (isFollow) {

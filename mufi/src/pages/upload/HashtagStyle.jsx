@@ -57,6 +57,9 @@ export const TagWrapper = styled.div`
   color: #767676;
 `
 
+// 검색 결과 컨테이너
+// export const Search
+
 // 검색 결과를 보여주는 styled components
 export const SearchResult = styled.button`
   border: none;
@@ -83,6 +86,8 @@ export const SearchList = styled.div`
   width: 100%;
   padding: 16px;
   box-sizing: border-box;
+  height: calc(100vh - 206px);
+  overflow-y: scroll;
 `;
 
 export const HighlightedText = styled.span`

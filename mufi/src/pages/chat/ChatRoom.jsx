@@ -3,21 +3,12 @@ import { Layout } from '../../components/Layout/LayoutStyle';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as C from './ChatStyle';
 import ChatBalloon from './ChatBalloon';
+import { dataChatText } from './chatData';
 
 export default function ChatRoom() {
-  const dataChat = [
-    '안녕하세요 맛있는 감귤 사세요.',
-    '맛 있는 감귤 1 kg에 얼마에 판매중이신가요?',
-    '1kg 10000원,  \n 3kg 2만 5천원 \n 5kg 3만 5천원입니다. 많이 사실 수록 싸게 드리고 있어요. 많이많이 구매해주세요.',
-    'ㄴㅇㄹㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅊㄴㅊㅋㄴㅊㅋㄴㅇㅊㄴㅇㄹㅁㅇㄹㅁㅈㄷㄹㅁㄴㅇㄹ밤고개로23길 8 101호로 배송 부탁드려요.',
-    '안녕하세요 맛있는 감귤 사세요.',
-    '맛 있는 감귤 1 kg에 얼마에 판매중이신가요?',
-    '1kg 10000원,  \n 3kg 2만 5천원 \n 5kg 3만 5천원입니다. 많이 사실 수록 싸게 드리고 있어요. 많이많이 구매해주세요.',
-    'ㄴㅇㄹㅁㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㄹㅁㄴㅇㅊㄴㅊㅋㄴㅊㅋㄴㅇㅊㄴㅇㄹㅁㅇㄹㅁㅈㄷㄹㅁㄴㅇㄹ밤고개로23길 8 101호로 배송 부탁드려요.',
-  ];
 
   // chat 기존 거 생성
-  const tempChatBalloons = dataChat.map((chat) => {
+  const tempChatBalloons = dataChatText.map((chat) => {
     return <ChatBalloon chat={chat} />;
   });
 
@@ -36,25 +27,25 @@ export default function ChatRoom() {
 
   // 전송 button
   const handleSendButton = (e) => {
-    if (chatInput === '') {
+    if (chatInput.trim() === '' && !imgSrc) {
       alert('메시지를 입력하세요');
       return;
     }
     setChatBalloons([
       ...chatBalloons,
       <>
-        <ChatBalloon chat={chatInput} isMyBalloon={true} />
+        <ChatBalloon chat={chatInput} isMyBalloon={true} imgSrc={imgSrc}/>
       </>,
     ]);
     const chatInputEl = document.querySelector('#chat-input');
     chatInputEl.value = '';
     setChatInput('');
+    setImgSrc([]);
   };
 
   // enter 키로 되게
   const handleEnter = (e) => {
     if (e.key === 'Enter') {
-      // (() => { handleSendButton() })();
       handleSendButton();
     }
   };
@@ -63,7 +54,7 @@ export default function ChatRoom() {
     return () => {
       document.removeEventListener('keydown', handleEnter);
     };
-  });
+  }, []);
 
   // 스크롤 아래로 끌어내리기
   useEffect(() => {
@@ -74,13 +65,13 @@ export default function ChatRoom() {
   // 인풋 있으면 액티브 하게 바뀌기
   useEffect(() => {
     const sendBtn = document.querySelector('.chat-send-button');
-    if (chatInput !== '') {
+    if (chatInput !== '' || imgSrc.length !== 0) {
       sendBtn.disabled = false;
     } else if (chatInput === '') {
       sendBtn.disabled = true;
     }
     return () => {};
-  }, [chatInput]);
+  }, [chatInput, imgSrc]);
 
   // 사진 업로드
   const [imageHolders, setImageHolders] = useState([]);
@@ -124,7 +115,6 @@ export default function ChatRoom() {
       );
     });
     setImageHolders(temp);
-    console.log(imgSrc);
 
     if (imgSrc.length > 5) {
       const tempImgWrapper = document.querySelector('.temp-image-wrapper');

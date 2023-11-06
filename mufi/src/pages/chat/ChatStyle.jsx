@@ -6,10 +6,11 @@ import iconClose from '../../assets/icon-close.png';
 export const ChatList = styled.ul`
   height: 100%;
   width: 100%;
-  /* box-shadow: inset 0 0 32px red; */
-  overflow: scroll;
-  padding: 4px;
   box-sizing: border-box;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; // 스크롤 바 숨기기
+  }
 `;
 
 export const ChatItem = styled.li`
@@ -73,7 +74,7 @@ export const ChatTextContent = styled.main`
   gap: 12px;
   padding: 16px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const ChatInputWrapper = styled.div`
@@ -154,6 +155,7 @@ export const ChatSenderProfile = styled.img`
 `;
 export const ChatBalloonTextWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
   gap: 6px;
 `;
@@ -178,6 +180,23 @@ export const ChatBalloonSentTime = styled.p`
     order: -1;
   }
 `;
+export const SentContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+`;
+export const SentImg = styled.img`
+  width: 230px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+export const SentChatWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+`
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`
@@ -187,10 +206,13 @@ export const TempImageWrapper = styled.div`
   border-top: 1px solid #dbdbdb;
   padding: 8px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   display: flex;
   gap: 8px;
+  &::-webkit-scrollbar {
+    display: none; // 스크롤 바 숨기기
+  }
 `;
 export const TempImageHolder = styled.div`
   background-color: #dbdbdb;

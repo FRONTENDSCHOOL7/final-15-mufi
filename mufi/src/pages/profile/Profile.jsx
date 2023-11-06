@@ -6,13 +6,15 @@ import ProfileMusicButton from '../../components/profileButton/ProfileMusicButto
 import ChatBtn from '../../assets/icon-chat-btn.png';
 import ShareBtn from '../../assets/icon-share-btn.png';
 import Akmu from '../../assets/akmu.png';
+import MusicBar from '../../assets/musicbar.png';
 import PlayBtn from '../../assets/playBtn.png';
 import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
 import { getUserPostAPI } from '../../api/getUserPostAPI';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   accountnameState,
+  changedProfileState,
   postMoreState,
   userTokenState,
 } from '../../Atoms/atoms';
@@ -30,7 +32,7 @@ export default function Profile() {
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
-
+  const setChangedProfile = useSetRecoilState(changedProfileState)
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
@@ -44,6 +46,12 @@ export default function Profile() {
   const onProfileChange = () => {
     navigate('/profilechange');
   };
+    if (isMine) {
+      navigate('/profilechange');
+      setChangedProfile(profile);
+    }
+  }
+
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow
@@ -159,7 +167,7 @@ export default function Profile() {
                   border="1px solid #767676"
                 />
                 <ProfileButton
-                  content="상품 등록"
+                  content="프로필 뮤직 수정"
                   background="#fff"
                   color="#000"
                   border="1px solid #767676"
@@ -194,14 +202,14 @@ export default function Profile() {
         {isPlaying ? (
           <>
             <P.ProfileMusicWrapper>
-              <img src={Akmu} alt="커버사진" />
+              <P.Img src={Akmu} alt="커버사진" />
               <P.ProfileMusic>
                 <strong>후라이의 꿈</strong>
                 <p>AKMU(악뮤)</p>
               </P.ProfileMusic>
-              {/* 오디오바 */}
+              <P.MusicBar src={MusicBar} alt="재생바" />
               <P.PlayBtn>
-                <img src={PlayBtn} alt="재생 버튼" />
+                <P.ImgPlay src={PlayBtn} alt="재생 버튼" style={{}} />
               </P.PlayBtn>
             </P.ProfileMusicWrapper>
           </>

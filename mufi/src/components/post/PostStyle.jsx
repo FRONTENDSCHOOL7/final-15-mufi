@@ -1,8 +1,11 @@
+
 import styled, { keyframes } from 'styled-components';
 import iconLike from '../../assets/icon-heart.png';
 import iconLikefill from '../../assets/icon-heart-fill.png';
 import iconComment from '../../assets/icon-message-white.png';
 import iconMore from '../../assets/icon-more-vertical-large.png';
+import iconTagRemove from '../../assets/tag-remove.png';
+import iconFestivalRemove from '../../assets/festival-remove.png';
 
 // 게시글 리스트
 export const PostList = styled.ul`
@@ -179,4 +182,18 @@ export const FestivalItem = styled(TagItem)`
 export const PostTime = styled.p`
   font-size: 10px;
   color: #767676;
+`;
+export const RemoveBtn = styled.button`
+  margin-left: 2px;
+  width: 12px;
+  height: 12px;
+  border-radius: 12px;
+  border: none;
+  background-image: url(${iconTagRemove});
+  background-position: center;
+  background-color: #afafaf;
+`;
+export const FestivalRemoveBtn = styled(RemoveBtn)`
+  background-image: url(${iconFestivalRemove});
+  background-color: white;
 `;

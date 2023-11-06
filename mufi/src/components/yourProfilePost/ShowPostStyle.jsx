@@ -6,7 +6,6 @@ export const ShowPostWrapper = styled.div`
   height: 42px;
   align-items: center;
   flex-shrink: 0;
-
   border: 0.5px solid #dbdbdb;
   background-color: white;
 `;

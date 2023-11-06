@@ -2,31 +2,41 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getPartialPostAPI } from '../../api/getPartialPostAPI';
 import { getAllPostAPI } from '../../api/getAllPostAPI'
-import { useRecoilValue } from 'recoil';
-import { userTokenState } from '../../Atoms/atoms';
+import { useRecoilState, useRecoilValue } from 'recoil'
+import { isLoadingState, userTokenState } from '../../Atoms/atoms';
 import { Layout } from '../../components/Layout/LayoutStyle';
 import PostList from '../../components/post/PostList';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader'
 import NavBar from '../../components/navBar/NavBar';
+import Loading from './Loading';
 import * as S from './SearchedStyle';
+
+import { postMoreState } from '../../Atoms/atoms';
+import MoreModal from '../../components/moreModal/MoreModal';
 
 export default function Searched() {
   const {keyword} = useParams();
   console.log(keyword); // 박재범
   
   const token = useRecoilValue(userTokenState);
-  const number = 20;
-
+  const number = 10000;
+  
   const [dataPost, setDataPost] = useState([]);
+  const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
+  const [isLoading, setIsLoading] = useRecoilState(isLoadingState);
 
   useEffect(()=>{
     const getDataPost = async () => {
+      setIsLoading(true);
       // let tempDataPost = await getAllPostAPI({token});
       let tempDataPost = await getPartialPostAPI({token, number});
 
       // ----- 게시글 필터 -----
       tempDataPost = tempDataPost.filter(v => {
         let content = JSON.stringify(v.content);
+        if(content === undefined){
+          content = '';
+        }
         if(content.indexOf(keyword) !== -1){
           return true;
         } else {
@@ -36,6 +46,7 @@ export default function Searched() {
       // ----- 게시글 필터 끝 -----
 
       setDataPost(tempDataPost);
+      setIsLoading(false);
     };
     getDataPost();
   },[]);
@@ -44,8 +55,12 @@ export default function Searched() {
     <Layout>
       <GoBackMoreHeader content={`'${keyword}' 검색결과`}/>
       <S.SLayout>
-        <PostList dataPost={dataPost}></PostList>
+        {/* <Loading keyword={keyword}></Loading> */}
+        {isLoading ? 
+        <Loading keyword={keyword}/> 
+        : <PostList dataPost={dataPost}></PostList>}
       </S.SLayout>
+      { isModalOpen && <MoreModal></MoreModal> }
       <NavBar />
     </Layout>
 

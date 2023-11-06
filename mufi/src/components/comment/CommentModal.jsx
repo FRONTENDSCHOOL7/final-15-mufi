@@ -7,7 +7,7 @@ export default function CommentModal({
   isMyComment,
   commentId,
   postId,
-  OnCommentDelete,
+  onCommentDelete,
 }) {
   const [isAlertOpen, setIsAlertOpen] = useState(false);
   const [content, setContent] = useState('신고');
@@ -35,7 +35,7 @@ export default function CommentModal({
           content={content}
           commentId={commentId}
           postId={postId}
-          OnCommentDelete={OnCommentDelete}
+          onCommentDelete={onCommentDelete}
           setIsModalOpen={setIsModalOpen}
         />
       ) : null}

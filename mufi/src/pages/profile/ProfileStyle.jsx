@@ -22,7 +22,7 @@ export const ProfileWrapper = styled.div`
   min-height: 320px;
   background-color: #fff;
 
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 `;
 
 export const Follow = styled.div`
@@ -156,16 +156,30 @@ export const ProfileMusicWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: 100%;
-  min-height: 71px;
+  min-height: 53px;
   gap: 12px;
 
   background-color: #fff;
-  margin-bottom: 6px;
+  margin-bottom: 4px;
 
-  img {
-    width: 40px;
-    height: 40px;
-  }
+  position: relative;
+`;
+
+export const Img = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ImgPlay = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const MusicBar = styled.img`
+  width: 160px;
+  height: auto;
+  position: relative;
+  bottom: 4px;
 `;
 
 export const ProfileMusic = styled.div`

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { InputWrapper, InputLabel, InputArea } from './InputStyle';
 
 export default function Input({
@@ -10,12 +10,22 @@ export default function Input({
   minLength,
   maxLength,
   onBlur,
-  styleEdit
+  styleEdit,
+  defaultValue,
 }) {
+  const inputEl = useRef();
+  
+  useEffect(()=>{
+    if (defaultValue) {
+      inputEl.current.value = defaultValue;
+    }
+  }, [])
+
   return (
     <InputWrapper>
       <InputLabel>{label}</InputLabel>
       <InputArea
+        ref={inputEl}
         type={type}
         placeholder={placeholder}
         required={required}

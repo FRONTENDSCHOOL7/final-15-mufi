@@ -107,6 +107,13 @@ export const isEditState = atom({
   default: false,
 });
 
+// profile 정보저장
+export const changedProfileState = atom({
+  key: 'changedProfileState',
+  default: {},
+});
+
+
 export const isLoadingState = atom({
   key: 'isLoadingState',
   default: false,

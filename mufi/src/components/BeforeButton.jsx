@@ -1,5 +1,5 @@
-import React from 'react'
-import {BeforeButtonStyle} from '../components/BeforeButtonStyle'
+import React from 'react';
+import { BeforeButtonStyle } from '../components/BeforeButtonStyle';
 import { useNavigate } from 'react-router-dom';
 
 export default function BeforeButton() {
@@ -9,8 +9,7 @@ export default function BeforeButton() {
     navigate(-1);
   };
 
-
-return (
+  return (
     <BeforeButtonStyle onClick={handleGoBack}>이전 페이지</BeforeButtonStyle>
-  )
+  );
 }

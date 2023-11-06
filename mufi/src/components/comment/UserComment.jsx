@@ -6,7 +6,7 @@ import { useRecoilValue } from 'recoil';
 import { accountnameState } from '../../Atoms/atoms';
 import CommentModal from './CommentModal';
 
-export default function UserComment({ comment, postId, OnCommentDelete }) {
+export default function UserComment({ comment, postId, onCommentDelete }) {
   const navigate = useNavigate();
   const [isMyComment, setIsMyComment] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -72,7 +72,7 @@ export default function UserComment({ comment, postId, OnCommentDelete }) {
           isMyComment={isMyComment}
           commentId={comment.id}
           postId={postId}
-          OnCommentDelete={OnCommentDelete}
+          onCommentDelete={onCommentDelete}
         />
       ) : null}
     </>

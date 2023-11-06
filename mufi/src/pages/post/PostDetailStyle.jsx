@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { Layout } from '../../components/Layout/LayoutStyle';
+import { ModalContainer } from '../../components/moreModal/MoreModalStyle';
 
 export const PDLayout = styled(Layout)`
   height: 100vh;

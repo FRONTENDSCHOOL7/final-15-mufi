@@ -18,7 +18,7 @@ import { useParams } from 'react-router-dom';
 import UserComment from '../../components/comment/UserComment';
 
 //modal
-import MoreModal from '../../components/moreModal/MoreModal';
+import ModalDetail from '../../components/moreModal/ModalDetail';
 
 export default function PostDetail() {
   const { postId } = useParams();
@@ -63,16 +63,17 @@ export default function PostDetail() {
       commentCount: postDetailItem[0].commentCount + 1,
     };
     console.log('tempDetail!!!!----', tempDetail);
+    console.log(postDetailItem[0]);
     setPostDetailItem([tempDetail]);
   };
 
   // 댓글 삭제 - 1
   const onCommentDelete = () => {
-    const tempDetail = {
+    const tempDetailD = {
       ...postDetailItem[0],
       commentCount: postDetailItem[0].commentCount - 1,
     };
-    setPostDetailItem([tempDetail]);
+    setPostDetailItem([tempDetailD]);
   };
 
   return (
@@ -103,7 +104,7 @@ export default function PostDetail() {
           inputComment={inputComment}
           setInputComment={setInputComment}
         />
-        {isModalOpen && <MoreModal />}
+        {isModalOpen && <ModalDetail />}
       </PD.PDLayout>
     </>
   );

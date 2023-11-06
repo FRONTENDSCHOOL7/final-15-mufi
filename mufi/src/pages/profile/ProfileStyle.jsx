@@ -162,10 +162,24 @@ export const ProfileMusicWrapper = styled.div`
   background-color: #fff;
   margin-bottom: 6px;
 
-  img {
-    width: 40px;
-    height: 40px;
-  }
+  position: relative;
+`;
+
+export const Img = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const ImgPlay = styled.img`
+  width: 40px;
+  height: 40px;
+`;
+
+export const MusicBar = styled.img`
+  width: 160px;
+  height: auto;
+  position: relative;
+  bottom: 4px;
 `;
 
 export const ProfileMusic = styled.div`

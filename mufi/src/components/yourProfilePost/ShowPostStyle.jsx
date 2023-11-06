@@ -9,6 +9,7 @@ export const ShowPostWrapper = styled.section`
   display: flex;
   justify-content: flex-end;
   align-items: center;
+  flex-shrink: 0;
 `;
 
 export const ListWrapper = styled.div`

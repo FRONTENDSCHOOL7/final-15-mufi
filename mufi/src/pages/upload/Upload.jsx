@@ -187,7 +187,7 @@ export default function Upload() {
           <U.Button onClick={openFestivalAdder}>
             <U.ButtonImage src={festivalImage} alt="festival" />
             {festival.length ? (
-              <TagList tags={festival} isFestival={true}></TagList>
+              <TagList tags={festival} isFestival={true} removeBtn={true}></TagList>
             ) : (
               '페스티벌 추가하기'
             )}
@@ -196,7 +196,7 @@ export default function Upload() {
           <U.Button onClick={openHashtagAdder}>
             <U.ButtonImage src={hashtagImage} alt="hashtag" />
             {tags.length ? (
-              <TagList tags={tags}></TagList>
+              <TagList tags={tags} removeBtn={true}></TagList>
             ) : (
               '해시 태그 추가하기'
             )}

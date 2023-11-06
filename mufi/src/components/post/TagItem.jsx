@@ -1,16 +1,31 @@
 import React, { useRef } from 'react'
 import * as P from './PostStyle'
-import { Link } from 'react-router-dom'
 
-export default function TagItem({ tags, isFestival, removeBtn }) {
+export default function TagItem({ tags, isFestival, removeBtn, onRemoveClick }) {
   const tagItem = useRef();
-  const TagItems = tags.map(v=>{
+  const TagItems = tags.map((v, i)=>{
     return (
-      <Link>
+      <>
         { isFestival ? 
-        <P.FestivalItem>{v}{removeBtn ? (<P.FestivalRemoveBtn />) : null}</P.FestivalItem> 
-        : <P.TagItem ref={tagItem}>{v}{removeBtn ? (<P.RemoveBtn />) : null}</P.TagItem>}
-      </Link>
+
+        <P.FestivalItem 
+          key={i}>{v}{removeBtn ? 
+          (<P.FestivalRemoveBtn 
+          type="button" 
+          className="remove-btn"
+          onClick={() => onRemoveClick(i)}/>) : null}
+        </P.FestivalItem> : 
+
+        <P.TagItem 
+          key={i}
+          ref={tagItem}>{v}{removeBtn ? 
+          (<P.RemoveBtn 
+            type="button"
+            className="remove-btn"
+            onClick={() => onRemoveClick(i)}/>) : null}
+        </P.TagItem> }
+
+      </>
     )
   })
 

@@ -85,28 +85,15 @@ export const Button = styled.button`
   align-items: center;
 
   width: 100%;
-  height: 40px;
-
+  padding : 12px;
   color: #000;
 
-  font-family: Pretendard;
   font-size: 14px;
-  font-style: normal;
   font-weight: 500;
 
   background: #fff;
+  border: none;
   border-top: 1px solid #dbdbdb;
-  border-bottom: 1px solid #dbdbdb;
-  border-left: none;
-  border-right: none;
-  cursor: pointer;
-  outline: none;
-  padding: 0px 9px 0px 9px;
-  margin-top: -1px;
-
-  &:first-child {
-    margin-top: 0;
-  }
 
   &:hover {
     background: #e0e0e0;

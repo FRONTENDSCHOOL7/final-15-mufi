@@ -5,6 +5,7 @@ import searchIcon from '../../assets/icon-search-gray.png';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { tagStoreState, tagsState } from '../../Atoms/atoms';
+import TagList from '../../components/post/TagList';
 
 export default function Hashtag() {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export default function Hashtag() {
   const [inputText, setInputText] = useState('#');
   const [isResultEmpty, setIsResultEmpty] = useState(false);
   // 이 밖에서 갖고오거나 밖으로 갖고 갈 상태
-  const setTags = useSetRecoilState(tagsState);
+  const [tags, setTags] = useRecoilState(tagsState);
   const [tagStore, setTagStore] = useRecoilState(tagStoreState)
   const [searchResult, setSearchResult] = useState(tagStore);
 
@@ -66,26 +67,11 @@ export default function Hashtag() {
     navigate('/upload');
   }
 
-  // // 검색 결과를 가져오는 함수
-  // const fetchSearchResult = async () => {
-  //   setSearchResult(tagStore.filter(v=>v.includes(inputText)));
-  // };
-
-  // useEffect(() => {
-  //   document.addEventListener('keydown', async (e) => {
-  //     if (e.key === "Enter") {
-  //       await fetchSearchResult();
-  //     }
-  //   })
-
-  //   return () => {
-  //     document.removeEventListener('keydown', async (e) => {
-  //       if (e.key === "Enter") {
-  //         await fetchSearchResult();
-  //       }
-  //     })
-  //   }
-  // }, []);
+  // 태그 삭제
+  const handleRemoveTag = (index) => {
+    console.log("remove Tag")
+    setTags(oldTags=>oldTags.filter((_,i) => i !== index))
+  }
 
   return (
     <H.HashtagWrapper>
@@ -101,6 +87,14 @@ export default function Hashtag() {
           <img src={searchIcon} alt="search" />
         </H.SearchButton>
       </H.SearchBox>
+
+      <H.TagWrapper>
+        {tags.length ? (
+          <TagList tags={tags} removeBtn={true} onRemoveClick={handleRemoveTag}></TagList>
+        ) : (
+          '해시 태그를 검색해서 추가해보세요!'
+        )}
+      </H.TagWrapper>
 
       <H.SearchList>
         {searchResult.map((result, index) => (

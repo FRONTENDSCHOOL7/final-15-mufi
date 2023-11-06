@@ -1,7 +1,7 @@
-import styled, { keyframes } from "styled-components";
-import iconLike from "../../assets/icon-heart.png"
-import iconLikefill from "../../assets/icon-heart-fill.png"
-import iconComment from "../../assets/icon-message-white.png"
+import styled, { keyframes } from 'styled-components';
+import iconLike from '../../assets/icon-heart.png';
+import iconLikefill from '../../assets/icon-heart-fill.png';
+import iconComment from '../../assets/icon-message-white.png';
 import iconMore from '../../assets/icon-more-vertical-large.png';
 
 // 게시글 리스트
@@ -9,7 +9,7 @@ export const PostList = styled.ul`
   display: flex;
   flex-direction: column;
   margin: 0 auto;
-`
+`;
 
 // 게시물 하나
 export const PostItem = styled.li`
@@ -21,21 +21,21 @@ export const PostItem = styled.li`
   transition: all 0.3s;
 
   &.cardUI {
-      margin: 4px;
-      box-shadow: 0 0 16px #dedede;
-      border-radius: 8px;
-      &:hover {
-          transform: scale(102%);
-      }
+    margin: 4px;
+    box-shadow: 0 0 16px #dedede;
+    border-radius: 8px;
+    &:hover {
+      transform: scale(102%);
+    }
   }
-`
+`;
 export const UserProfile = styled.img`
   width: 40px;
   height: 40px;
   background-color: #767676;
   object-fit: cover;
   border-radius: 40px;
-`
+`;
 
 // 게시글 오른쪽
 export const PostContent = styled.article`
@@ -45,22 +45,21 @@ export const PostContent = styled.article`
   align-items: flex-start;
   gap: 16px;
   /* box-shadow: inset 0 0 32px red; */
-
-`
+`;
 export const UpperWrapper = styled.div`
   display: flex;
   width: 100%;
   justify-content: space-between;
   align-items: center;
   /* box-shadow: inset 0 0 32px red; */
-`
+`;
 export const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 4px;
   padding: 4px 0 0 0;
-`
+`;
 export const UserName = styled.p`
   color: #000;
   font-size: 14px;
@@ -68,11 +67,11 @@ export const UserName = styled.p`
   display: -webkit-box;
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
-`
+`;
 export const UserId = styled.p`
   color: #767676;
   font-size: 12px;
-`
+`;
 export const BtnMore = styled.button`
   width: 18px;
   height: 18px;
@@ -81,7 +80,7 @@ export const BtnMore = styled.button`
   background-image: url(${iconMore});
   background-size: 18px;
   background-repeat: no-repeat;
-`
+`;
 export const PostContentImg = styled.img`
   width: 304px;
   aspect-ratio: 1.3 / 1;
@@ -89,12 +88,12 @@ export const PostContentImg = styled.img`
   border-radius: 10px;
   border: 1px solid #efefef;
   box-sizing: border-box;
-`
+`;
 export const PostContentText = styled.p`
   text-align: left;
   font-size: 14px;
   line-height: 17px;
-`
+`;
 // Btn
 const blooming = keyframes`
   0% {
@@ -109,7 +108,7 @@ const blooming = keyframes`
     scale: 1;
     transform: translateY(0);
   }
-`
+`;
 const disappearing = keyframes`
   0% {
     transform: translateY(0);
@@ -119,11 +118,11 @@ const disappearing = keyframes`
   }  100% {
     background: url(${iconLike});
   }
-`
+`;
 export const BtnWrapper = styled.div`
   display: flex;
   gap: 16px;
-`
+`;
 export const BtnLike = styled.button`
   width: fit-content;
   border: none;
@@ -150,18 +149,18 @@ export const BtnLike = styled.button`
     animation: ${blooming} 0.7s forwards;
     background: url(${iconLikefill});
   }
-`
+`;
 
 export const BtnComment = styled(BtnLike)`
   &::before {
     background: url(${iconComment});
   }
-`
+`;
 export const TagList = styled.ul`
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-`
+`;
 export const TagItem = styled.li`
   list-style: none;
   font-size: 14px;
@@ -169,15 +168,15 @@ export const TagItem = styled.li`
   line-height: 17px;
   padding: 2px 4px;
   font-weight: 500;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   width: fit-content;
   border-radius: 2px;
-`
+`;
 export const FestivalItem = styled(TagItem)`
-  background-color: #1F2241;
+  background-color: #1f2241;
   color: white;
-`
+`;
 export const PostTime = styled.p`
   font-size: 10px;
   color: #767676;
-`
+`;

@@ -16,7 +16,6 @@ import {
   postMoreState,
   userTokenState,
 } from '../../Atoms/atoms';
-import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
@@ -27,7 +26,7 @@ import { unfollowStateAPI } from '../../api/unfollowStateAPI';
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
@@ -44,7 +43,7 @@ export default function Profile() {
   const navigate = useNavigate();
   const onProfileChange = () => {
     navigate('/profilechange');
-  }
+  };
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow
@@ -97,9 +96,9 @@ export default function Profile() {
 
   // 프로필 이미지 엑박 처리 추가
   const handleImgError = (e) => {
-    console.log('이미지에러~!~!')
+    console.log('이미지에러~!~!');
     e.target.src = BasicImg;
-  }
+  };
 
   return (
     <>
@@ -118,7 +117,11 @@ export default function Profile() {
                 <p>followers</p>
               </Link>
             </P.Followers>
-            <P.BasicImg src={BasicImg && profile.image } alt="프로필이미지" onError={handleImgError}/>
+            <P.BasicImg
+              src={BasicImg && profile.image}
+              alt="프로필이미지"
+              onError={handleImgError}
+            />
             <P.Followings>
               <Link
                 to={`/followingslist/${accountname}`}
@@ -148,7 +151,8 @@ export default function Profile() {
             {isMine ? (
               // myProfile
               <>
-                <ProfileButton onClick={onProfileChange}
+                <ProfileButton
+                  onClick={onProfileChange}
                   content="프로필 수정"
                   background="#fff"
                   color="#000"
@@ -204,20 +208,11 @@ export default function Profile() {
         ) : (
           <></>
         )}
+
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
-        <ShowPost />
-        {/* 레이아웃 깨짐 임시 방지 */}
-        <div 
-        style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: "white",
-          display: 'flex',
-          overflow: 'scroll'
-        }}>
-          <PostList dataPost={dataPost}></PostList>
-        </div>
+        <ShowPost dataPost={dataPost} />
+
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
       </P.Layout>

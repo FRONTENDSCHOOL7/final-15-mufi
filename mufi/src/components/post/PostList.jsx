@@ -1,11 +1,11 @@
-import React from 'react'
-import PostItem from './PostItem'
-import * as P from './PostStyle' 
+import React from 'react';
+import PostItem from './PostItem';
+import * as P from './PostStyle';
 
-export default function PostList({dataPost}) {
+export default function PostList({ dataPost }) {
   return (
     <P.PostList>
-        <PostItem dataPost={dataPost}/>
+      <PostItem dataPost={dataPost} />
     </P.PostList>
-  )
+  );
 }

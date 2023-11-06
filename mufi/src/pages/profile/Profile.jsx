@@ -18,7 +18,6 @@ import {
   postMoreState,
   userTokenState,
 } from '../../Atoms/atoms';
-import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
@@ -45,12 +44,14 @@ export default function Profile() {
 
   const navigate = useNavigate();
   const onProfileChange = () => {
+    navigate('/profilechange');
+  };
     if (isMine) {
       navigate('/profilechange');
       setChangedProfile(profile);
     }
   }
-  
+
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow
@@ -215,21 +216,11 @@ export default function Profile() {
         ) : (
           <></>
         )}
+
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
-        <ShowPost />
-        {/* 레이아웃 깨짐 임시 방지 */}
-        <div
-          style={{
-            width: '100%',
-            height: '100%',
-            backgroundColor: 'white',
-            display: 'flex',
-            overflow: 'scroll',
-          }}
-        >
-          <PostList dataPost={dataPost}></PostList>
-        </div>
+        <ShowPost dataPost={dataPost} />
+
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
       </P.Layout>

@@ -45,10 +45,16 @@ export default function Upload() {
   const navigate = useNavigate();
 
   // 페이지이동
-  const openFestivalAdder = () => {
-    navigate('/upload/festival');
+  const openFestivalAdder = (e) => {
+    if (e.target.className === "remove-btn"){
+      e.stopPropagation();
+      handleRemoveFestival();
+    } else {
+      navigate('/upload/festival');
+    }
   };
-  const openHashtagAdder = () => {
+  const openHashtagAdder = (e) => {
+    e.stopPropagation();
     navigate('/upload/hashtag');
   };
 
@@ -92,6 +98,18 @@ export default function Upload() {
   const handleRemoveImage = (index) => {
     setSelectedImages((oldImages) => oldImages.filter((_, i) => i !== index));
   };
+
+  // 삭제
+  const handleRemoveTag = (index) => {
+    console.log("remove Tag")
+    setTags(oldTags=>oldTags.filter((_,i) => i !== index))
+  }
+
+  // 페스티벌 삭제
+  const handleRemoveFestival = () => {
+    console.log('remove Festival');
+    setFestival([]);
+  }
 
   // 업로드 버튼 클릭
   const handleSubmit = async (e) => {
@@ -156,7 +174,7 @@ export default function Upload() {
     <U.UploadWrapper>
       <UploadHeader formid={'form-post'} />
       <U.UploadContent id="form-post" onSubmit={handleSubmit}>
-        {/* ---- 추가 버튼 ---- */}
+        {/* ---- 게시글 작성 ---- */}
         <U.ContentLayout>
           <U.ProfileImage src={profileImg} alt="프로필 이미지" />
           <U.InputWithImage>
@@ -180,23 +198,23 @@ export default function Upload() {
             </U.SelectedImagesContainer>
           </U.InputWithImage>
         </U.ContentLayout>
-        {/* ---- 추가 버튼 ---- */}
+        {/* ---- 게시글 작성 ---- */}
 
         {/* ---- 추가 버튼 ---- */}
         <U.ButtonContainer>
-          <U.Button onClick={openFestivalAdder}>
+          <U.Button type="button" onClick={openFestivalAdder} className="add-btn">
             <U.ButtonImage src={festivalImage} alt="festival" />
             {festival.length ? (
-              <TagList tags={festival} isFestival={true}></TagList>
+              <TagList tags={festival} isFestival={true} removeBtn={true} onRemoveClick={handleRemoveFestival}></TagList>
             ) : (
               '페스티벌 추가하기'
             )}
           </U.Button>
 
-          <U.Button onClick={openHashtagAdder}>
+          <U.Button type="button" onClick={openHashtagAdder} className="add-btn" >
             <U.ButtonImage src={hashtagImage} alt="hashtag" />
             {tags.length ? (
-              <TagList tags={tags}></TagList>
+              <TagList tags={tags} removeBtn={true} onRemoveClick={handleRemoveTag}></TagList>
             ) : (
               '해시 태그 추가하기'
             )}

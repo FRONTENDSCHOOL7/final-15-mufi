@@ -46,6 +46,17 @@ export const SearchButton = styled.button`
   right: 49px;
 `;
 
+// 태그
+export const TagWrapper = styled.div`
+  border-radius: 8px;
+  margin: 16px 16px;
+  padding: 16px 16px;
+  border: 1px solid #efefef;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  color: #767676;
+`
+
 // 검색 결과를 보여주는 styled components
 export const SearchResult = styled.button`
   border: none;

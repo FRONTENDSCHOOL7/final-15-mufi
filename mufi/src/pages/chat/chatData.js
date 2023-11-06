@@ -66,7 +66,7 @@ export const dataChat = [
   },
 ];
 
-const dataChatText = [
+export const dataChatText = [
   '안녕하세요 맛있는 감귤 사세요.',
   '맛 있는 감귤 1 kg에 얼마에 판매중이신가요?',
   '1kg 10000원,  \n 3kg 2만 5천원 \n 5kg 3만 5천원입니다. 많이 사실 수록 싸게 드리고 있어요. 많이많이 구매해주세요.',

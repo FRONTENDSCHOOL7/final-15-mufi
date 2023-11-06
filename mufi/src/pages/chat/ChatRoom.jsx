@@ -6,7 +6,10 @@ import ChatBalloon from './ChatBalloon';
 import { dataChatText } from './chatData';
 
 export default function ChatRoom() {
-
+  // 사진 업로드
+  const [imageHolders, setImageHolders] = useState([]);
+  const [imgSrc, setImgSrc] = useState([]);
+  
   // chat 기존 거 생성
   const tempChatBalloons = dataChatText.map((chat) => {
     return <ChatBalloon chat={chat} />;
@@ -54,7 +57,7 @@ export default function ChatRoom() {
     return () => {
       document.removeEventListener('keydown', handleEnter);
     };
-  }, []);
+  });
 
   // 스크롤 아래로 끌어내리기
   useEffect(() => {
@@ -73,9 +76,6 @@ export default function ChatRoom() {
     return () => {};
   }, [chatInput, imgSrc]);
 
-  // 사진 업로드
-  const [imageHolders, setImageHolders] = useState([]);
-  const [imgSrc, setImgSrc] = useState([]);
 
   const uploadImage = async (imageFile) => {
     const baseUrl = 'https://api.mandarin.weniv.co.kr/';

@@ -4,11 +4,10 @@ import uploadImg from '../../assets/icon-image.png';
 import iconClose from '../../assets/icon-close.png';
 
 export const ChatList = styled.ul`
-  height: 100%;
+  height: calc(100vh - (47.5px + 60px));
   width: 100%;
   /* box-shadow: inset 0 0 32px red; */
   overflow: scroll;
-  padding: 4px;
   box-sizing: border-box;
 `;
 

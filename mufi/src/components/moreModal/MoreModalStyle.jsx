@@ -2,10 +2,10 @@ import styled, { keyframes } from "styled-components";
 
 const moveUpwards = keyframes`
   0% {
-    bottom: 0px;
+    bottom: -60px;
   }
   100% {
-    bottom: 60px;
+    bottom: 0px;
   }
 `
 export const Dim = styled.div`
@@ -18,7 +18,7 @@ export const Dim = styled.div`
 `
 export const ModalContainer = styled.div`
   position: sticky;
-  bottom: 60px;
+  bottom: 0px;
 
   background-color: #fff;
   width: 100%;

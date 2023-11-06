@@ -26,7 +26,7 @@ export default function ModalDetail({ btnList = ['삭제', '수정'] }) {
   };
 
   useEffect(() => {
-    if (postInfo) {
+    if (postInfo.author) {
       if (postInfo.author.accountname !== accountname) {
         setIsMine(false);
       }

@@ -8,6 +8,7 @@ import festivalImage from '../../assets/guitar-fill.png';
 import hashtagImage from '../../assets/hashtag-fill.png';
 import imageUploadImage from '../../assets/image-fill.png';
 import deleteImage from '../../assets/x.png';
+import { getProfileInfoAPI } from '../../api/user/getProfileInfoAPI';
 
 import { useRecoilState, useRecoilValue, useResetRecoilState } from 'recoil';
 import {
@@ -23,6 +24,7 @@ import { uploadPostAPI } from '../../api/uploadPostAPI';
 import { editPostAPI } from '../../api/editPostAPI';
 
 export default function Upload() {
+  const [userImg, setUserImg] = useState('');
   const [profileImg, setProfileImg] = useState(profileSmall);
   const [postContent, setPostContent] = useRecoilState(postContentState);
   const [selectedImages, setSelectedImages] = useRecoilState(postImageState);
@@ -46,7 +48,7 @@ export default function Upload() {
 
   // 페이지이동
   const openFestivalAdder = (e) => {
-    if (e.target.className === "remove-btn"){
+    if (e.target.className === 'remove-btn') {
       e.stopPropagation();
       handleRemoveFestival();
     } else {
@@ -101,15 +103,15 @@ export default function Upload() {
 
   // 삭제
   const handleRemoveTag = (index) => {
-    console.log("remove Tag")
-    setTags(oldTags=>oldTags.filter((_,i) => i !== index))
-  }
+    console.log('remove Tag');
+    setTags((oldTags) => oldTags.filter((_, i) => i !== index));
+  };
 
   // 페스티벌 삭제
   const handleRemoveFestival = () => {
     console.log('remove Festival');
     setFestival([]);
-  }
+  };
 
   // 업로드 버튼 클릭
   const handleSubmit = async (e) => {
@@ -170,13 +172,21 @@ export default function Upload() {
     resetPostInfo();
   }, [postInfo]);
 
+  const userToken = useRecoilValue(userTokenState);
+
+  useEffect(() => {
+    getProfileInfoAPI(userToken).then((data) => {
+      setUserImg(data.user.image);
+    });
+  });
+
   return (
     <U.UploadWrapper>
       <UploadHeader formid={'form-post'} />
       <U.UploadContent id="form-post" onSubmit={handleSubmit}>
         {/* ---- 게시글 작성 ---- */}
         <U.ContentLayout>
-          <U.ProfileImage src={profileImg} alt="프로필 이미지" />
+          <U.ProfileImage src={userImg} alt="프로필 이미지" />
           <U.InputWithImage>
             <U.PostInput
               ref={postInputRef}
@@ -202,19 +212,36 @@ export default function Upload() {
 
         {/* ---- 추가 버튼 ---- */}
         <U.ButtonContainer>
-          <U.Button type="button" onClick={openFestivalAdder} className="add-btn">
+          <U.Button
+            type="button"
+            onClick={openFestivalAdder}
+            className="add-btn"
+          >
             <U.ButtonImage src={festivalImage} alt="festival" />
             {festival.length ? (
-              <TagList tags={festival} isFestival={true} removeBtn={true} onRemoveClick={handleRemoveFestival}></TagList>
+              <TagList
+                tags={festival}
+                isFestival={true}
+                removeBtn={true}
+                onRemoveClick={handleRemoveFestival}
+              ></TagList>
             ) : (
               '페스티벌 추가하기'
             )}
           </U.Button>
 
-          <U.Button type="button" onClick={openHashtagAdder} className="add-btn" >
+          <U.Button
+            type="button"
+            onClick={openHashtagAdder}
+            className="add-btn"
+          >
             <U.ButtonImage src={hashtagImage} alt="hashtag" />
             {tags.length ? (
-              <TagList tags={tags} removeBtn={true} onRemoveClick={handleRemoveTag}></TagList>
+              <TagList
+                tags={tags}
+                removeBtn={true}
+                onRemoveClick={handleRemoveTag}
+              ></TagList>
             ) : (
               '해시 태그 추가하기'
             )}

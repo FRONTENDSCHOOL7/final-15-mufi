@@ -3,10 +3,11 @@ import { Layout } from '../../components/Layout/LayoutStyle';
 import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as C from './ChatStyle';
 import ChatBalloon from './ChatBalloon';
-import { dataChatText } from './chatData';
+import { dataChat } from './chatData';
 import MoreModal from '../../components/moreModal/MoreModal';
 import { useRecoilValue } from 'recoil';
 import { postMoreState } from '../../Atoms/atoms';
+import { useParams } from 'react-router-dom';
 
 export default function ChatRoom() {
   // 사진 업로드
@@ -14,19 +15,23 @@ export default function ChatRoom() {
   const [imgSrc, setImgSrc] = useState([]);
   const isModalOpen = useRecoilValue(postMoreState);
 
+  // 데이터
+  const {accountname} = useParams();
+  const filteredDataChat = dataChat.filter(v=>v.senderName === accountname)[0];
+  const dataChatText = filteredDataChat.dataChatText;
+  
   // chat 기존 거 생성
   const tempChatBalloons = dataChatText.map((chat) => {
-    return <ChatBalloon chat={chat} />;
+    return <ChatBalloon chat={chat} senderProfile={filteredDataChat.senderImg} isMyBalloon={false} imgSrc={imgSrc}/>;
   });
 
   let [chatBalloons, setChatBalloons] = useState(tempChatBalloons);
-
+  
   // text 인풋 값 받아오기
   const [chatInput, setChatInput] = useState('');
   const handleInputChange = (e) => {
     const newChat = e.target.value;
     setChatInput(newChat);
-    console.log(e.nativeEvent.isComposing);
     if (e.nativeEvent.isComposing) {
       return;
     }
@@ -80,7 +85,7 @@ export default function ChatRoom() {
     return () => {};
   }, [chatInput, imgSrc]);
 
-
+  // 이미지전송
   const uploadImage = async (imageFile) => {
     const baseUrl = 'https://api.mandarin.weniv.co.kr/';
     const reqUrl = baseUrl + 'image/uploadfile';
@@ -136,7 +141,7 @@ export default function ChatRoom() {
 
   return (
     <Layout>
-      <GoBackMoreHeader content="jukjae00" />
+      <GoBackMoreHeader content={accountname} />
 
       <C.ChatTextContent className="chat-text-content">
         {chatBalloons}

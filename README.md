@@ -8,12 +8,14 @@
 Mufi는 **페스티벌을 좋아하는 사람들이 모여 소통하는 SNS 플랫폼**입니다.<br />
 Music(음악) + Fiesta(축제)를 합친 Mufi는
 
-### [배포 URL] ()
+### [🎇 WELCOME MUFI](https://mufiesta.netlify.app/) 
+⬆️ 뮤피로 이동합니다.
 
 ```
 💫TEST 계정
 ID: heehee00@mufi.com
 PW: heehee00
+배포 URL : https://mufiesta.netlify.app/
 ```
 
 </br>

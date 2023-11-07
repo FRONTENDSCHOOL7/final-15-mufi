@@ -24,7 +24,8 @@ export const ImgWrapper = styled.div`
 `;
 
 export const FollowBtnLarge = styled(NextBtnStyle)`
-  width: 120px;
+  width: fit-content;
+  padding: 0 32px;
   height: 44px;
   font-size: 14px;
   color: #fff;

@@ -13,6 +13,7 @@ import * as S from './SearchedStyle';
 
 import { postMoreState } from '../../Atoms/atoms';
 import MoreModal from '../../components/moreModal/MoreModal';
+import HomeEmpty from '../home/HomeEmpty';
 
 export default function Searched() {
   const {keyword} = useParams();
@@ -66,7 +67,7 @@ export default function Searched() {
     <Layout>
       <GoBackMoreHeader content={`'${keyword}' 검색결과`}/>
       <S.SLayout>
-        {/* <Loading keyword={keyword}></Loading> */}
+        {dataPost.length === 0 ? <HomeEmpty emptyText={`${keyword}에 대한 게시물은 아직 없어요..`} btnText='다른 키워드로 검색하기'/> : null}
         {isLoading ? 
         <Loading keyword={keyword}/> 
         : <PostList dataPost={dataPost}></PostList>}

@@ -21,7 +21,7 @@ const Join = () => {
   const [password, setPassword] = useState('');
   const [emailError, setEmailError] = useState('');
   const [passwordError, setPasswordError] = useState('');
-  const [isBtnActive, setIsBtnActive] = useState(true);
+  const [isBtnActive, setIsBtnActive] = useState(false);
   const navigate = useNavigate();
 
   // api 연동

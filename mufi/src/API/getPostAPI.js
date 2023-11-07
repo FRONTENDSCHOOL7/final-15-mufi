@@ -3,7 +3,7 @@ import axios from 'axios';
 export const getPostAPI = async ( token ) => {
   let dataPost = [];
 
-  const apiUrl = 'post/feed';
+  const apiUrl = 'post/feed?limit=20&skip=0';
   const method = 'get';
   const reqHeaders = {
     "Authorization" : `Bearer ${token}`,

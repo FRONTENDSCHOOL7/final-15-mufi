@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as F from './FestivalStyle';
 import UploadHeader from '../../components/headers/UploadHeader';
 import searchIcon from '../../assets/icon-search-gray.png';
@@ -16,6 +16,7 @@ export default function Festival() {
   const setFestival = useSetRecoilState(festivalState);
   const [festivalStore, setFestivalStore] = useRecoilState(festivalStoreState);
   const [searchResult, setSearchResult] = useState(festivalStore);
+  const searchResultEl = useRef();
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 20) {
@@ -23,19 +24,21 @@ export default function Festival() {
       alert('20글자 이하까지만 작성할 수 있어요!');
     } else {
       setInputText(e.target.value);
-      setSearchResult(festivalStore.filter((v) => v.includes(e.target.value)));
-      if (searchResult.length === 0) {
-        setSearchResult([`${inputText}에 대한 검색결과가 없어요 T.T`]);
-        setIsResultEmpty(true);
-      }
+      setSearchResult(festivalStore.filter(v=>v.includes(e.target.value)));
+    if(searchResult.length === 0){
+      setSearchResult([`${inputText}에 대한 검색결과가 없어요 T.T`]);
+      setIsResultEmpty(true);
+    }
     }
   };
 
   const addSearchResult = (e) => {
     const festival = e.target.textContent;
-    setFestival([festival]);
-    navigate('/upload');
-  };
+    if (!isResultEmpty) {
+      setFestival([festival]);
+      navigate('/upload');
+    }
+  }
 
   const addFestival = () => {
     if (!festivalStore.includes(inputText)) {
@@ -45,22 +48,6 @@ export default function Festival() {
     setFestival([inputText]);
     navigate('/upload');
   };
-
-  // useEffect(() => {
-  //   document.addEventListener('keydown', async (e) => {
-  //     if (e.key === "Enter") {
-  //       await fetchSearchResult();
-  //     }
-  //   })
-
-  //   return () => {
-  //     document.removeEventListener('keydown', async (e) => {
-  //       if (e.key === "Enter") {
-  //         await fetchSearchResult();
-  //       }
-  //     })
-  //   }
-  // }, []);
 
   return (
     <>
@@ -79,32 +66,27 @@ export default function Festival() {
             <img src={searchIcon} alt="search" />
           </F.SearchButton>
         </F.SearchBox>
+      <F.SearchList>
+        {searchResult.map((result, index) => (
+          <F.SearchResult ref={searchResultEl} key={index} onClick={addSearchResult}>
+            {result.split(new RegExp(`(${inputText})`)).map((part, index) =>
+              part.trim() === inputText.trim() ? (
+                <F.HighlightedText
+                  key={index}
+                  style={{ whiteSpace: 'pre-wrap' }}
+                >
+                  {part}
+                </F.HighlightedText>
+              ) : (
+                <span style={{ whiteSpace: 'pre-wrap' }}>{part}</span>
+              )
+            )}
+          </F.SearchResult>
+        ))}
+      {isResultEmpty && <F.AddTagBtn onClick={addFestival}>'{inputText}' 추가하기</F.AddTagBtn>}
+      </F.SearchList>
 
-        <F.SearchList>
-          {searchResult.map((result, index) => (
-            <F.SearchResult key={index} onClick={addSearchResult}>
-              {result.split(new RegExp(`(${inputText})`)).map((part, index) =>
-                part.trim() === inputText.trim() ? (
-                  <F.HighlightedText
-                    key={index}
-                    style={{ whiteSpace: 'pre-wrap' }}
-                  >
-                    {part}
-                  </F.HighlightedText>
-                ) : (
-                  <span style={{ whiteSpace: 'pre-wrap' }}>{part}</span>
-                )
-              )}
-            </F.SearchResult>
-          ))}
-        </F.SearchList>
-
-        {isResultEmpty && (
-          <F.AddTagBtn onClick={addFestival}>
-            '{inputText}' 추가하기
-          </F.AddTagBtn>
-        )}
-      </F.FestivalWrapper>
-    </>
+    </F.FestivalWrapper>
+</>
   );
 }

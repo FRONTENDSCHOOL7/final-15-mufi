@@ -13,13 +13,14 @@ import * as S from './SearchedStyle';
 
 import { postMoreState } from '../../Atoms/atoms';
 import MoreModal from '../../components/moreModal/MoreModal';
+import HomeEmpty from '../home/HomeEmpty';
 
 import { Helmet } from 'react-helmet-async';
 
 export default function Searched() {
-  const { keyword } = useParams();
-  console.log(keyword); // 박재범
-
+  const {keyword} = useParams();
+  // console.log(keyword); // 박재범
+  
   const token = useRecoilValue(userTokenState);
   const number = 2000;
 
@@ -47,6 +48,17 @@ export default function Searched() {
       });
       // ----- 게시글 필터 끝 -----
 
+      // ---- 데이터 형태 수정 ----
+      tempDataPost = tempDataPost.map(v=>{
+        const {_id, ...newData} = v;
+        newData.id = v._id;
+        newData.commentCount = v.comments.length;
+        newData.hearted = true;
+        delete newData._id;
+        return newData;
+      })
+      // ---- ----
+
       setDataPost(tempDataPost);
       setIsLoading(false);
     };
@@ -59,16 +71,14 @@ export default function Searched() {
         <title>SEARCHED</title>
       </Helmet>
       <Layout>
-        <GoBackMoreHeader content={`'${keyword}' 검색결과`} />
+        <GoBackMoreHeader content={`'${keyword}' 검색결과`}/>
         <S.SLayout>
-          {/* <Loading keyword={keyword}></Loading> */}
-          {isLoading ? (
-            <Loading keyword={keyword} />
-          ) : (
-            <PostList dataPost={dataPost}></PostList>
-          )}
+          {dataPost.length === 0 ? <HomeEmpty emptyText={`${keyword}에 대한 게시물은 아직 없어요..`} btnText='다른 키워드로 검색하기'/> : null}
+          {isLoading ? 
+          <Loading keyword={keyword}/> 
+          : <PostList dataPost={dataPost}></PostList>}
         </S.SLayout>
-        {isModalOpen && <MoreModal></MoreModal>}
+        { isModalOpen && <MoreModal></MoreModal> }
         <NavBar />
       </Layout>
     </>

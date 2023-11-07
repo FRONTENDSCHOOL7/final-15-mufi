@@ -28,7 +28,7 @@ export const postCommentAPI = async ({ token, content, postId }) => {
   // option에 따라 api 연결하기
   await axios(option)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       dataComment = res;
     })
     .catch((error) => {

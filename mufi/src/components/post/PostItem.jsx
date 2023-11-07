@@ -6,6 +6,7 @@ import BtnWrapper from './BtnWrapper';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { postInfoState, postIdState, postMoreState } from '../../Atoms/atoms';
 import img from '../../assets/basic-profile-small.png';
+import imgError from '../../assets/imgError.png';
 
 export default function PostItem({ dataPost }) {
   // console.log(dataPost);
@@ -66,7 +67,7 @@ export default function PostItem({ dataPost }) {
     };
 
     const handleContentImgError = (e) => {
-      e.target.setAttribute('style', 'display:none');
+      e.target.src = imgError;
     };
 
     return (
@@ -88,7 +89,7 @@ export default function PostItem({ dataPost }) {
           </P.UpperWrapper>
 
           <Link to={`/postdetail/${v.id}`}>
-            {v.image && <P.PostContentImg src={v.image} />}
+            {v.image && <P.PostContentImg src={v.image} onError={handleContentImgError}/>}
 
             <P.PostContentText>{textContent}</P.PostContentText>
           </Link>

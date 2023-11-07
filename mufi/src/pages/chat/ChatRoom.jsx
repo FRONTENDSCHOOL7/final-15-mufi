@@ -4,12 +4,16 @@ import GoBackMoreHeader from '../../components/headers/GoBackMoreHeader';
 import * as C from './ChatStyle';
 import ChatBalloon from './ChatBalloon';
 import { dataChatText } from './chatData';
+import MoreModal from '../../components/moreModal/MoreModal';
+import { useRecoilValue } from 'recoil';
+import { postMoreState } from '../../Atoms/atoms';
 
 export default function ChatRoom() {
   // 사진 업로드
   const [imageHolders, setImageHolders] = useState([]);
   const [imgSrc, setImgSrc] = useState([]);
-  
+  const isModalOpen = useRecoilValue(postMoreState);
+
   // chat 기존 거 생성
   const tempChatBalloons = dataChatText.map((chat) => {
     return <ChatBalloon chat={chat} />;
@@ -132,7 +136,7 @@ export default function ChatRoom() {
 
   return (
     <Layout>
-      <GoBackMoreHeader content="뮤프" />
+      <GoBackMoreHeader content="jukjae00" />
 
       <C.ChatTextContent className="chat-text-content">
         {chatBalloons}
@@ -143,6 +147,9 @@ export default function ChatRoom() {
           {imageHolders}
         </C.TempImageWrapper>
       )}
+
+      {isModalOpen && <MoreModal />}
+
 
       <C.ChatInputWrapper>
         <C.ImgInputLabel htmlFor="input-file"></C.ImgInputLabel>

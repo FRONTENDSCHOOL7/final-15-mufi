@@ -9,9 +9,10 @@ import iconFestivalRemove from '../../assets/festival-remove.png';
 
 // 게시글 리스트
 export const PostList = styled.ul`
+  width: 390px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
+  background-color: #ffffff;
 `;
 
 // 게시물 하나
@@ -22,15 +23,17 @@ export const PostItem = styled.li`
   background-color: #fff;
   border-bottom: 1px solid #efefef;
   transition: all 0.3s;
+  margin: 0 auto;
 
-  &.cardUI {
-    margin: 4px;
-    box-shadow: 0 0 16px #dedede;
-    border-radius: 8px;
-    &:hover {
-      transform: scale(102%);
-    }
+  /* &.cardUI { */
+  margin: 8px;
+  margin-bottom: 4px;
+  box-shadow: 0 0 16px #dedede;
+  border-radius: 8px;
+  &:hover {
+    /* transform: scale(102%); */
   }
+  /* } */
 `;
 export const UserProfile = styled.img`
   width: 40px;

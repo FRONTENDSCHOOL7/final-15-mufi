@@ -6,6 +6,7 @@ import AlbumOn from '../../assets/icon-post-album-on.png';
 import ListOn from '../../assets/icon-post-list-on.png';
 import PostList from '../post/PostList';
 import PostAlbum from './PostAlbum';
+import HomeEmpty from "../../pages/home/HomeEmpty"
 
 export default function ShowPost({ dataPost }) {
   const [btnState, setBtnState] = useState('list');
@@ -45,7 +46,9 @@ export default function ShowPost({ dataPost }) {
           </button>
         </SP.AlbumWrapper>
       </SP.ShowPostWrapper>
+
       <SP.PostContainer>
+        {dataPost.length === 0 ? <HomeEmpty emptyText='아직 아무런 게시물도 올리지 않았어요..' showBtn={false}/> : null}
         {btnState === 'list' ? (
           <PostList dataPost={dataPost} />
         ) : (

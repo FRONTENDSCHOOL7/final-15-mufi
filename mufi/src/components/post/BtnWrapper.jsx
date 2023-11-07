@@ -14,7 +14,7 @@ export default function BtnWrapper({heartCount, commentNum, postId, isHearted}) 
   const [isLiked, setIsLiked] = useState(isHearted);
 
   const moveToComment = () => {
-    navigate('');
+    navigate(`/postdetail/${postId}`);
   };
 
   const like = async () => {

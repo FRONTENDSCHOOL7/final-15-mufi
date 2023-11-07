@@ -38,15 +38,17 @@ export default function Hashtag() {
 
   const addSearchResult = async (e) => {
     const newTag = e.target.textContent;
-    console.log(newTag);
-    setTags((oldTags)=>{
-      let newTags;
-      if(!oldTags.includes(newTag)){
-        newTags = [...oldTags, newTag];
-      }
-      return newTags;
-    });
-    navigate('/upload');
+    // console.log(newTag);
+    if (!isResultEmpty) {
+        setTags((oldTags)=>{
+        let newTags;
+        if(!oldTags.includes(newTag)){
+          newTags = [...oldTags, newTag];
+        }
+        return newTags;
+      });
+      navigate('/upload');
+    }
   }
 
   const addTag = () => {
@@ -69,7 +71,7 @@ export default function Hashtag() {
 
   // 태그 삭제
   const handleRemoveTag = (index) => {
-    console.log("remove Tag")
+    // console.log("remove Tag")
     setTags(oldTags=>oldTags.filter((_,i) => i !== index))
   }
 
@@ -114,9 +116,8 @@ export default function Hashtag() {
               : result}
           </H.SearchResult>
         ))}
+        {isResultEmpty && <H.AddTagBtn onClick={addTag}>'{inputText}' 태그 추가하기</H.AddTagBtn>}
       </H.SearchList>
-
-      {isResultEmpty && <H.AddTagBtn onClick={addTag}>'{inputText}' 태그 추가하기</H.AddTagBtn>}
 
     </H.HashtagWrapper>
   );

@@ -92,7 +92,7 @@ export const AddTagBtn = styled.button`
   font-style: normal;
   font-weight: 600;
   background-color: #2033e7;
-  margin: auto;
+  margin: 16px auto;
   border-radius: 4px;
   border: none;
 `;

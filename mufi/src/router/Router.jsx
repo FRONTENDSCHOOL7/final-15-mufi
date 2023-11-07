@@ -28,8 +28,8 @@ import PostDetail from '../pages/post/PostDetail';
 export default function Router() {
   return (
     <Routes>
-      <Route path="/splash" element={<Splash />} />
-      <Route path="/" element={<Landing />} />
+      <Route path="/" element={<Splash />} />
+      <Route path="/landing" element={<Landing />} />
       <Route path="/join" element={<Join />} />
       <Route path="/login" element={<Login />} />
       <Route path="/joinprofile" element={<JoinProfile />} />
@@ -49,13 +49,11 @@ export default function Router() {
       <Route path="/chat" element={<Chat />} />
       <Route path="/chatroom/:accountname" element={<ChatRoom />} />
 
-
       <Route path="/postdetail/:postId" element={<PostDetail />} />
 
       <Route path="/musicAdd" element={<MusicAdd />} />
-      <Route path="/profileChange" element={<ProfileChange/>} />
-      <Route path="/errorPage" element={<ErrorPage/>} />
-
+      <Route path="/profileChange" element={<ProfileChange />} />
+      <Route path="/errorPage" element={<ErrorPage />} />
     </Routes>
   );
 }

@@ -40,7 +40,6 @@ export const isHeaderState = atom({
   default: false,
 });
 
-
 // upload 상태
 export const festivalState = atom({
   key: 'festivalState',
@@ -119,7 +118,6 @@ export const changedProfileState = atom({
   key: 'changedProfileState',
   default: {},
 });
-
 
 export const isLoadingState = atom({
   key: 'isLoadingState',

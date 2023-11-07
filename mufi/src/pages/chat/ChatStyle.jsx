@@ -5,8 +5,10 @@ import iconClose from '../../assets/icon-close.png';
 import jukjae from '../../assets/jukjae.jpeg';
 
 export const ChatList = styled.ul`
-  height: 100%;
+  height: calc(100vh - (47.5px + 60px));
   width: 100%;
+  /* box-shadow: inset 0 0 32px red; */
+  overflow: scroll;
   box-sizing: border-box;
   overflow: scroll;
   &::-webkit-scrollbar {

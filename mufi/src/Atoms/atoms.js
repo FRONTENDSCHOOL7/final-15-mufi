@@ -29,10 +29,17 @@ export const accountNameState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+// moreModal
 export const postMoreState = atom({
   key: 'postMoreState',
   default: false,
 });
+
+export const isHeaderState = atom({
+  key: 'isHeaderState',
+  default: false,
+});
+
 
 // upload 상태
 export const festivalState = atom({

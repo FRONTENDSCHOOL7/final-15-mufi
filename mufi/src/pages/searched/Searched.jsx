@@ -19,7 +19,7 @@ export default function Searched() {
   console.log(keyword); // 박재범
   
   const token = useRecoilValue(userTokenState);
-  const number = 10000;
+  const number = 2000;
   
   const [dataPost, setDataPost] = useState([]);
   const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);

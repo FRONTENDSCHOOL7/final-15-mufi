@@ -53,7 +53,7 @@ export default function UserComment({ comment, postId, onCommentDelete }) {
       <UC.Wrapper>
         <UC.UserImg
           src={comment.author.image}
-          onClick={() => navigate(`/profile/${comment.author.id}`)}
+          onClick={() => navigate(`/profile/${comment.author.accountname}`)}
         />
         <UC.Content>
           <UC.Container>

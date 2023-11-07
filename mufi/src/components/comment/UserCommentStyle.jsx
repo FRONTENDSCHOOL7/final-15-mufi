@@ -28,6 +28,7 @@ export const UserImg = styled.img`
   border-radius: 50%;
   object-fit: cover;
   flex-shrink: 0;
+  cursor: pointer;
 `;
 
 export const UserName = styled.h2`

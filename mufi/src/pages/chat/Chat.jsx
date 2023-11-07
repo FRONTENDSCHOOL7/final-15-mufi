@@ -15,7 +15,7 @@ export default function Chat() {
   return (
     <>
       <Helmet>
-        <title>Chat</title>
+        <title>CHAT</title>
       </Helmet>
       <Layout>
         <GoBackMoreHeader />

@@ -24,7 +24,7 @@ export default function Landing() {
   return (
     <>
       <Helmet>
-        <title>Welcome MUFI</title>
+        <title>WELCOME</title>
       </Helmet>
       <L.Layout>
         {isModalOpen || <L.Logo src={logoFull} alt="MUFI" />}

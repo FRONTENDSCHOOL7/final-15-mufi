@@ -15,7 +15,7 @@ export default function Splash() {
   return (
     <>
       <Helmet>
-        <title>MUFI...</title>
+        <title>GO MUFI</title>
       </Helmet>
       <S.Layout></S.Layout>
     </>

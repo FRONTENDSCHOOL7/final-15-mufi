@@ -1,14 +1,15 @@
 import React from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { HeaderWrapper, BackBtn, OkBtn } from './UploadHeaderStyle';
 import BackIcon from '../../assets/icon-arrow-left.png';
-import { useResetRecoilState } from 'recoil';
+import { useRecoilValue, useResetRecoilState } from 'recoil';
 import {
   festivalState,
   postContentState,
   postImageState,
   postInfoState,
   tagsState,
+  lastVisitedPageState,
 } from '../../Atoms/atoms';
 
 export default function UploadHeader({
@@ -26,12 +27,13 @@ export default function UploadHeader({
   const resetPostInfo = useResetRecoilState(postInfoState);
   const navigate = useNavigate();
   const location = useLocation();
+  const lastVisitedPage = useRecoilValue(lastVisitedPageState);
 
   handleGoBack = () => {
     console.log(location.pathname);
     if (location.pathname !== '/upload') {
       navigate(-1);
-    } else {
+    } else if (location.pathname === '/upload') {
       if (
         window.confirm(
           '!! 지금까지 작성했던 내용이 모두 사라집니다. 그래도 괜찮으신가요?'
@@ -42,8 +44,10 @@ export default function UploadHeader({
         resetContent();
         resetImage();
         resetPostInfo();
-        navigate(-1);
+        navigate(lastVisitedPage);
       }
+    } else if (location.pathname.startsWith('/upload')) {
+      navigate('/upload');
     }
   };
 

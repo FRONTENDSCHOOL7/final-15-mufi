@@ -17,6 +17,7 @@ import {
   changedProfileState,
   postMoreState,
   userTokenState,
+  lastVisitedPageState,
 } from '../../Atoms/atoms';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
@@ -40,6 +41,11 @@ export default function Profile() {
   const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
 
   const { accountname } = useParams();
+  const setLastVisitedPage = useSetRecoilState(lastVisitedPageState);
+
+  useEffect(() => {
+    setLastVisitedPage(`/profile/${accountname}`);
+  }, [accountname]);
   // your profile(false)인지 my profile(true) 인지 check
   const [isMine, setIsMine] = useState(myAccountname === accountname);
 

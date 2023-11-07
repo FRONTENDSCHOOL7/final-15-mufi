@@ -44,6 +44,7 @@ export const TempHeader = styled.div`
 
 export const HomeFeed = styled.div`
   overflow-y: scroll;
+  overflow-x: hidden;
   width: 100%;
   height: 100%;
   margin: 0 auto;
@@ -54,8 +55,8 @@ export const HomeFeed = styled.div`
 `;
 
 export const HomeSearch = styled.div`
-overflow: scroll;
-width:100%;
-height: 100%;
-margin: 0 auto;
-`
+  overflow: scroll;
+  width: 100%;
+  height: 100%;
+  margin: 0 auto;
+`;

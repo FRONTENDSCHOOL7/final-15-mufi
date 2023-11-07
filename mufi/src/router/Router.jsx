@@ -53,7 +53,7 @@ export default function Router() {
 
       <Route path="/musicAdd" element={<MusicAdd />} />
       <Route path="/profileChange" element={<ProfileChange />} />
-      <Route path="/errorPage" element={<ErrorPage />} />
+      <Route path="/*" element={<ErrorPage />} />
     </Routes>
   );
 }

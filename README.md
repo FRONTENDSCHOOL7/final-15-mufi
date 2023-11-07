@@ -2,6 +2,9 @@
 
 ## 1. 🎺 Mufi 소개
 
+<img src='https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/mufiMain.png' alt='mufiMain'>
+
+<br />
 Mufi는 **페스티벌을 좋아하는 사람들이 모여 소통하는 SNS 플랫폼**입니다.<br />
 Music(음악) + Fiesta(축제)를 합친 Mufi는
 

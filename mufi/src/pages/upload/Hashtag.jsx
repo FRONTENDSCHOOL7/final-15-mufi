@@ -35,15 +35,17 @@ export default function Hashtag() {
       if (searchResult.length === 0) {
         setSearchResult([`${e.target.value}에 대한 검색결과가 없어요 T.T`]);
         setIsResultEmpty(true);
+      } else {
+        setIsResultEmpty(false);
       }
     }
   };
 
   const addSearchResult = async (e) => {
     const newTag = e.target.textContent;
-    // console.log(newTag);
+    console.log(isResultEmpty);
     if (!isResultEmpty) {
-        setTags((oldTags)=>{
+      setTags((oldTags)=>{
         let newTags;
         if(!oldTags.includes(newTag)){
           newTags = [...oldTags, newTag];

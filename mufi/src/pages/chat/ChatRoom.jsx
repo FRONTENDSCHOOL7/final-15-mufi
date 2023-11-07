@@ -132,7 +132,7 @@ export default function ChatRoom() {
 
   return (
     <Layout>
-      <GoBackMoreHeader content="애월읍 위니브 감귤농장" />
+      <GoBackMoreHeader content="뮤프" />
 
       <C.ChatTextContent className="chat-text-content">
         {chatBalloons}

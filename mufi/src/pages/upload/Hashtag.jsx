@@ -114,9 +114,8 @@ export default function Hashtag() {
               : result}
           </H.SearchResult>
         ))}
+        {isResultEmpty && <H.AddTagBtn onClick={addTag}>'{inputText}' 태그 추가하기</H.AddTagBtn>}
       </H.SearchList>
-
-      {isResultEmpty && <H.AddTagBtn onClick={addTag}>'{inputText}' 태그 추가하기</H.AddTagBtn>}
 
     </H.HashtagWrapper>
   );

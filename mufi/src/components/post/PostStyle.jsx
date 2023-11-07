@@ -12,7 +12,6 @@ export const PostList = styled.ul`
   width: 390px;
   display: flex;
   flex-direction: column;
-  margin: 0 auto;
   background-color: #ffffff;
 `;
 
@@ -27,12 +26,13 @@ export const PostItem = styled.li`
   margin: 0 auto;
 
   /* &.cardUI { */
-    margin: 8px;
-    box-shadow: 0 0 16px #dedede;
-    border-radius: 8px;
-    &:hover {
-      transform: scale(102%);
-    }
+  margin: 8px;
+  margin-bottom: 4px;
+  box-shadow: 0 0 16px #dedede;
+  border-radius: 8px;
+  &:hover {
+    /* transform: scale(102%); */
+  }
   /* } */
 `;
 export const UserProfile = styled.img`

@@ -28,6 +28,8 @@ export default function Festival() {
     if(searchResult.length === 0){
       setSearchResult([`${inputText}에 대한 검색결과가 없어요 T.T`]);
       setIsResultEmpty(true);
+    } else {
+      setIsResultEmpty(false);
     }
     }
   };

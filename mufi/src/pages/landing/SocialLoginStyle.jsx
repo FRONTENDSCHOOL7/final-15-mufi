@@ -16,7 +16,7 @@ const moveUpwards = keyframes`
 
 export const Dim = styled.div`
   width: 500px;
-  height: calc(100vh - 300px);
+  height: calc(100vh);
   background-color: #00000097;
   position: absolute;
   top: 0;

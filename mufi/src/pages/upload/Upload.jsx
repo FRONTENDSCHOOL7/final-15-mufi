@@ -22,6 +22,7 @@ import {
 } from '../../Atoms/atoms';
 import { uploadPostAPI } from '../../api/uploadPostAPI';
 import { editPostAPI } from '../../api/editPostAPI';
+import { Helmet } from 'react-helmet-async';
 
 export default function Upload() {
   const [userImg, setUserImg] = useState('');
@@ -181,86 +182,91 @@ export default function Upload() {
   });
 
   return (
-    <U.UploadWrapper>
-      <UploadHeader formid={'form-post'} />
-      <U.UploadContent id="form-post" onSubmit={handleSubmit}>
-        {/* ---- 게시글 작성 ---- */}
-        <U.ContentLayout>
-          <U.ProfileImage src={userImg} alt="프로필 이미지" />
-          <U.InputWithImage>
-            <U.PostInput
-              ref={postInputRef}
-              value={postContent}
-              onChange={handleContentChange}
-              placeholder="게시글 입력하기..."
+    <>
+      <Helmet>
+        <title>UPLOAD</title>
+      </Helmet>
+      <U.UploadWrapper>
+        <UploadHeader formid={'form-post'} />
+        <U.UploadContent id="form-post" onSubmit={handleSubmit}>
+          {/* ---- 게시글 작성 ---- */}
+          <U.ContentLayout>
+            <U.ProfileImage src={userImg} alt="프로필 이미지" />
+            <U.InputWithImage>
+              <U.PostInput
+                ref={postInputRef}
+                value={postContent}
+                onChange={handleContentChange}
+                placeholder="게시글 입력하기..."
+              />
+              <U.SelectedImagesContainer ref={selectedImagesContainer}>
+                {selectedImages.map((img, index) => (
+                  <U.ImageBox key={index}>
+                    <U.SelectedImage src={img} />
+                    <U.RemoveImageButton
+                      src={deleteImage}
+                      onClick={() => handleRemoveImage(index)}
+                      alt="Remove"
+                    />
+                  </U.ImageBox>
+                ))}
+              </U.SelectedImagesContainer>
+            </U.InputWithImage>
+          </U.ContentLayout>
+          {/* ---- 게시글 작성 ---- */}
+
+          {/* ---- 추가 버튼 ---- */}
+          <U.ButtonContainer>
+            <U.Button
+              type="button"
+              onClick={openFestivalAdder}
+              className="add-btn"
+            >
+              <U.ButtonImage src={festivalImage} alt="festival" />
+              {festival.length ? (
+                <TagList
+                  tags={festival}
+                  isFestival={true}
+                  removeBtn={true}
+                  onRemoveClick={handleRemoveFestival}
+                ></TagList>
+              ) : (
+                '페스티벌 추가하기'
+              )}
+            </U.Button>
+
+            <U.Button
+              type="button"
+              onClick={openHashtagAdder}
+              className="add-btn"
+            >
+              <U.ButtonImage src={hashtagImage} alt="hashtag" />
+              {tags.length ? (
+                <TagList
+                  tags={tags}
+                  removeBtn={true}
+                  onRemoveClick={handleRemoveTag}
+                ></TagList>
+              ) : (
+                '해시 태그 추가하기'
+              )}
+            </U.Button>
+
+            <U.Button type="button" onClick={handleFileButtonClick}>
+              <U.ButtonImage src={imageUploadImage} alt="image upload" />
+              사진 추가하기
+            </U.Button>
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              style={{ display: 'none' }}
+              onChange={handleFileSelect}
             />
-            <U.SelectedImagesContainer ref={selectedImagesContainer}>
-              {selectedImages.map((img, index) => (
-                <U.ImageBox key={index}>
-                  <U.SelectedImage src={img} />
-                  <U.RemoveImageButton
-                    src={deleteImage}
-                    onClick={() => handleRemoveImage(index)}
-                    alt="Remove"
-                  />
-                </U.ImageBox>
-              ))}
-            </U.SelectedImagesContainer>
-          </U.InputWithImage>
-        </U.ContentLayout>
-        {/* ---- 게시글 작성 ---- */}
-
-        {/* ---- 추가 버튼 ---- */}
-        <U.ButtonContainer>
-          <U.Button
-            type="button"
-            onClick={openFestivalAdder}
-            className="add-btn"
-          >
-            <U.ButtonImage src={festivalImage} alt="festival" />
-            {festival.length ? (
-              <TagList
-                tags={festival}
-                isFestival={true}
-                removeBtn={true}
-                onRemoveClick={handleRemoveFestival}
-              ></TagList>
-            ) : (
-              '페스티벌 추가하기'
-            )}
-          </U.Button>
-
-          <U.Button
-            type="button"
-            onClick={openHashtagAdder}
-            className="add-btn"
-          >
-            <U.ButtonImage src={hashtagImage} alt="hashtag" />
-            {tags.length ? (
-              <TagList
-                tags={tags}
-                removeBtn={true}
-                onRemoveClick={handleRemoveTag}
-              ></TagList>
-            ) : (
-              '해시 태그 추가하기'
-            )}
-          </U.Button>
-
-          <U.Button type="button" onClick={handleFileButtonClick}>
-            <U.ButtonImage src={imageUploadImage} alt="image upload" />
-            사진 추가하기
-          </U.Button>
-          <input
-            ref={fileInputRef}
-            type="file"
-            accept="image/*"
-            style={{ display: 'none' }}
-            onChange={handleFileSelect}
-          />
-        </U.ButtonContainer>
-        {/* ---- 추가 버튼 ---- */}
-      </U.UploadContent>
-    </U.UploadWrapper>
+          </U.ButtonContainer>
+          {/* ---- 추가 버튼 ---- */}
+        </U.UploadContent>
+      </U.UploadWrapper>
+    </>
   );
 }

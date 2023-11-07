@@ -15,8 +15,14 @@ import {
 
 // api 연동 import
 import { useSetRecoilState } from 'recoil';
-import { loginAPI } from '../../api/loginAPI'
-import { userTokenState, userLoginState, accountnameState } from '../../Atoms/atoms';
+import { loginAPI } from '../../api/loginAPI';
+import {
+  userTokenState,
+  userLoginState,
+  accountnameState,
+} from '../../Atoms/atoms';
+
+import { Helmet } from 'react-helmet-async';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -71,7 +77,6 @@ const Login = () => {
     }
   }, []);
 
-
   // 로그인 처리 + api 연동
   const handleSubmit = useCallback(
     async (e) => {
@@ -93,46 +98,51 @@ const Login = () => {
   );
 
   return (
-    <Layout>
-      <Header />
-      <Title>로그인</Title>
-      <form onSubmit={handleSubmit}>
-        <InputGroup>
-          <Label htmlFor="email">이메일</Label>
-          <Input
-            id="email"
-            type="text"
-            value={email}
-            onChange={userEmailValidation}
-            required
-          />
-        </InputGroup>
+    <>
+      <Helmet>
+        <title>LOGIN</title>
+      </Helmet>
+      <Layout>
+        <Header />
+        <Title>로그인</Title>
+        <form onSubmit={handleSubmit}>
+          <InputGroup>
+            <Label htmlFor="email">이메일</Label>
+            <Input
+              id="email"
+              type="text"
+              value={email}
+              onChange={userEmailValidation}
+              required
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <ErrorMessage>{emailError}</ErrorMessage>
-        </InputGroup>
+          <InputGroup>
+            <ErrorMessage>{emailError}</ErrorMessage>
+          </InputGroup>
 
-        <InputGroup>
-          <Label htmlFor="password">비밀번호</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={userPasswordValidation}
-            required
-          />
-        </InputGroup>
+          <InputGroup>
+            <Label htmlFor="password">비밀번호</Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={userPasswordValidation}
+              required
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <ErrorMessage>{passwordError}</ErrorMessage>
-        </InputGroup>
+          <InputGroup>
+            <ErrorMessage>{passwordError}</ErrorMessage>
+          </InputGroup>
 
-        <NextBtn disabled={isBtnActive} onClick={handleSubmit}>
-          로그인
-        </NextBtn>
-        <EmailJoin />
-      </form>
-    </Layout>
+          <NextBtn disabled={isBtnActive} onClick={handleSubmit}>
+            로그인
+          </NextBtn>
+          <EmailJoin />
+        </form>
+      </Layout>
+    </>
   );
 };
 

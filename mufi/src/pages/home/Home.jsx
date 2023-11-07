@@ -13,6 +13,8 @@ import { userTokenState } from '../../Atoms/atoms';
 import { postMoreState } from '../../Atoms/atoms';
 import MoreModal from '../../components/moreModal/MoreModal';
 
+import { Helmet } from 'react-helmet-async';
+
 const Home = () => {
   const [postData, setPostData] = useState([]);
 
@@ -32,6 +34,9 @@ const Home = () => {
 
   return (
     <>
+      <Helmet>
+        <title>HOME</title>
+      </Helmet>
       <H.HLayout>
         <HomeHeader />
         {postData.length !== 0 ? (
@@ -42,7 +47,6 @@ const Home = () => {
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar></NavBar>
       </H.HLayout>
-
       {/* <button style={{position:absolute}} onClick={() => {
         const li = document.querySelectorAll('li');
         li.forEach(v=>v.classList.toggle('cardUI'))

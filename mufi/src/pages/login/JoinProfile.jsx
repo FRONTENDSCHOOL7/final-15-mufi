@@ -16,6 +16,7 @@ import {
   userLoginState,
   userTokenState,
 } from '../../Atoms/atoms';
+import { Helmet } from 'react-helmet-async';
 
 export default function JoinProfile() {
   const [username, setUserName] = useState('');
@@ -139,6 +140,9 @@ export default function JoinProfile() {
 
   return (
     <>
+      <Helmet>
+        <title>JOIN PROFILE</title>
+      </Helmet>
       <JP.Layout>
         <Header />
 

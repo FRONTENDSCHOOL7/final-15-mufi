@@ -20,6 +20,8 @@ import UserComment from '../../components/comment/UserComment';
 //modal
 import ModalDetail from '../../components/moreModal/ModalDetail';
 
+import { Helmet } from 'react-helmet-async';
+
 export default function PostDetail() {
   const { postId } = useParams();
   const [isModalOpen, setIsModalOpen] = useRecoilState(postMoreState);
@@ -78,6 +80,9 @@ export default function PostDetail() {
 
   return (
     <>
+      <Helmet>
+        <title>POST</title>
+      </Helmet>
       <PD.PDLayout>
         <GoBackMoreHeader />
         <PD.Div>

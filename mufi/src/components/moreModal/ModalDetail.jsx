@@ -48,6 +48,7 @@ export default function ModalDetail({ btnList = ['삭제', '수정'] }) {
   // 삭제 기능
   const handleDelete = async () => {
     await deletePostAPI({ token, postId });
+    navigate('/home');
     setPostId('');
     handleClose();
     window.location.replace('');

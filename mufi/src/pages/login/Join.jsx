@@ -14,6 +14,8 @@ import {
 // api 연동 import
 import { emailValidAPI } from '../../api/user/emailValidAPI';
 
+import { Helmet } from 'react-helmet-async';
+
 const Join = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -99,53 +101,58 @@ const Join = () => {
   };
 
   return (
-    <Layout>
-      <Header />
-      <Title>이메일로 회원가입</Title>
-      <form onSubmit={handleSubmit}>
-        <InputGroup>
-          <Label htmlFor="email">이메일</Label>
-          <Input
-            id="email"
-            type="email"
-            value={email}
-            onChange={userEmailValidation}
-            placeholder="이메일 주소를 입력해주세요."
-            onBlur={userEmailDuplicate}
-            required
-          />
-        </InputGroup>
+    <>
+      <Helmet>
+        <title>JOIN</title>
+      </Helmet>
+      <Layout>
+        <Header />
+        <Title>이메일로 회원가입</Title>
+        <form onSubmit={handleSubmit}>
+          <InputGroup>
+            <Label htmlFor="email">이메일</Label>
+            <Input
+              id="email"
+              type="email"
+              value={email}
+              onChange={userEmailValidation}
+              placeholder="이메일 주소를 입력해주세요."
+              onBlur={userEmailDuplicate}
+              required
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <ErrorMessage>{emailError}</ErrorMessage>
-        </InputGroup>
+          <InputGroup>
+            <ErrorMessage>{emailError}</ErrorMessage>
+          </InputGroup>
 
-        <InputGroup>
-          <Label htmlFor="password">비밀번호</Label>
-          <Input
-            id="password"
-            type="password"
-            value={password}
-            onChange={userPasswordValidation}
-            placeholder="비밀번호를 설정해 주세요"
-            required
-          />
-        </InputGroup>
+          <InputGroup>
+            <Label htmlFor="password">비밀번호</Label>
+            <Input
+              id="password"
+              type="password"
+              value={password}
+              onChange={userPasswordValidation}
+              placeholder="비밀번호를 설정해 주세요"
+              required
+            />
+          </InputGroup>
 
-        <InputGroup>
-          <ErrorMessage>{passwordError}</ErrorMessage>
-        </InputGroup>
+          <InputGroup>
+            <ErrorMessage>{passwordError}</ErrorMessage>
+          </InputGroup>
 
-        <NextBtn
-          disabled={isBtnActive}
-          onClick={() => {
-            navigate('/joinprofile', { state: { email, password } });
-          }}
-        >
-          다음
-        </NextBtn>
-      </form>
-    </Layout>
+          <NextBtn
+            disabled={isBtnActive}
+            onClick={() => {
+              navigate('/joinprofile', { state: { email, password } });
+            }}
+          >
+            다음
+          </NextBtn>
+        </form>
+      </Layout>
+    </>
   );
 };
 

@@ -6,6 +6,7 @@ import ProfileMusicButton from '../../components/profileButton/ProfileMusicButto
 import ChatBtn from '../../assets/icon-chat-btn.png';
 import ShareBtn from '../../assets/icon-share-btn.png';
 import Akmu from '../../assets/akmu.png';
+import MusicBar from '../../assets/musicbar.png';
 import PlayBtn from '../../assets/playBtn.png';
 import { Link, useParams } from 'react-router-dom';
 import ShowPost from '../../components/yourProfilePost/ShowPost';
@@ -17,7 +18,6 @@ import {
   postMoreState,
   userTokenState,
 } from '../../Atoms/atoms';
-import PostList from '../../components/post/PostList';
 import NavBar from '../../components/navBar/NavBar';
 import React, { useEffect, useState } from 'react';
 import MoreModal from '../../components/moreModal/MoreModal';
@@ -28,7 +28,7 @@ import { unfollowStateAPI } from '../../api/unfollowStateAPI';
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
-  const [isPlaying, setIsPlaying] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(true);
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
@@ -48,7 +48,7 @@ export default function Profile() {
       navigate('/profilechange');
       setChangedProfile(profile);
     }
-  }
+  };
 
   const onClickHandler = async () => {
     if (isFollow) {
@@ -102,9 +102,9 @@ export default function Profile() {
 
   // 프로필 이미지 엑박 처리 추가
   const handleImgError = (e) => {
-    console.log('이미지에러~!~!')
+    console.log('이미지에러~!~!');
     e.target.src = BasicImg;
-  }
+  };
 
   return (
     <>
@@ -123,7 +123,11 @@ export default function Profile() {
                 <p>followers</p>
               </Link>
             </P.Followers>
-            <P.BasicImg src={BasicImg && profile.image } alt="프로필이미지" onError={handleImgError}/>
+            <P.BasicImg
+              src={BasicImg && profile.image}
+              alt="프로필이미지"
+              onError={handleImgError}
+            />
             <P.Followings>
               <Link
                 to={`/followingslist/${accountname}`}
@@ -153,14 +157,15 @@ export default function Profile() {
             {isMine ? (
               // myProfile
               <>
-                <ProfileButton onClick={onProfileChange}
+                <ProfileButton
+                  onClick={onProfileChange}
                   content="프로필 수정"
                   background="#fff"
                   color="#000"
                   border="1px solid #767676"
                 />
                 <ProfileButton
-                  content="상품 등록"
+                  content="프로필 뮤직 수정"
                   background="#fff"
                   color="#000"
                   border="1px solid #767676"
@@ -195,34 +200,25 @@ export default function Profile() {
         {isPlaying ? (
           <>
             <P.ProfileMusicWrapper>
-              <img src={Akmu} alt="커버사진" />
+              <P.Img src={Akmu} alt="커버사진" />
               <P.ProfileMusic>
                 <strong>후라이의 꿈</strong>
                 <p>AKMU(악뮤)</p>
               </P.ProfileMusic>
-              {/* 오디오바 */}
+              <P.MusicBar src={MusicBar} alt="재생바" />
               <P.PlayBtn>
-                <img src={PlayBtn} alt="재생 버튼" />
+                <P.ImgPlay src={PlayBtn} alt="재생 버튼" style={{}} />
               </P.PlayBtn>
             </P.ProfileMusicWrapper>
           </>
         ) : (
           <></>
         )}
+
         {/* 게시물의 존재 유무 */}
         {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
-        <ShowPost />
-        {/* 레이아웃 깨짐 임시 방지 */}
-        <div 
-        style={{
-          width: '100%',
-          height: '100%',
-          backgroundColor: "white",
-          display: 'flex',
-          overflow: 'scroll'
-        }}>
-          <PostList dataPost={dataPost}></PostList>
-        </div>
+        <ShowPost dataPost={dataPost} />
+
         {isModalOpen && <MoreModal></MoreModal>}
         <NavBar />
       </P.Layout>

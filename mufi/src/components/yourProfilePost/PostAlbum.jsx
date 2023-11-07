@@ -1,17 +1,22 @@
 import React from 'react';
 import * as PA from './PostAlbumStyle';
+import { Link } from 'react-router-dom';
+import defaultImage from '../../assets/logo-gray-small.png';
 
-export default function PostAlbum() {
+export default function PostAlbum({ dataPost }) {
   return (
-    <>
-      <PA.PostAlbumWrapper>
-        {/* 이미지가 여러개이면 layer 여러 개라고 띄워주기
-        (img.length > 1 ? (이미지 여러개) : (이미지 한개))
-        */}
-        <PA.AlbumImg>이미지가 들어올거에요^^</PA.AlbumImg>
-      </PA.PostAlbumWrapper>
-    </>
+    <PA.PostAlbumWrapper>
+      {dataPost.map((post, index) => (
+        <Link to={`/postdetail/${post.id}`} key={index}>
+          {post.image ? (
+            <PA.AlbumImg src={post.image} alt={post.title} />
+          ) : (
+            <PA.DefaultImgWrapper>
+              <PA.DefaultImg src={defaultImage} alt={post.title} />
+            </PA.DefaultImgWrapper>
+          )}
+        </Link>
+      ))}
+    </PA.PostAlbumWrapper>
   );
 }
-
-// api 연동 후 가져올 예정

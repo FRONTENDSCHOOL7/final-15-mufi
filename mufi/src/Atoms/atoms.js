@@ -13,7 +13,7 @@ export const userTokenState = atom({
 export const accountnameState = atom({
   key: 'accountnameState',
   default: '',
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const userLoginState = atom({
@@ -38,7 +38,7 @@ export const postMoreState = atom({
 export const isHeaderState = atom({
   key: 'isHeaderState',
   default: false,
-})
+});
 
 
 // upload 상태
@@ -54,7 +54,7 @@ export const tagsState = atom({
 
 export const postContentState = atom({
   key: 'postContentState',
-  default: ''
+  default: '',
 });
 
 export const postImageState = atom({
@@ -68,7 +68,7 @@ export const postIdState = atom({
   default: '',
 });
 
-// Edit; 
+// Edit;
 export const postInfoState = atom({
   key: 'postInfoState',
   default: {},
@@ -88,25 +88,25 @@ export const searchUserResultState = atom({
 export const tagStoreState = atom({
   key: 'tagStoreState',
   default: ['#박재범', '#박재범 타투'],
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const festivalStoreState = atom({
   key: 'festivalStoreState',
   default: ['감귤 축제', '감귤 많이 먹기 대회'],
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const searchTagsState = atom({
   key: 'searchTagsState',
   default: [],
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const searchFestivalState = atom({
   key: 'searchFestivalState',
   default: [],
-  effects_UNSTABLE: [persistAtom]
+  effects_UNSTABLE: [persistAtom],
 });
 
 export const isEditState = atom({
@@ -120,7 +120,8 @@ export const changedProfileState = atom({
   default: {},
 });
 
+
 export const isLoadingState = atom({
   key: 'isLoadingState',
   default: false,
-})
+});

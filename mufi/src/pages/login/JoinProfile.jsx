@@ -9,6 +9,13 @@ import UploadImg from '../../assets/icon-upload-img.png';
 import { userIdValidAPI } from '../../api/user/userIdValidApi';
 import { joinAPI } from '../../api/user/joinAPI';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { loginAPI } from '../../api/loginAPI';
+import { useRecoilState, useSetRecoilState } from 'recoil';
+import {
+  accountnameState,
+  userLoginState,
+  userTokenState,
+} from '../../Atoms/atoms';
 
 export default function JoinProfile() {
   const [username, setUserName] = useState('');
@@ -29,6 +36,10 @@ export default function JoinProfile() {
 
   const userEmail = location.state?.email;
   const userPassword = location.state?.password;
+
+  const setUserToken = useSetRecoilState(userTokenState);
+  const setUserLoginState = useSetRecoilState(userLoginState);
+  const setAccountname = useSetRecoilState(accountnameState);
 
   // 사용자 이름 유효성 검사
   const userNameValidation = (e) => {
@@ -119,6 +130,10 @@ export default function JoinProfile() {
   const onSubmitProfile = async (e) => {
     e.preventDefault();
     await joinAPI(username, userEmail, userPassword, userId, userIntro, imgSrc);
+    let user = await loginAPI(userEmail, userPassword);
+    setUserToken(user.token);
+    setUserLoginState(true);
+    setAccountname(user.accountname);
     navigate('/home');
   };
 

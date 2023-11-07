@@ -59,6 +59,7 @@ export const SearchResult = styled.button`
   line-height: normal;
   display: flex;
   align-items: center;
+  
 
   border-bottom: 1px solid #efefef;
   &:hover {
@@ -69,8 +70,10 @@ export const SearchResult = styled.button`
 // 검색 결과 리스트를 보여주는 styled components
 export const SearchList = styled.div`
   width: 100%;
-  padding: 12px 16px 9px;
+  padding: 16px;
   box-sizing: border-box;
+  height: calc(100vh - 96px);
+  overflow-y: scroll;
 `;
 
 export const HighlightedText = styled.span`

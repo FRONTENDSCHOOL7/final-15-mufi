@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import basicProfile from '../../assets/basic-profile-small.png';
 import uploadImg from '../../assets/icon-image.png';
 import iconClose from '../../assets/icon-close.png';
+import jukjae from '../../assets/jukjae.jpeg';
 
 export const ChatList = styled.ul`
   height: calc(100vh - (47.5px + 60px));
@@ -9,6 +10,10 @@ export const ChatList = styled.ul`
   /* box-shadow: inset 0 0 32px red; */
   overflow: scroll;
   box-sizing: border-box;
+  overflow: scroll;
+  &::-webkit-scrollbar {
+    display: none; // 스크롤 바 숨기기
+  }
 `;
 
 export const ChatItem = styled.li`
@@ -33,7 +38,7 @@ export const UserProfile = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  background-image: url(${basicProfile});
+  /* background-image: url(${basicProfile}); */
   flex-shrink: 0;
 `;
 
@@ -72,7 +77,7 @@ export const ChatTextContent = styled.main`
   gap: 12px;
   padding: 16px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-y: scroll;
 `;
 
 export const ChatInputWrapper = styled.div`
@@ -146,13 +151,14 @@ export const ChatSenderProfile = styled.img`
   object-fit: cover;
   background-color: #767676;
   border-radius: 40px;
-  background-image: url(${basicProfile});
+  /* background-image: url(${jukjae}); */
   &.my {
     display: none;
   }
 `;
 export const ChatBalloonTextWrapper = styled.div`
   display: flex;
+  flex-direction: column;
   align-items: flex-end;
   gap: 6px;
 `;
@@ -177,6 +183,23 @@ export const ChatBalloonSentTime = styled.p`
     order: -1;
   }
 `;
+export const SentContentWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 8px;
+`;
+export const SentImg = styled.img`
+  width: 230px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  border-radius: 8px;
+`;
+export const SentChatWrapper = styled.div`
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+`;
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`
@@ -186,10 +209,13 @@ export const TempImageWrapper = styled.div`
   border-top: 1px solid #dbdbdb;
   padding: 8px;
   box-sizing: border-box;
-  overflow: scroll;
+  overflow-x: scroll;
   white-space: nowrap;
   display: flex;
   gap: 8px;
+  &::-webkit-scrollbar {
+    display: none; // 스크롤 바 숨기기
+  }
 `;
 export const TempImageHolder = styled.div`
   background-color: #dbdbdb;

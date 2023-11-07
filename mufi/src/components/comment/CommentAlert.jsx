@@ -23,8 +23,8 @@ export default function CommentAlert({
     deleteCommentAPI({ postId, token, commentId }).then((data) =>
       console.log(data)
     );
+    onCommentDelete();
     setIsModalOpen(false);
-    // onCommentDelete();
   };
 
   // 신고!

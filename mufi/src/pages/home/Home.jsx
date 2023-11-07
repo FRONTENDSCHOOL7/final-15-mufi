@@ -39,8 +39,8 @@ const Home = () => {
         ) : (
           <HomeEmpty />
         )}
-        <NavBar></NavBar>
         {isModalOpen && <MoreModal></MoreModal>}
+        <NavBar></NavBar>
       </H.HLayout>
 
       {/* <button style={{position:absolute}} onClick={() => {

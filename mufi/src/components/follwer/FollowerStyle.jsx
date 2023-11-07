@@ -22,6 +22,7 @@ export const UserWrapper = styled.div`
     width: 40px;
     height: 40px;
     border-radius: 50%;
+    object-fit: cover;
   }
 `;
 

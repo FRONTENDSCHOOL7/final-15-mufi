@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import basicProfile from '../../assets/basic-profile-small.png';
 import uploadImg from '../../assets/icon-image.png';
 import iconClose from '../../assets/icon-close.png';
+import jukjae from '../../assets/jukjae.jpeg';
 
 export const ChatList = styled.ul`
   height: 100%;
@@ -35,7 +36,7 @@ export const UserProfile = styled.img`
   width: 40px;
   height: 40px;
   border-radius: 40px;
-  background-image: url(${basicProfile});
+  /* background-image: url(${basicProfile}); */
   flex-shrink: 0;
 `;
 
@@ -148,7 +149,7 @@ export const ChatSenderProfile = styled.img`
   object-fit: cover;
   background-color: #767676;
   border-radius: 40px;
-  background-image: url(${basicProfile});
+  /* background-image: url(${jukjae}); */
   &.my {
     display: none;
   }
@@ -196,7 +197,7 @@ export const SentChatWrapper = styled.div`
   display: flex;
   align-items: flex-end;
   gap: 4px;
-`
+`;
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`

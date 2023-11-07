@@ -8,7 +8,7 @@ export default function Splash() {
 
   useEffect(() => {
     setTimeout(() => {
-      window.location.replace('/');
+      window.location.replace('/landing');
     }, 3000);
   }, []);
 

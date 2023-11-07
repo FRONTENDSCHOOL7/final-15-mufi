@@ -1,18 +1,28 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import BackIcon from '../../assets/icon-arrow-left.png';
 import MoreIcon from '../../assets/icon-more-vertical-large.png';
 import * as GBM from './GoBackMoreHeaderStyle';
-import { useSetRecoilState } from 'recoil';
-import { isHeaderState, postMoreState } from '../../Atoms/atoms';
+import { useSetRecoilState, useRecoilValue } from 'recoil';
+import {
+  isHeaderState,
+  postMoreState,
+  lastVisitedPageState,
+} from '../../Atoms/atoms';
 
 export default function GoBackMoreHeader({ content }) {
   const setIsModalOpen = useSetRecoilState(postMoreState);
   const setIsHeader = useSetRecoilState(isHeaderState);
+  const lastVisitedPage = useRecoilValue(lastVisitedPageState);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleGoBack = () => {
-    navigate(-1);
+    if (location.pathname.startsWith('/postDetail')) {
+      navigate(lastVisitedPage);
+    } else {
+      navigate(-1);
+    }
   };
   const handleMore = (e) => {
     setIsModalOpen(true);
@@ -26,7 +36,7 @@ export default function GoBackMoreHeader({ content }) {
       </GBM.BackButton>
       <GBM.Content>{content}</GBM.Content>
       <GBM.MoreButton onClick={handleMore}>
-        <img src={MoreIcon} alt="더보기 아이콘" onClick={handleMore}/>
+        <img src={MoreIcon} alt="더보기 아이콘" onClick={handleMore} />
       </GBM.MoreButton>
     </GBM.HeaderWrapper>
   );

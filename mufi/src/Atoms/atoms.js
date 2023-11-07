@@ -123,3 +123,8 @@ export const isLoadingState = atom({
   key: 'isLoadingState',
   default: false,
 });
+
+export const lastVisitedPageState = atom({
+  key: 'lastVisitedPageState',
+  default: '/home',
+});

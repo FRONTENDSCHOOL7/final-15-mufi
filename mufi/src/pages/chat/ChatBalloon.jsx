@@ -1,24 +1,23 @@
 import React, { useEffect, useState } from 'react';
 import * as C from './ChatStyle';
-import jukjae from '../../assets/jukjae.jpeg';
 
-export default function ChatBalloon({ isMyBalloon = false, chat, imgSrc }) {
+export default function ChatBalloon({ isMyBalloon = false, chat, imgSrc, senderProfile }) {
   const [hour, setHour] = useState(0);
   const [minute, setMinute] = useState(0);
+
   // 시간
   useEffect(() => {
     // console.log(chat)
     const date = new Date();
     setHour(date.getHours());
     setMinute(date.getMinutes());
-    console.log(hour, minute);
   }, []);
 
   return (
     <>
       <C.ChatBallonWrapper className={isMyBalloon ? 'my' : null}>
         <C.ChatSenderProfile
-          src={jukjae}
+          src={senderProfile}
           className={isMyBalloon ? 'my' : null}
         />
 

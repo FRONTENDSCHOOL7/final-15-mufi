@@ -47,7 +47,7 @@ export default function Router() {
       <Route path="/followingslist/:accountname" element={<FollowingList />} />
 
       <Route path="/chat" element={<Chat />} />
-      <Route path="/chatroom" element={<ChatRoom />} />
+      <Route path="/chatroom/:accountname" element={<ChatRoom />} />
 
 
       <Route path="/postdetail/:postId" element={<PostDetail />} />

@@ -7,27 +7,25 @@ export const dataChat = [
   {
     senderImg: jukjae,
     senderName: 'jukjae00',
-    sentContent: '서울 뮤직 페스티벌 가봤어?',
     date: '2023.11.08',
+    dataChatText: ['우와 부럽다', '서울 뮤직 페스티벌 가봤어?'],
   },
   {
     senderImg: upduck,
     senderName: 'hehe123456',
-    sentContent: '맞팔 하실?',
     date: '2023.11.07',
+    dataChatText: ['맞팔하실?', '맞팔 할꺼냐고~'],
   },
   {
     senderImg: newyorker,
     senderName: '뉴요커',
-    sentContent: '좋은 하루 보내~',
     date: '2023.11.01',
+    dataChatText: ['후라이의 꿈 저도 좋아해요!', '악동 뮤지션은 정말 천재같아요', '당신도 그렇게 생각하죠?'],
   },
   {
     senderImg: jannabi,
     senderName: 'jannabi00',
-    sentContent: '재밌었다!',
     date: '2023.10.15',
+    dataChatText: ['니가 지코면', '나는 잔나비다ㅋ'],
   },
 ];
-
-export const dataChatText = ['우와 부럽다', '서울 뮤직 페스티벌 가봤어?'];

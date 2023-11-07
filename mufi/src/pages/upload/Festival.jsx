@@ -5,6 +5,7 @@ import searchIcon from '../../assets/icon-search-gray.png';
 import { useNavigate } from 'react-router-dom';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { festivalState, festivalStoreState } from '../../Atoms/atoms';
+import { Helmet } from 'react-helmet-async';
 
 export default function Festival() {
   const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function Festival() {
 
   const handleInputChange = async (e) => {
     if (e.target.value.length > 20) {
-      e.target.value = e.target.value.slice(0,20);
+      e.target.value = e.target.value.slice(0, 20);
       alert('20글자 이하까지만 작성할 수 있어요!');
     } else {
       setInputText(e.target.value);
@@ -40,30 +41,31 @@ export default function Festival() {
   }
 
   const addFestival = () => {
-    if(!festivalStore.includes(inputText)){
-      setFestivalStore(
-        [...festivalStore, inputText]
-      );
+    if (!festivalStore.includes(inputText)) {
+      setFestivalStore([...festivalStore, inputText]);
       alert(`#${inputText} (이)가 추가되었습니다!`);
     }
     setFestival([inputText]);
     navigate('/upload');
-  }
+  };
 
   return (
-    <F.FestivalWrapper>
-      <UploadHeader showOkButton={false} backButtonText="페스티벌 추가" />
-      <F.SearchBox>
-        <F.SearchInput
-          value={inputText}
-          onChange={handleInputChange}
-          placeholder="검색어를 입력하세요"
-        />
-        <F.SearchButton>
-          <img src={searchIcon} alt="search" />
-        </F.SearchButton>
-      </F.SearchBox>
-
+    <>
+      <Helmet>
+        <title>FESTIVAL</title>
+      </Helmet>
+      <F.FestivalWrapper>
+        <UploadHeader showOkButton={false} backButtonText="페스티벌 추가" />
+        <F.SearchBox>
+          <F.SearchInput
+            value={inputText}
+            onChange={handleInputChange}
+            placeholder="검색어를 입력하세요"
+          />
+          <F.SearchButton>
+            <img src={searchIcon} alt="search" />
+          </F.SearchButton>
+        </F.SearchBox>
       <F.SearchList>
         {searchResult.map((result, index) => (
           <F.SearchResult ref={searchResultEl} key={index} onClick={addSearchResult}>
@@ -85,5 +87,6 @@ export default function Festival() {
       </F.SearchList>
 
     </F.FestivalWrapper>
+</>
   );
 }

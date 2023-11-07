@@ -5,11 +5,17 @@ import BasicImg from '../../assets/basic-profile-large.png';
 import UploadImg from '../../assets/image-fill.png';
 import { Img, ImgInputLabel, InputContainer } from './ProfileChangeStyle';
 import MusicChangeBtn from '../../components/MusicChangeBtn';
-import {Layout} from '../../components/Layout/LayoutStyle';
+import { Layout } from '../../components/Layout/LayoutStyle';
 import { useNavigate } from 'react-router-dom';
 import { profileChangeAPI } from '../../api/profileChangeAPI';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { accountnameState, changedProfileState, profileState, userTokenState } from '../../Atoms/atoms';
+import {
+  accountnameState,
+  changedProfileState,
+  profileState,
+  userTokenState,
+} from '../../Atoms/atoms';
+import { Helmet } from 'react-helmet-async';
 
 export default function ProfileChange() {
   const [userName, setUserName] = useState('');
@@ -18,19 +24,20 @@ export default function ProfileChange() {
   const [userIdError, setUserIdError] = useState('');
   const [imgSrc, setImgSrc] = useState(BasicImg);
   const [introduction, setIntroduction] = useState('');
-  const [changedProfile, setChangedProfile] = useRecoilState(changedProfileState);
+  const [changedProfile, setChangedProfile] =
+    useRecoilState(changedProfileState);
   const setAccountname = useSetRecoilState(accountnameState);
   const token = useRecoilValue(userTokenState);
   const navigate = useNavigate();
   const imgInput = useRef();
 
   // 기존 정보가 뜨게
-  useEffect(()=>{
+  useEffect(() => {
     setImgSrc(changedProfile.image);
     setUserId(changedProfile.accountname);
     setUserName(changedProfile.username);
     setIntroduction(changedProfile.intro);
-  },[]);
+  }, []);
 
   // 저장 버튼 누르면 api 호출
   const onProfile = async () => {
@@ -38,13 +45,13 @@ export default function ProfileChange() {
       userName,
       userid,
       introduction,
-      imgSrc
-    }
+      imgSrc,
+    };
     // console.log(user);
-    await profileChangeAPI({token, user});
+    await profileChangeAPI({ token, user });
     setAccountname(userid);
     navigate(`/profile/${userid}`);
-  }
+  };
 
   // input 값 받아오기 및 유효성 검사
   const handleIntro = (e) => {
@@ -52,8 +59,8 @@ export default function ProfileChange() {
     setChangedProfile({
       ...changedProfile,
       intro: introduction,
-    })
-  }
+    });
+  };
 
   const userNameValidation = (e) => {
     const nameValue = e.target.value.trim();
@@ -61,7 +68,7 @@ export default function ProfileChange() {
     setChangedProfile({
       ...changedProfile,
       username: userName,
-    })
+    });
     if (nameValue.length >= 2 && nameValue.length <= 10) {
       setUserNameError('');
     } else {
@@ -76,7 +83,7 @@ export default function ProfileChange() {
     setChangedProfile({
       ...changedProfile,
       accountname: userid,
-    })
+    });
     if (!userIdPattern.test(idValue)) {
       setUserIdError('영문, 숫자, 특수문자(.),(_)만 사용가능합니다.');
     } else if (idValue === '') {
@@ -89,7 +96,7 @@ export default function ProfileChange() {
   // 이미지 클릭해도 인풋 클릭한것과 같게 되게
   const handleImgClick = () => {
     imgInput.current.click();
-  }
+  };
 
   // 이미지 넣기
   const uploadImage = async (imageFile) => {
@@ -121,16 +128,23 @@ export default function ProfileChange() {
 
   // 인풋 스타일 객체
   const styleEdit = {
-    backgroundColor: "white",
-    color: "black"
-  }
+    backgroundColor: 'white',
+    color: 'black',
+  };
 
   return (
     <>
+      <Helmet>
+        <title>EDIT PROFILE</title>
+      </Helmet>
       <Layout>
-        <UploadHeader onClick={onProfile} okButtonText="저장" backButtonText=""  />
+        <UploadHeader
+          onClick={onProfile}
+          okButtonText="저장"
+          backButtonText=""
+        />
         {/* 이미지 추가 기능 */}
-        <Img src={imgSrc} alt="기본 이미지" onClick={handleImgClick}/>
+        <Img src={imgSrc} alt="기본 이미지" onClick={handleImgClick} />
         {/* type=file 커스텀 */}
         <ImgInputLabel htmlFor="input-file">
           <img src={UploadImg} alt="업로드 이미지 변경" />
@@ -189,7 +203,7 @@ export default function ProfileChange() {
               {userIdError}
             </p>
           )}
-  
+
           <Input
             label="소개"
             type="text"

@@ -25,6 +25,7 @@ import { profileAPI } from '../../api/profileAPI';
 import { useNavigate } from 'react-router-dom';
 import { followStateAPI } from '../../api/followStateAPI';
 import { unfollowStateAPI } from '../../api/unfollowStateAPI';
+import { Helmet } from 'react-helmet-async';
 
 export default function Profile() {
   // 음악 재생중(true)인지 check
@@ -32,7 +33,7 @@ export default function Profile() {
   // 팔로우 중(true)
   const [isFollow, setIsFollow] = useState(false);
   const [profile, setProfile] = useState([]);
-  const setChangedProfile = useSetRecoilState(changedProfileState)
+  const setChangedProfile = useSetRecoilState(changedProfileState);
   const token = useRecoilValue(userTokenState);
   const myAccountname = useRecoilValue(accountnameState);
   const [dataPost, setDataPost] = useState([]);
@@ -108,6 +109,9 @@ export default function Profile() {
 
   return (
     <>
+      <Helmet>
+        <title>PROFILE</title>
+      </Helmet>
       <P.Layout>
         <GoBackMoreHeader />
 

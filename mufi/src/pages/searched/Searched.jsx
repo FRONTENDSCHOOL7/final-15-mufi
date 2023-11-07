@@ -16,7 +16,7 @@ import MoreModal from '../../components/moreModal/MoreModal';
 
 export default function Searched() {
   const {keyword} = useParams();
-  console.log(keyword); // 박재범
+  // console.log(keyword); // 박재범
   
   const token = useRecoilValue(userTokenState);
   const number = 2000;
@@ -44,6 +44,17 @@ export default function Searched() {
         }
       })
       // ----- 게시글 필터 끝 -----
+
+      // ---- 데이터 형태 수정 ----
+      tempDataPost = tempDataPost.map(v=>{
+        const {_id, ...newData} = v;
+        newData.id = v._id;
+        newData.commentCount = v.comments.length;
+        newData.hearted = true;
+        delete newData._id;
+        return newData;
+      })
+      // ---- ----
 
       setDataPost(tempDataPost);
       setIsLoading(false);

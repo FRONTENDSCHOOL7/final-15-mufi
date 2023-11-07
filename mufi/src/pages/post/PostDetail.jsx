@@ -62,8 +62,8 @@ export default function PostDetail() {
       comments: [...postDetailItem[0].comments, inputComment],
       commentCount: postDetailItem[0].commentCount + 1,
     };
-    console.log('tempDetail!!!!----', tempDetail);
-    console.log(postDetailItem[0]);
+    // console.log('tempDetail!!!!----', tempDetail);
+    // console.log(postDetailItem[0]);
     setPostDetailItem([tempDetail]);
   };
 

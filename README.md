@@ -95,7 +95,7 @@ PW: heehee00
 
 ### Github Flow
 
-main: 배포가 될 branch<br>
+main: 배포가 될 branch <br />
 develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 두 명 이상 조원의 승인 후에 merge가 됩니다. 오류가 나지 않는, 충돌이 일어나지 않는 상태에서만 develop에서 main으로 넘깁니다.
 
 ### Git Branch

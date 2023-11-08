@@ -8,6 +8,7 @@ import MusicChangeBtn from '../../components/MusicChangeBtn';
 import { Layout } from '../../components/Layout/LayoutStyle';
 import { useNavigate } from 'react-router-dom';
 import { profileChangeAPI } from '../../api/profileChangeAPI';
+import { userIdValidAPI } from '../../api/user/userIdValidApi';
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
   accountnameState,
@@ -24,6 +25,7 @@ export default function ProfileChange() {
   const [userIdError, setUserIdError] = useState('');
   const [imgSrc, setImgSrc] = useState(BasicImg);
   const [introduction, setIntroduction] = useState('');
+  const [isUserIdValid, setIsUserIdValid] = useState(false);
   const [changedProfile, setChangedProfile] =
     useRecoilState(changedProfileState);
   const setAccountname = useSetRecoilState(accountnameState);
@@ -132,6 +134,19 @@ export default function ProfileChange() {
     color: 'black',
   };
 
+  // userId 중복검사
+  const userIdDuplicateValid = async (e) => {
+    const userDuplicateId = e.target.value;
+    setUserId(userDuplicateId);
+    const validMessage = await userIdValidAPI(userDuplicateId);
+    if (validMessage?.message === '이미 가입된 계정ID 입니다.') {
+      setUserIdError('이미 사용 중인 ID입니다.');
+      setIsUserIdValid(false);
+    } else {
+      setIsUserIdValid(true);
+    }
+  };
+
   return (
     <>
       <Helmet>
@@ -187,6 +202,7 @@ export default function ProfileChange() {
             type="text"
             placeholder="영문, 숫자, 특수문자(.),(_)만 사용가능합니다."
             onChange={userIdValidation}
+            onBlur={userIdDuplicateValid}
             alertMessage={setUserIdError}
             styleEdit={styleEdit}
             defaultValue={changedProfile.accountname}

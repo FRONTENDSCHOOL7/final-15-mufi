@@ -208,8 +208,9 @@ export const SentChatWrapper = styled.div`
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`
+  position: relative;
   height: 142px;
-  width: 100%;
+  width: 100vw;
   background-color: #fff;
   border-top: 1px solid #dbdbdb;
   padding: 8px;
@@ -226,8 +227,8 @@ export const TempImageHolder = styled.div`
   background-color: #dbdbdb;
   box-sizing: border-box;
   border: 1px solid #c4c4c4;
-  border-radius: 10px;
-  position: relative;
+  border-radius: 8px;
+  height: 100%;
 `;
 export const TempImage = styled.img`
   max-height: 100%;

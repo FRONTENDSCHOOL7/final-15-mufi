@@ -35,9 +35,12 @@ export default function Festival() {
   };
 
   const addSearchResult = (e) => {
-    const festival = e.target.textContent;
+    let newFestival = e.target.textContent;
+    if (e.target.nodeName !== 'BUTTON') {
+      newFestival = e.target.parentNode.textContent;
+    }
     if (!isResultEmpty) {
-      setFestival([festival]);
+      setFestival([newFestival]);
       navigate('/upload');
     }
   }

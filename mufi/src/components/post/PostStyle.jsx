@@ -1,4 +1,3 @@
-
 import styled, { keyframes } from 'styled-components';
 import iconLike from '../../assets/icon-heart.png';
 import iconLikefill from '../../assets/icon-heart-fill.png';
@@ -193,10 +192,12 @@ export const RemoveBtn = styled.button`
   border-radius: 12px;
   border: none;
   background-image: url(${iconTagRemove});
+  background-repeat: no-repeat;
   background-position: center;
   background-color: #afafaf;
 `;
 export const FestivalRemoveBtn = styled(RemoveBtn)`
   background-image: url(${iconFestivalRemove});
+  background-repeat: no-repeat;
   background-color: white;
 `;

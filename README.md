@@ -31,7 +31,6 @@ PW: heehee00
 | :------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
 | <img width="180" alt="sy_profile_img" src="https://avatars.githubusercontent.com/u/128986073?v=4"> | <img width="180" alt="sh_profile_img" src="https://avatars.githubusercontent.com/u/41767015?v=4"> | <img width="180" alt="hj_profile_img" src="https://avatars.githubusercontent.com/u/112550610?v=4"> | <img width="180" alt="by_profile_img" src="https://avatars.githubusercontent.com/u/123431761?v=4"> |
 |                             [soyoung03](https://github.com/soyoung03)                              |                                [sthgml](https://github.com/sthgml)                                |                               [yhj0217](https://github.com/yhj0217)                                |                                [olivu0](https://github.com/olivu0)                                 |
-|                                         문서화 & 소통 리더                                         |                                        디자인 & 기획 리더                                         |                                             개발 리더                                              |                                              팀 리더                                               |
 
 <br />
 
@@ -106,6 +105,8 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 <br />
 
 ## 4. 역할 분담
+
+<img src='https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/mufijam.png' alt='mufiFigma'>
 
 <br />
 
@@ -250,7 +251,7 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 
 ## 9. 이후에 해야할 것들
 
-- 프로젝트 리팩토링
 - 컴포넌트 재사용성 높이는 작업
+- 모달창 통일
+- 반응형 작업
 - 성능보다 구현을 중심으로 짠 코드 개선
-- 렌더링 성능 최적화(속도 개선)

@@ -75,6 +75,7 @@ export const ChatTextContent = styled.main`
   height: 100%;
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 12px;
   padding: 16px;
   box-sizing: border-box;
@@ -99,6 +100,7 @@ export const ImgInputLabel = styled.label`
   content: '';
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
 
   border-radius: 32px;
   background-color: #000;
@@ -121,6 +123,8 @@ export const ChatSendButton = styled.button`
   color: #c4c4c4;
   border: none;
   background-color: transparent;
+  flex-shrink: 0;
+
   &:enabled {
     color: #0019ff;
   }

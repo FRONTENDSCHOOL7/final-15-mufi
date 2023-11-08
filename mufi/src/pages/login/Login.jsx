@@ -110,7 +110,7 @@ const Login = () => {
             <Label htmlFor="email">이메일</Label>
             <Input
               id="email"
-              type="text"
+              type="email"
               value={email}
               onChange={userEmailValidation}
               required

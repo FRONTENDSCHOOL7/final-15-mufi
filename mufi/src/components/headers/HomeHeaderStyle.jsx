@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import searchIcon from '../../assets/icon-search.png'
+import searchIcon from '../../assets/icon-search.png';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -22,9 +22,10 @@ export const SearchBtn = styled.button`
   background-color: transparent;
   border: none;
   background-image: url(${searchIcon});
+  background-repeat: no-repeat;
 `;
 
 export const LogoHeader = styled.img`
   width: 88px;
   height: 22px;
-`
+`;

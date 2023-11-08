@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import BackIcon from '../../assets/icon-arrow-left.png';
-import searchIcon from '../../assets/icon-search.png'
-
+import searchIcon from '../../assets/icon-search.png';
 
 export const HeaderWrapper = styled.header`
   width: 100%;
@@ -9,10 +8,10 @@ export const HeaderWrapper = styled.header`
   background-color: #000;
   border-bottom: 0.5px solid #dbdbdb;
   position: sticky;
-  top:0;
+  top: 0;
   z-index: 10;
 
-  padding:  0 20px 0 16px;
+  padding: 0 20px 0 16px;
   box-sizing: border-box;
   display: flex;
   justify-content: space-between;
@@ -26,8 +25,8 @@ export const HeaderBtn = styled.button`
   background-color: transparent;
   border: none;
   background-image: url(${BackIcon});
+  background-repeat: no-repeat;
 `;
-
 
 export const SearchForm = styled.form`
   display: flex;
@@ -37,10 +36,10 @@ export const SearchForm = styled.form`
   background-color: #fff;
   padding: 4px 12px 4px 16px;
   border-radius: 32px;
-  &:focus-within{
+  &:focus-within {
     outline: auto;
   }
-`
+`;
 
 export const HeaderSearchInput = styled.input`
   &::placeholder {
@@ -51,7 +50,7 @@ export const HeaderSearchInput = styled.input`
   background-color: transparent;
   border: none;
   outline: none;
-`
+`;
 
 export const SearchBtn = styled.button`
   width: 24px;
@@ -59,4 +58,5 @@ export const SearchBtn = styled.button`
   background-color: transparent;
   border: none;
   background-image: url(${searchIcon});
+  background-repeat: no-repeat;
 `;

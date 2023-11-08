@@ -239,6 +239,7 @@ export const TempImageRemoveBtn = styled.button`
   width: 22px;
   height: 22px;
   background-image: url(${iconClose});
+  background-repeat: no-repeat;
   background-color: transparent;
   border: none;
   position: absolute;

@@ -121,115 +121,117 @@ export default function Profile() {
       <P.Layout>
         <GoBackMoreHeader />
 
-        <P.ProfileWrapper>
-          {/* 팔로우, 프로필 이미지, 팔로잉 */}
-          <P.Follow>
-            <P.Followers>
-              <Link
-                to={`/followerslist/${accountname}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <strong>{profile.followerCount}</strong>
-                <p>followers</p>
-              </Link>
-            </P.Followers>
-            <P.BasicImg
-              src={BasicImg && profile.image}
-              alt="프로필이미지"
-              onError={handleImgError}
-            />
-            <P.Followings>
-              <Link
-                to={`/followingslist/${accountname}`}
-                style={{ textDecoration: 'none' }}
-              >
-                <strong>{profile.followingCount}</strong>
-                <p>followings</p>
-              </Link>
-            </P.Followings>
-          </P.Follow>
+        <P.ProfilePageWrapper>
+          <P.ProfileWrapper>
+            {/* 팔로우, 프로필 이미지, 팔로잉 */}
+            <P.Follow>
+              <P.Followers>
+                <Link
+                  to={`/followerslist/${accountname}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <strong>{profile.followerCount}</strong>
+                  <p>followers</p>
+                </Link>
+              </P.Followers>
+              <P.BasicImg
+                src={BasicImg && profile.image}
+                alt="프로필이미지"
+                onError={handleImgError}
+              />
+              <P.Followings>
+                <Link
+                  to={`/followingslist/${accountname}`}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <strong>{profile.followingCount}</strong>
+                  <p>followings</p>
+                </Link>
+              </P.Followings>
+            </P.Follow>
 
-          {/* 프로필 (사용자 이름, 계정, 소개) */}
-          <P.Profile>
-            <strong>{profile.username}</strong>
-            <span>@ {profile.accountname}</span>
-            {isPlaying ? (
-              <>
-                <ProfileMusicButton musicContent="후라이의꿈 AKMU(악뮤)" />
-              </>
-            ) : (
-              <></>
-            )}
-            <p>{profile.intro}</p>
-          </P.Profile>
+            {/* 프로필 (사용자 이름, 계정, 소개) */}
+            <P.Profile>
+              <strong>{profile.username}</strong>
+              <span>@ {profile.accountname}</span>
+              {isPlaying ? (
+                <>
+                  <ProfileMusicButton musicContent="후라이의꿈 AKMU(악뮤)" />
+                </>
+              ) : (
+                <></>
+              )}
+              <p>{profile.intro}</p>
+            </P.Profile>
 
-          <P.ButtonWrapper>
-            {isMine ? (
-              // myProfile
-              <>
-                <ProfileButton
-                  onClick={onProfileChange}
-                  content="프로필 수정"
-                  background="#fff"
-                  color="#000"
-                  border="1px solid #767676"
-                />
-                <ProfileButton
-                  content="프로필 뮤직 수정"
-                  background="#fff"
-                  color="#000"
-                  border="1px solid #767676"
-                />
-              </>
-            ) : (
-              // yourProfile
-              <>
-                <P.RoundButton>
-                  <img src={ChatBtn} alt="채팅하기" />
-                </P.RoundButton>
-                {isFollow ? (
+            <P.ButtonWrapper>
+              {isMine ? (
+                // myProfile
+                <>
                   <ProfileButton
-                    content="언팔로우"
-                    color="#000"
+                    onClick={onProfileChange}
+                    content="프로필 수정"
                     background="#fff"
+                    color="#000"
                     border="1px solid #767676"
-                    onClick={onClickHandler}
                   />
-                ) : (
-                  <ProfileButton content="팔로우" onClick={onClickHandler} />
-                )}
-                <P.RoundButton>
-                  <img src={ShareBtn} alt="공유하기" />
-                </P.RoundButton>
-              </>
-            )}
-          </P.ButtonWrapper>
-        </P.ProfileWrapper>
+                  <ProfileButton
+                    content="프로필 뮤직 수정"
+                    background="#fff"
+                    color="#000"
+                    border="1px solid #767676"
+                  />
+                </>
+              ) : (
+                // yourProfile
+                <>
+                  <P.RoundButton>
+                    <img src={ChatBtn} alt="채팅하기" />
+                  </P.RoundButton>
+                  {isFollow ? (
+                    <ProfileButton
+                      content="언팔로우"
+                      color="#000"
+                      background="#fff"
+                      border="1px solid #767676"
+                      onClick={onClickHandler}
+                    />
+                  ) : (
+                    <ProfileButton content="팔로우" onClick={onClickHandler} />
+                  )}
+                  <P.RoundButton>
+                    <img src={ShareBtn} alt="공유하기" />
+                  </P.RoundButton>
+                </>
+              )}
+            </P.ButtonWrapper>
+          </P.ProfileWrapper>
 
-        {/* 노래가 들어가야할 곳 */}
-        {isPlaying ? (
-          <>
-            <P.ProfileMusicWrapper>
-              <P.Img src={Akmu} alt="커버사진" />
-              <P.ProfileMusic>
-                <strong>후라이의 꿈</strong>
-                <p>AKMU(악뮤)</p>
-              </P.ProfileMusic>
-              <P.MusicBar src={MusicBar} alt="재생바" />
-              <P.PlayBtn>
-                <P.ImgPlay src={PlayBtn} alt="재생 버튼" style={{}} />
-              </P.PlayBtn>
-            </P.ProfileMusicWrapper>
-          </>
-        ) : (
-          <></>
-        )}
+          {/* 노래가 들어가야할 곳 */}
+          {isPlaying ? (
+            <>
+              <P.ProfileMusicWrapper>
+                <P.Img src={Akmu} alt="커버사진" />
+                <P.ProfileMusic>
+                  <strong>후라이의 꿈</strong>
+                  <p>AKMU(악뮤)</p>
+                </P.ProfileMusic>
+                <P.MusicBar src={MusicBar} alt="재생바" />
+                <P.PlayBtn>
+                  <P.ImgPlay src={PlayBtn} alt="재생 버튼" style={{}} />
+                </P.PlayBtn>
+              </P.ProfileMusicWrapper>
+            </>
+          ) : (
+            <></>
+          )}
 
-        {/* 게시물의 존재 유무 */}
-        {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
-        <ShowPost dataPost={dataPost} />
+          {/* 게시물의 존재 유무 */}
+          {/* ShowPost 컴포넌트 = PostList 컴포넌트 + PostAlbum 컴포넌트 */}
+          <ShowPost dataPost={dataPost} />
 
-        {isModalOpen && <MoreModal></MoreModal>}
+          {isModalOpen && <MoreModal></MoreModal>}
+        </P.ProfilePageWrapper>
         <NavBar />
       </P.Layout>
     </>

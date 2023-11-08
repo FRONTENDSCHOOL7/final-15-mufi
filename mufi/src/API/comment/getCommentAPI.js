@@ -4,7 +4,7 @@ import axios from 'axios';
 export const getCommentAPI = async ({ token, postId }) => {
   let dataComment = [];
 
-  const apiUrl = `post/${postId}/comments`;
+  const apiUrl = `post/${postId}/comments/?limit=20&skip=0`;
   const method = 'GET';
   const reqHeaders = {
     Authorization: `Bearer ${token}`,

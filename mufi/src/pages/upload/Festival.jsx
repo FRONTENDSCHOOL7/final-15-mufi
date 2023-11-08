@@ -28,14 +28,19 @@ export default function Festival() {
     if(searchResult.length === 0){
       setSearchResult([`${inputText}에 대한 검색결과가 없어요 T.T`]);
       setIsResultEmpty(true);
+    } else {
+      setIsResultEmpty(false);
     }
     }
   };
 
   const addSearchResult = (e) => {
-    const festival = e.target.textContent;
+    let newFestival = e.target.textContent;
+    if (e.target.nodeName !== 'BUTTON') {
+      newFestival = e.target.parentNode.textContent;
+    }
     if (!isResultEmpty) {
-      setFestival([festival]);
+      setFestival([newFestival]);
       navigate('/upload');
     }
   }

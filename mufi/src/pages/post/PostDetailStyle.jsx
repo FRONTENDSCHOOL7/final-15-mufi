@@ -7,13 +7,19 @@ export const PDLayout = styled(Layout)`
   display: flex;
   flex-direction: column;
 
-  overflow-y: scroll;
-
   &::-webkit-scrollbar {
     display: none;
   }
 `;
 
-export const Div = styled.div``;
+export const Div = styled.div`
+  overflow-y: scroll;
+  height: fit-content;
+  padding-bottom: 60px;
+  margin: 0 auto;
+`;
 
-export const CommentWrapper = styled.div``;
+export const CommentWrapper = styled.div`
+  /* height: calc(100vh - 560px); */
+  /* overflow-y: scroll; */
+`;

@@ -1,14 +1,16 @@
 # 🎼MUFI
 
-## 1. 🎺 Mufi 소개
+## 1. 🎺 MUFI 소개
 
 <img src='https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/mufiMain.png' alt='mufiMain'>
 
 <br />
-Mufi는 **페스티벌을 좋아하는 사람들이 모여 소통하는 SNS 플랫폼**입니다.<br />
-Music(음악) + Fiesta(축제)를 합친 Mufi는
+MUFI는 페스티벌을 좋아하는 사람들이 모여 소통하는 SNS 플랫폼입니다.<br />
+MUFI 는 ‘사람, 음악, 축제’ 3가지 키워드로 설명됩니다.<br />
+뮤직 페스티벌의 현장감을 온라인에서 느끼고 많은 사람들과 나눌 수 있게 사람과 음악, 축제를 연결시키는 플랫폼. MUFI로 당신을 초대합니다.
 
-### [🎇 WELCOME MUFI](https://mufiesta.netlify.app/) 
+### [🎇 WELCOME MUFI](https://mufiesta.netlify.app/)
+
 ⬆️ 뮤피로 이동합니다.
 
 ```
@@ -29,7 +31,6 @@ PW: heehee00
 | :------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
 | <img width="180" alt="sy_profile_img" src="https://avatars.githubusercontent.com/u/128986073?v=4"> | <img width="180" alt="sh_profile_img" src="https://avatars.githubusercontent.com/u/41767015?v=4"> | <img width="180" alt="hj_profile_img" src="https://avatars.githubusercontent.com/u/112550610?v=4"> | <img width="180" alt="by_profile_img" src="https://avatars.githubusercontent.com/u/123431761?v=4"> |
 |                             [soyoung03](https://github.com/soyoung03)                              |                                [sthgml](https://github.com/sthgml)                                |                               [yhj0217](https://github.com/yhj0217)                                |                                [olivu0](https://github.com/olivu0)                                 |
-|                                         문서화 & 소통 리더                                         |                                        디자인 & 기획 리더                                         |                                             개발 리더                                              |                                              팀 리더                                               |
 
 <br />
 
@@ -84,41 +85,35 @@ PW: heehee00
 
 ### 기술스택을 선택한 이유
 
-- Styled-Component: 스타일을 따로 정의해 코드의 가독성과 유지보수성을 높이기 위해 사용
+- Styled-Component: 스타일을 따로 정의해 코드의 가독성과 유지 보수성을 높이기 위해 사용하였습니다.
 
-- Recoil : 대규모 상태를 관리해야 하는 프로젝트에서는 redux를 사용하는 것이 좀 더 적합할 것이라고 판단함. 또한 이런 대규모 상태를 감시, 디버깅하기 위한 안정적인 devTool도 가지고 있기 때문에 안정성 면에서는 redux가 더 낫다고 생각함. <br>
-  그러나 지금 개발하는 프로젝트는 제공되는 API를 사용해서 대규모 데이터를 다루는 것도 아니고, 기한도 길지 않기 때문에 상대적으로 적은 코드를 작성하고 러닝 커브가 적은 recoil이 redux에 비해 유리하다고 생각함. <br>
-  결론적으로, 더 직관적이고 간단한 구조를 가진 recoil을 현재 프로젝트의 상태관리 라이브러리로 확정함.
+- Recoil : 큰 규모의 상태를 관리해야 하는 프로젝트에는 디버깅하기 위한 안정적인 devTool을 가지고 있는 redux가 더 좋을 것이라 생각하였습니다. 하지만 저희의 프로젝트는 제공되는 API를 사용하기 때문에 큰 규모의 데이터를 다루는 것도 아니고, 주어진 시간 또한 길지 않기 때문에 비교적 적은 코드를 작성하고 러닝 커브가 적은 recoil을 프로젝트의 상태 관리 라이브러리로 확정하였습니다. <br>
 
-- Axios : 모듈 설치를 해야한다는 단점이 존재하지만 Promise 기반으로 만들어졌기 떄문에 데이터를 다루기에 편리함. 구형 브라우저 지원이 뛰어남.<br>
-  비동기로 http 통신이 가능하며 return을 promise 객체로 해주기 때문에 response 데이터를 다루기 쉬움
+- Axios : Promise 기반으로 동작하기 때문에, 비동기 처리를 위한 코드를 작성할 때 간결하게 작성할 수 있습니다. 브라우저와 서버 간에 HTTP 통신을 쉽게 하기 위해 사용하였습니다.<br>
 
-- React Router : 리액트는 Single Page Application임. 즉, 모든 컴포넌트의 변화가 하나의 페이지 안에서 일어남. 다른 URL로 이동하면 페이지 전체가 교체되는 것이 아니라 한 페이지 내부에서 컴포넌트의 변화만 일어남. 이런 환경에서 사용자는 원하는 페이지에 북마크를 할 수도 없고 히스토리가 생기지 않아 뒤로가기 기능을 사용할 수도 없음. 이러한 리액트의 단점을 react router로 보완함
-  <br>
-  react router을 사용함으로써 업데이트 된 부분만 새로 렌더링됨.
-  <br>
-  즉, React router는 리액트에 path를 추가해 기존의 장점을 유지하면서 단점까지 개선함
+- React Router : React의 SPA 환경에서 URL에 따라 동적으로 컴포넌트를 변화시킴으로써, 브라우저의 뒤로 가기와 앞으로 가기 기능을 활용할 수 있게 됩니다. 새로운 페이지로 이동할 경우 전체 페이지를 다시 렌더링 하지 않고, 변화가 필요한 컴포넌트만을 업데이트하여 React의 효율적인 렌더링을 유지하기 위해 사용하셨습니다.
 
 ### Github Flow
 
-main: 배포가 될 branch
-develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 2명의 조원의 승인 후에 merge 됨. 오류가 나지 않는, 충돌이 일어나지 않는 상태에서만 develop에서 main으로 넘김.
+main: 배포가 될 branch<br>
+develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 두 명 이상 조원의 승인 후에 merge가 됩니다. 오류가 나지 않는, 충돌이 일어나지 않는 상태에서만 develop에서 main으로 넘깁니다.
 
 ### Git Branch
 
-각자 issue 생성 후 issue branch를 만들어 작업
+각자 issue 생성 후 issue branch를 만들어 작업하였습니다.
 
 <br />
 
 ## 4. 역할 분담
 
+<img src='https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/mufijam.png' alt='mufiFigma'>
+
 <br />
 
 ### 협업 방식
 
-기획, 디자인 작업시, 빠른 피드백과 소통을 위해 회의시간을 길게 가짐<br />
-개발 작업 시작 후, 오전 10시와 오후 4시에 중간점검을 함<br />
-오류 발생시, 디스코드에서 즉각적인 소통과 피드백이 이루어짐
+기획, 디자인 작업시, 빠른 피드백과 소통을 위해 회의시간을 길게 가졌습니다.
+개발 작업 시작 이후에는 오전 10시와 오후 4시에 중간점검을 하였습니다. 꼭 점검시간이 아니어도 소통이 필요한 부분이 생기거나 오류가 발생 했을 경우, 디스코드에서 즉각적인 소통과 피드백이 이루어졌습니다.
 
 <br />
 
@@ -135,13 +130,89 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 
 ## 6. UI
 
-피그마URL
+### 피그마URL: [MUFI UI FIGMA](https://www.figma.com/file/JfDvlAYvQ5TfCoUaCfq0VX/MUFI-by-%ED%9D%AC%ED%9D%AC%EC%98%81%EC%98%81?type=design&node-id=0%3A1&mode=design&t=gPnuHgu7htKWxKB0-1)
 
 <br />
 
 ## 7. 기능 소개
 
 ### 각 페이지 기능
+
+<br />
+
+- 로그인
+
+|                                                                       Splash                                                                       |                                                               회원가입                                                                |                                                                 프로필 설정                                                                  |                                                                 로그인                                                                 |
+| :------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/splash%2Blanding.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/join.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/joinprofile.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/login.gif" height=675 width=312> |
+
+<br />
+
+- 홈
+
+|                                                            Home-Detail(상세페이지)                                                            |                                                                              검색(계정)                                                                               |                                                                              검색(태그)                                                                               |                                                                                     검색(페스티벌)                                                                                      |
+| :-------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/home-detail.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EA%B3%84%EC%A0%95%EA%B2%80%EC%83%89.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%ED%83%9C%EA%B7%B8%EA%B2%80%EC%83%89.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%ED%8E%98%EC%8A%A4%ED%8B%B0%EB%B2%8C%EA%B2%80%EC%83%89.gif" height=675 width=312> |
+
+<br />
+
+- 프로필
+
+|                                                                                                       프로필-앨범-리스트                                                                                                       |                                                                 팔로우/언팔로우                                                                  |
+| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%82%98%EC%9D%98%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%A8%EB%B2%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/follow-unfollow.gif" height=675 width=312> |
+
+<br />
+
+|                                                                                   프로필 수정                                                                                   |                                                                                         프로필 뮤직 수정                                                                                         |                                                                                        로그아웃                                                                                         |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%ED%94%84%EB%A1%9C%ED%95%84%EC%88%98%EC%A0%95.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%ED%94%84%EB%A1%9C%ED%95%84%EB%AE%A4%EC%A7%81%EC%88%98%EC%A0%95.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%ED%97%A4%EB%8D%94%EB%AA%A8%EC%96%B4%EB%AA%A8%EB%8B%AC.gif" height=675 width=414> |
+
+<br />
+
+- 게시글
+
+|                                                                                    게시글 수정                                                                                    |                                                                                    게시글 삭제                                                                                    |                                                                                    게시글 신고                                                                                    |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EC%88%98%EC%A0%95.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EC%82%AD%EC%A0%9C.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EA%B2%8C%EC%8B%9C%EA%B8%80%20%EC%8B%A0%EA%B3%A0.gif" height=675 width=472> |
+
+<br />
+
+- 게시물 업로드 및 태그
+
+|                                                                                          게시글 사진 추가                                                                                          |                                                                                         게시글 사진 삭제                                                                                          |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%EC%82%AC%EC%A7%84%EC%B6%94%EA%B0%80.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%EC%82%AC%EC%A7%84%EC%82%AD%EC%A0%9C.gif" height=675 width=312> |
+
+<br />
+
+|                                                                                           해시태그 추가                                                                                           |                                                                                           해시태그 생성                                                                                           |                                                                                           해시태그 삭제                                                                                           |
+| :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%ED%83%9C%EA%B7%B8%EC%B6%94%EA%B0%80.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%ED%83%9C%EA%B7%B8%EC%83%9D%EC%84%B1.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%ED%83%9C%EA%B7%B8%EC%82%AD%EC%A0%9C.gif" height=675 width=312> |
+
+<br />
+
+|                                                                                           페스티벌 추가                                                                                            |                                                                               게시글 업로드 완료                                                                                |
+| :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%ED%8E%98%EC%8A%A4%EC%B6%94%EA%B0%80.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%97%85%EB%A1%9C%EB%93%9C-%EC%99%84%EB%A3%8C.gif" height=675 width=312> |
+
+<br />
+
+- 댓글
+
+|                                                                               댓글 작성                                                                               |                                                                               댓글 삭제                                                                               |                                                                                댓글 신고                                                                                 |
+| :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%8C%93%EA%B8%80%EB%8B%AC%EA%B8%B0.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%8C%93%EA%B8%80%EC%82%AD%EC%A0%9C.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%8C%93%EA%B8%80%20%EC%8B%A0%EA%B3%A0.gif" height=675 width=312> |
+
+<br />
+
+- 채팅 / 에러
+
+|                                                                         채팅                                                                         |                                                                 404                                                                  |
+| :--------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------: |
+| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EC%B1%84%ED%8C%85.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/404.gif" height=675 width=312> |
+
+<br />
 
 <br />
 
@@ -164,7 +235,7 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 
 ### prettier 컨벤션
 
-통일성있는 코드 작성을 위해 prettier을 사용함
+통일성있는 코드 작성을 위해 prettier을 사용하였습니다.
 
 ```
 {
@@ -180,6 +251,7 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 
 ## 9. 이후에 해야할 것들
 
-- 프로젝트 리팩토링
 - 컴포넌트 재사용성 높이는 작업
-- 렌더링 성능 최적화(속도 개선)
+- 모달창 통일
+- 반응형 작업
+- 성능보다 구현을 중심으로 짠 코드 개선

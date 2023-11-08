@@ -17,6 +17,13 @@ export const Layout = styled.div`
   background-color: #f2f2f2;
 `;
 
+export const ProfilePageWrapper = styled.div`
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none; // 스크롤 바 숨기기
+  }
+`;
+
 export const ProfileWrapper = styled.div`
   width: 100%;
   min-height: 320px;

@@ -35,15 +35,19 @@ export default function Hashtag() {
       if (searchResult.length === 0) {
         setSearchResult([`${e.target.value}에 대한 검색결과가 없어요 T.T`]);
         setIsResultEmpty(true);
+      } else {
+        setIsResultEmpty(false);
       }
     }
   };
 
   const addSearchResult = async (e) => {
-    const newTag = e.target.textContent;
-    // console.log(newTag);
+    let newTag = e.target.textContent;
+    if (e.target.nodeName !== 'BUTTON') {
+      newTag = e.target.parentNode.textContent;
+    }
     if (!isResultEmpty) {
-        setTags((oldTags)=>{
+      setTags((oldTags)=>{
         let newTags;
         if(!oldTags.includes(newTag)){
           newTags = [...oldTags, newTag];
@@ -72,7 +76,6 @@ export default function Hashtag() {
 
   // 태그 삭제
   const handleRemoveTag = (index) => {
-    // console.log("remove Tag")
     setTags(oldTags=>oldTags.filter((_,i) => i !== index))
   }
 

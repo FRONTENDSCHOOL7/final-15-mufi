@@ -69,6 +69,7 @@ export const SentTime = styled.p`
   color: #dbdbdb;
 `;
 
+// 채팅방 안
 export const ChatTextContent = styled.main`
   background-color: #f2f2f2;
   width: 100%;
@@ -99,6 +100,7 @@ export const ImgInputLabel = styled.label`
   content: '';
   width: 40px;
   height: 40px;
+  flex-shrink: 0;
 
   border-radius: 32px;
   background-color: #000;
@@ -121,6 +123,8 @@ export const ChatSendButton = styled.button`
   color: #c4c4c4;
   border: none;
   background-color: transparent;
+  flex-shrink: 0;
+
   &:enabled {
     color: #0019ff;
   }
@@ -219,11 +223,12 @@ export const TempImageWrapper = styled.div`
   }
 `;
 export const TempImageHolder = styled.div`
+  position: relative;
   background-color: #dbdbdb;
   box-sizing: border-box;
   border: 1px solid #c4c4c4;
-  border-radius: 10px;
-  position: relative;
+  border-radius: 8px;
+  height: 100%;
 `;
 export const TempImage = styled.img`
   max-height: 100%;
@@ -235,6 +240,7 @@ export const TempImageRemoveBtn = styled.button`
   width: 22px;
   height: 22px;
   background-image: url(${iconClose});
+  background-repeat: no-repeat;
   background-color: transparent;
   border: none;
   position: absolute;

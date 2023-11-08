@@ -43,7 +43,8 @@ export const PostBtn = styled.button`
     cursor: default;
   }
   color: #0019ff;
-  width: 50px;
+  width: 55px;
+  flex-shrink: 0;
   font-size: 14px;
   background: none;
   outline: none;

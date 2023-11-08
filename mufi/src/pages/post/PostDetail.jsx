@@ -87,20 +87,21 @@ export default function PostDetail() {
         <GoBackMoreHeader />
         <PD.Div>
           {postDetailItem && <PostItem dataPost={postDetailItem} />}
+          {/* 댓글 리스트 자리 */}
+          <PD.CommentWrapper>
+            {comments &&
+              Array.from(comments)
+                .reverse()
+                .map((comment) => (
+                  <UserComment
+                    comment={comment}
+                    postId={postId}
+                    onCommentDelete={onCommentDelete}
+                  />
+                ))}
+          </PD.CommentWrapper>
         </PD.Div>
-        {/* 댓글 리스트 자리 */}
-        <PD.CommentWrapper>
-          {comments &&
-            Array.from(comments)
-              .reverse()
-              .map((comment) => (
-                <UserComment
-                  comment={comment}
-                  postId={postId}
-                  onCommentDelete={onCommentDelete}
-                />
-              ))}
-        </PD.CommentWrapper>
+        
         {/* 댓글 Input 자리 */}
         <CommentInput
           profileImg={profileImg}

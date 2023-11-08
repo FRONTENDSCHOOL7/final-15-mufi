@@ -14,9 +14,13 @@ export const PDLayout = styled(Layout)`
   }
 `;
 
-export const Div = styled.div``;
+export const Div = styled.div`
+  overflow-y: scroll;
+  height: fit-content;
+  padding-bottom: 60px;
+`;
 
 export const CommentWrapper = styled.div`
-  height: calc(100vh - 560px);
-  overflow-y: scroll;
+  /* height: calc(100vh - 560px); */
+  /* overflow-y: scroll; */
 `;

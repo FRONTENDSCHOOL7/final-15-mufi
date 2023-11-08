@@ -69,13 +69,13 @@ export const SentTime = styled.p`
   color: #dbdbdb;
 `;
 
+// 채팅방 안
 export const ChatTextContent = styled.main`
   background-color: #f2f2f2;
   width: 100%;
   height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
   gap: 12px;
   padding: 16px;
   box-sizing: border-box;
@@ -208,9 +208,8 @@ export const SentChatWrapper = styled.div`
 
 // 채팅방 이미지
 export const TempImageWrapper = styled.div`
-  position: relative;
   height: 142px;
-  width: 100vw;
+  width: 100%;
   background-color: #fff;
   border-top: 1px solid #dbdbdb;
   padding: 8px;
@@ -224,6 +223,7 @@ export const TempImageWrapper = styled.div`
   }
 `;
 export const TempImageHolder = styled.div`
+  position: relative;
   background-color: #dbdbdb;
   box-sizing: border-box;
   border: 1px solid #c4c4c4;

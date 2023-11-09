@@ -19,7 +19,7 @@ export default function HomeSearch() {
         <H.HomeSearch>
 
           {/* 검색결과 */}
-            <SearchResult isAccount={isAccount} isTag={isTag} isFestival={isFestival} />
+          <SearchResult isAccount={isAccount} isTag={isTag} isFestival={isFestival} />
         </H.HomeSearch>
         
       </H.HLayout>

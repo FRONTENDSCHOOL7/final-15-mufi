@@ -1,4 +1,4 @@
-# 🎼MUFI
+# 🎼MUFI | 뮤피
 
 ## 1. 🎺 MUFI 소개
 
@@ -31,6 +31,11 @@ PW: heehee00
 | :------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: | :------------------------------------------------------------------------------------------------: |
 | <img width="180" alt="sy_profile_img" src="https://avatars.githubusercontent.com/u/128986073?v=4"> | <img width="180" alt="sh_profile_img" src="https://avatars.githubusercontent.com/u/41767015?v=4"> | <img width="180" alt="hj_profile_img" src="https://avatars.githubusercontent.com/u/112550610?v=4"> | <img width="180" alt="by_profile_img" src="https://avatars.githubusercontent.com/u/123431761?v=4"> |
 |                             [soyoung03](https://github.com/soyoung03)                              |                                [sthgml](https://github.com/sthgml)                                |                               [yhj0217](https://github.com/yhj0217)                                |                                [olivu0](https://github.com/olivu0)                                 |
+
+### 🎯 팀 공통 목표
+| 1️⃣ 필수과제 구현 (완성) | 2️⃣ 팀 프로젝트 협업 방식 체득 | 3️⃣ 리액트 실전 활용 경험 | 4️⃣ API 사용법 실습 |
+|:---|---|---|---|
+
 
 <br />
 

@@ -33,9 +33,9 @@ PW: heehee00
 |                             [soyoung03](https://github.com/soyoung03)                              |                                [sthgml](https://github.com/sthgml)                                |                               [yhj0217](https://github.com/yhj0217)                                |                                [olivu0](https://github.com/olivu0)                                 |
 
 ### 🎯 팀 공통 목표
-| 1️⃣ 필수과제 구현 (완성) | 2️⃣ 팀 프로젝트 협업 방식 체득 | 3️⃣ 리액트 실전 활용 경험 | 4️⃣ API 사용법 실습 |
-|:---|---|---|---|
 
+| 1️⃣ 필수과제 구현 (완성) | 2️⃣ 팀 프로젝트 협업 방식 체득 | 3️⃣ 리액트 실전 활용 경험 | 4️⃣ API 사용법 실습 |
+| :---------------------- | ----------------------------- | ------------------------ | ------------------ |
 
 <br />
 
@@ -163,9 +163,9 @@ develop: 기능 개발이 완료된 각각의 branch가 합쳐지는 곳으로, 
 
 - 프로필
 
-|                                                                                                       프로필-앨범-리스트                                                                                                       |                                                                 팔로우/언팔로우                                                                  |
-| :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
-| <img src= "https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%82%98%EC%9D%98%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%A8%EB%B2%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/follow-unfollow.gif" height=675 width=312> |
+|                                                                                                      프로필-앨범-리스트                                                                                                       |                                                                               프로필(본인 제외)                                                                                |                                                                 팔로우/언팔로우                                                                  |
+| :---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%82%98%EC%9D%98%ED%94%84%EB%A1%9C%ED%95%84-%EC%95%A8%EB%B2%94-%EB%A6%AC%EC%8A%A4%ED%8A%B8.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/%EB%82%A8%EC%9D%98%ED%94%84%EB%A1%9C%ED%95%84.gif" height=675 width=312> | <img src="https://raw.githubusercontent.com/FRONTENDSCHOOL7/final-15-mufi/develop/mufi/src/assets/gif/follow-unfollow.gif" height=675 width=312> |
 
 <br />
 

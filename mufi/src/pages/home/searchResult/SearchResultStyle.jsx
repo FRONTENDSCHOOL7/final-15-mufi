@@ -66,3 +66,22 @@ export const ResultContent = styled.p`
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 1;
 `
+
+// 태그 추가버튼
+
+export const AddTagBtn = styled.button`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 250px;
+  line-height: 18px;
+  padding: 8px 16px;
+  color: #fff;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 600;
+  background-color: #2033e7;
+  margin: 16px auto;
+  border-radius: 4px;
+  border: none;
+`;

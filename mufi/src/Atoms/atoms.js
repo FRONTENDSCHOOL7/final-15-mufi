@@ -108,6 +108,12 @@ export const searchFestivalState = atom({
   effects_UNSTABLE: [persistAtom],
 });
 
+export const searchEmptyState = atom({
+  key: "searchEmptyState",
+  default: false,
+})
+
+// 수정
 export const isEditState = atom({
   key: 'isEditState',
   default: false,

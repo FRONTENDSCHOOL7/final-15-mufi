@@ -2,7 +2,7 @@ import React, { useEffect, useRef } from 'react'
 import * as SH from './SearchHeaderStyle'
 import { useNavigate } from 'react-router-dom';
 import { useRecoilValue, useRecoilState, useSetRecoilState } from 'recoil';
-import { festivalStoreState, keywordState, searchFestivalState, searchTagsState, searchUserResultState, tagStoreState, userTokenState } from '../../Atoms/atoms';
+import { festivalStoreState, keywordState, searchEmptyState, searchFestivalState, searchTagsState, searchUserResultState, tagStoreState, userTokenState } from '../../Atoms/atoms';
 import { searchUserAPI } from '../../api/serachUserAPI';
 
 // 뒤로가기 + 검색 버튼+ 검색창
@@ -18,6 +18,7 @@ export default function SearchHeader({
   const tagsStore = useRecoilValue(tagStoreState);
   const festivalStore = useRecoilValue(festivalStoreState);
   const token = useRecoilValue(userTokenState);
+  const setSearchEmpty = useSetRecoilState(searchEmptyState);
 
   const searchInput = useRef();
   const submitBtn = useRef();
@@ -67,13 +68,17 @@ export default function SearchHeader({
         // isTag 상태에서 버튼이 눌린다면
         } else if (isTag) {
           setSearchTags(tagsStore.filter(v=>v.includes(keyword)));
+          setSearchEmpty(false);
           if (searchTags.length === 0) {
-            setSearchTags([`${keyword}에 대한 검색결과가 없습니다. T.T`])
+            setSearchTags([`${keyword}에 대한 검색결과가 없습니다. T.T`]);
+            setSearchEmpty(true);
           }
         } else if (isFestival) {
           setSearchFestival(festivalStore.filter(v=>v.includes(keyword)));
+          setSearchEmpty(false);
           if (searchFestival.length === 0) {
-            setSearchFestival([`${keyword}에 대한 검색결과가 없습니다. T.T`])
+            setSearchFestival([`${keyword}에 대한 검색결과가 없습니다. T.T`]);
+            setSearchEmpty(true);
           }
         }
       }

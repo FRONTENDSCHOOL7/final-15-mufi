@@ -57,6 +57,12 @@ export default function Profile() {
     }
   };
 
+  const onProfileMusicChange = () => {
+    if (isMine) {
+      navigate('/musicadd');
+    }
+  };
+
   const onClickHandler = async () => {
     if (isFollow) {
       // Unfollow
@@ -176,6 +182,7 @@ export default function Profile() {
                     border="1px solid #767676"
                   />
                   <ProfileButton
+                    onClick={onProfileMusicChange}
                     content="프로필 뮤직 수정"
                     background="#fff"
                     color="#000"

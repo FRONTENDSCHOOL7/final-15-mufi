@@ -53,7 +53,7 @@ export default function Searched() {
         const {_id, ...newData} = v;
         newData.id = v._id;
         newData.commentCount = v.comments.length;
-        newData.hearted = true;
+        newData.hearted = false;
         delete newData._id;
         return newData;
       })
